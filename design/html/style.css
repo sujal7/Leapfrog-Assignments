@@ -1,0 +1,136 @@
+/* body{
+    background-color: aquamarine;
+}
+
+header{
+    background-color: wheat;
+}
+
+main{
+    background-color: blue;
+    flex-direction: row;
+}
+
+section{
+    background-color: brown;
+}
+
+footer{
+    background-color: chocolate;
+}
+
+nav ul li{
+    list-style-type: none;
+    display: inline;
+    margin-right: 30px;
+}
+
+nav ul{
+    font-size: 25px;
+}
+
+a.link{
+    text-decoration: none;
+    color: hotpink;
+}
+img.images{
+    width: 400px;
+}
+
+section{
+    width: 60%;
+    background-color: white;
+}
+
+article{
+    background-color: aquamarine;
+    width: 60%;
+}
+
+aside{
+    width: 30%;
+    float: right;
+    background-color: darkorange;
+} */
+body{
+    background-color: #eee;
+    border: 1px solid black;
+}
+header{
+    margin-top: -20px;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 1%;
+    background-color: rgb(71, 21, 21);
+    color: #eee;
+}
+
+header{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom: 2px solid black;
+}
+
+
+ul{
+    padding: 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+ul li{
+    list-style: none;
+    display: inline-block;
+    width: 23%;
+}
+
+li a{
+    text-decoration: none;
+    color: #eee;
+    padding: 10px;
+}
+
+li a:hover{
+    background-color: #eee;
+    color: black;
+}
+
+.images{
+    width: 300px;
+}
+
+
+section, aside{
+    float: left;
+    width: 42%;
+    padding: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+main, footer{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+main:after{
+        content: "";
+        display: block;
+        clear: both;
+}
+
+footer p{
+    text-align: center;
+    background-color: black;
+    color: wheat;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+input{
+    padding: 2%;
+    width: 40%;
+    height: 2%;
+}
+button{
+    width: 20%;
+    padding: 5px;
+}
