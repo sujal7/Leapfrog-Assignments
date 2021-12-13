@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuTangle Clone</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img src="images/logo.png" alt="" class="logo" />
+        <div class="search">
+          <input
+            type="text"
+            placeholder="Search by Term, Member, or Entry Title"
+            class="search-box"
+          />
+          <button class="cross-icon"></button>
+          <button class="search-icon"></button>
+          <button class="search-button">SEARCH</button>
+        </div>
+        <div class="profile">
+          <div class="username">Joe Burros</div>
+          <div class="user-nav">
+            <ul>
+              <li class="user-nav-item"><a href=""> Home</a>&nbsp;|&nbsp;</li>
+              <li class="user-nav-item">
+                <a href=""> Settings</a>&nbsp;|&nbsp;
+              </li>
+              <li class="user-nav-item"><a href=""> Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <nav class="navbar">
+        <div class="main-navbar">
+          <ul>
+            <li class="main-navbar-item">
+              <a href="" class="main-navbar-item-name">Create New Entry</a>
+            </li>
+            <li class="main-navbar-item">
+              <a href="" class="main-navbar-item-name">My Topic Boxes</a>
+            </li>
+            <li class="main-navbar-item">
+              <a href="" class="main-navbar-item-name">Friends</a>
+            </li>
+            <li class="main-navbar-item">
+              <a href="" class="main-navbar-item-name">Invite New Member</a>
+            </li>
+          </ul>
+        </div>
+        <div class="notifications">
+          <div class="notification">
+            <a href="" class="notification-name">
+              <img
+                src="images/notification-logo-invites.png"
+                alt=""
+                class="notification-logo"
+              />
+              <span class="notification-name">Topic Boxes Invites - 2</span>
+            </a>
+          </div>
+          <div class="notification">
+            <a href="" class="notification-name">
+              <img
+                src="images/notification-logo-friend-request.png"
+                alt=""
+                class="notification-logo"
+              />
+              <span class="notification-name">Friend Requests - 0</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <div class="main-container">
+        <aside class="left-navbar">
+          <nav class="side-navbar">
+            <h2 class="side-navbar-title">Recent Searches</h2>
+            <ul class="side-navbar-list">
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic"
+                    >Nick Cave and the Bad Seeds</span
+                  >
+                  <img
+                    src="images/side-navbar-download-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic">African Animals</span>
+                  <img
+                    src="images/side-navbar-download-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+            </ul>
+          </nav>
+          <nav class="side-navbar">
+            <h2 class="side-navbar-title">Recent Searches</h2>
+            <ul class="side-navbar-list">
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic"
+                    >Different versions of the Tristan Und Isolde Prelude</span
+                  >
+                  <img
+                    src="images/side-navbar-list-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic">Music</span>
+                  <img
+                    src="images/side-navbar-list-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic">Guitar</span>
+                  <img
+                    src="images/side-navbar-list-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic">Bob Cohen</span>
+                  <img
+                    src="images/side-navbar-list-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic">Mark Schnack</span>
+                  <img
+                    src="images/side-navbar-list-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+              <a href="">
+                <li class="side-navbar-item">
+                  <span class="side-navbar-topic">Jefferson Dickey</span>
+                  <img
+                    src="images/side-navbar-list-logo.png"
+                    alt=""
+                    class="side-navbar-logo"
+                  />
+                </li>
+              </a>
+            </ul>
+          </nav>
+        </aside>
+        <main class="main">
+          <h1 class="main-title">Entries</h1>
+          <div class="categories">
+            <div class="category-left">
+              <div class="category-title">All Entries</div>
+              <div class="category-navbar">
+                <ul class="category-navbar-list">
+                  <li class="category-navbar-item">
+                    <a href="#" class="category-navbar-name-1">All Members</a>
+                  </li>
+                  <li class="category-navbar-item">
+                    <a href="#" class="category-navbar-name-2">Friends</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="category-right">
+              <div class="category-title">Subscribed</div>
+              <div class="category-navbar">
+                <ul class="category-navbar-list">
+                  <li class="category-navbar-item">
+                    <a href="#" class="category-navbar-name-1">New Entries</a>
+                  </li>
+                  <li class="category-navbar-item">
+                    <a href="#" class="category-navbar-name-2">New Comments</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="article">
+            <img src="images/author-photo-1.png" alt="" class="author-photo" />
+            <div class="content">
+              <h2 class="content-title">
+                Day for Night by Francois Truffaut, a ground breaking film
+              </h2>
+              <span class="author">
+                by
+                <a href="" class="author-name">Alan Coe</a> </span
+              >&nbsp;|&nbsp;
+              <span class="date-posted">February 10, 2012</span>&nbsp;|&nbsp;
+              <span class="subscription-status">Subscribed</span>
+
+              <span class="topic-box">
+                From Topic Box:
+                <a href="" class="topic-box-name">My Favorite Movies</a>
+              </span>
+            </div>
+          </div>
+          <div class="article">
+            <img src="images/author-photo-2.png" alt="" class="author-photo" />
+            <div class="content">
+              <div class="content-info">NEW ENTRY!</div>
+              <h2 class="content-title">Blade Runner, The Director's Cut</h2>
+              <span class="author">
+                by
+                <a href="" class="author-name">Mary Pilot</a> </span
+              >&nbsp;|&nbsp;
+              <span class="date-posted">February 8, 2012</span>
+
+              <span class="topic-box">
+                From Topic Box:
+                <a href="" class="topic-box-name">Behind the Scene</a>
+              </span>
+            </div>
+          </div>
+          <div class="article">
+            <img src="images/author-photo-3.png" alt="" class="author-photo" />
+            <div class="content">
+              <div class="content-info"></div>
+              <h2 class="content-title">
+                The Best French Restaurant in Chicago?
+              </h2>
+              <span class="author">
+                by
+                <a href="" class="author-name">Jim Roy</a> </span
+              >&nbsp;|&nbsp;
+              <span class="date-posted">February 7, 2012</span>
+
+              <span class="topic-box">
+                From Topic Box:
+                <a href="" class="topic-box-name">Chicago Restaurant Reviews</a>
+              </span>
+            </div>
+          </div>
+          <div class="article">
+            <img src="images/author-photo-4.png" alt="" class="author-photo" />
+            <div class="content">
+              <h2 class="content-title">
+                The Meaning of Night, Dark Book but incredibly wel written.
+              </h2>
+              <span class="author">
+                by
+                <a href="" class="author-name">John-Peter Moise</a> </span
+              >&nbsp;|&nbsp;
+              <span class="date-posted">February 7, 2012</span>&nbsp;|&nbsp;
+              <span class="subscription-status">Subscribed</span>
+
+              <span class="topic-box">
+                From Topic Box:
+                <a href="" class="topic-box-name">Books Read & Books to Read</a>
+              </span>
+            </div>
+          </div>
+          <div class="article">
+            <img src="images/author-photo-5.png" alt="" class="author-photo" />
+            <div class="content">
+              <div class="content-invite">TOPIC BOX INVITE!</div>
+              <h2 class="content-title">Pea Pesto</h2>
+              <span class="author">
+                by
+                <a href="" class="author-name">Marianne Gig</a> </span
+              >&nbsp;|&nbsp;
+              <span class="date-posted">February 6, 2012</span>
+
+              <span class="topic-box">
+                From Topic Box:
+                <a href="" class="topic-box-name">Favorite Recipes</a>
+              </span>
+            </div>
+          </div>
+        </main>
+        <aside class="right-navbar">
+          <nav class="side-navbar">
+            <h2 class="side-navbar-title">Video Tutorials</h2>
+            <ul class="side-navbar-list">
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">Overview of TuTangle</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">Searching the Site</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic"
+                    >Previous & Saved Searches</span
+                  >
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">The Topic Box Page</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">Creating a Topic Box</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">View Topic Box Entries</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">Creating an Entry</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">Privacy Settings</span>
+                </a>
+              </li>
+              <li class="side-navbar-item">
+                <a href="">
+                  <span class="side-navbar-topic">Co-Authoring</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+      </div>
+      <footer class="footer">
+        <nav class="footer-navbar">
+          <ul class="footer-navbar-list">
+            <li class="footer-navbar-item">
+              <a href="" class="footer-navbar-item-name">About Us</a
+              >&nbsp;.&nbsp;
+            </li>
+            <li class="footer-navbar-item">
+              <a href="" class="footer-navbar-item-name">Contact Us</a
+              >&nbsp;.&nbsp;
+            </li>
+            <li class="footer-navbar-item">
+              <a href="" class="footer-navbar-item-name">Terms of Use</a
+              >&nbsp;.&nbsp;
+            </li>
+            <li class="footer-navbar-item">
+              <a href="" class="footer-navbar-item-name">Privacy Policy</a
+              >&nbsp;.&nbsp;
+            </li>
+            <li class="footer-navbar-item">
+              <a href="" class="footer-navbar-item-name">Feedback</a>
+            </li>
+          </ul>
+        </nav>
+        <span class="copyright">© TuTangle 2013</span>
+      </footer>
+    </div>
+  </body>
+</html>
