@@ -31,11 +31,11 @@ header {
   color: #929fa5;
 }
 .search:before {
-  content: url("/tree/main/tree/main/design/tutangle-implementation/images/input-border.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-border.png");
 }
 
 .cross-icon {
-  background: url("/tree/main/design/tutangle-implementation/images/input-cross-icon.png")
+  background: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-cross-icon.png")
     no-repeat center;
   height: 20px;
   width: 15px;
@@ -48,7 +48,7 @@ header {
 }
 
 .search-icon {
-  background: url("/tree/main/design/tutangle-implementation/images/input-search-icon.png")
+  background: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-search-icon.png")
     no-repeat center;
   height: 20px;
   width: 16px;
@@ -61,7 +61,7 @@ header {
 }
 
 .search-icon:after {
-  content: url("/tree/main/design/tutangle-implementation/images/input-border-flipped.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-border-flipped.png");
 }
 
 .search-button {
@@ -81,11 +81,11 @@ header {
 }
 
 .search-button:before {
-  content: url("/tree/main/design/tutangle-implementation/images/search-border.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border.png");
 }
 
 .search-button:after {
-  content: url("/tree/main/design/tutangle-implementation/images/search-border-flipped.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border-flipped.png");
 }
 
 .profile {
@@ -233,11 +233,11 @@ a {
 }
 
 .category-left:before {
-  content: url("/tree/main/design/tutangle-implementation/images/entry-border-main.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entry-border-main.png");
 }
 
 .category-right:after {
-  content: url("/tree/main/design/tutangle-implementation/images/entry-border-main-flipped.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entry-border-main-flipped.png");
 }
 
 .categories {
@@ -279,12 +279,12 @@ a {
 
 .category-navbar-name-1:before,
 .category-navbar-name-2:before {
-  content: url("/tree/main/design/tutangle-implementation/images/entries-items-border-grey.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-grey.png");
 }
 
 .category-navbar-name-1:after,
 .category-navbar-name-2:after {
-  content: url("/tree/main/design/tutangle-implementation/images/entries-items-border-grey-flipped.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-grey-flipped.png");
 }
 
 .category-navbar-name-1:hover,
@@ -294,12 +294,12 @@ a {
 
 .category-navbar-name-1:hover:before,
 .category-navbar-name-2:hover:before {
-  content: url("/tree/main/design/tutangle-implementation/images/entries-items-border-blue.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue.png");
 }
 
 .category-navbar-name-1:hover:after,
 .category-navbar-name-2:hover:after {
-  content: url("/tree/main/design/tutangle-implementation/images/entries-items-border-blue-flipped.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue-flipped.png");
 }
 
 .category-navbar-name-1:focus,
@@ -309,12 +309,12 @@ a {
 
 .category-navbar-name-1:focus:before,
 .category-navbar-name-2:focus:before {
-  content: url("/tree/main/design/tutangle-implementation/images/entries-items-border-blue.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue.png");
 }
 
 .category-navbar-name-1:focus:after,
 .category-navbar-name-2:focus:after {
-  content: url("/tree/main/design/tutangle-implementation/images/entries-items-border-blue-flipped.png");
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue-flipped.png");
 }
 
 .article {
