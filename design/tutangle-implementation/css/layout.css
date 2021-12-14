@@ -185,3 +185,9 @@ header:after {
   content: "";
   clear: both;
 }
+
+.subscription-status::after {
+  display: table;
+  content: "";
+  clear: both;
+}
