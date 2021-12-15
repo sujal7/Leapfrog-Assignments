@@ -1,43 +1,46 @@
-body{
-    background-color: #5CDB95;
-    margin: 20px;   
+body {
+  background-color: #5cdb95;
+  margin: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-#heading{
-    font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+#heading {
+  font-size: 20px;
 }
 
-#details{
-    margin-top: 50px;
-    font-size: 20px;
-    font-family: cursive;
-    line-height: 15px;
+#details {
+  margin-top: 50px;
+  font-size: 20px;
+  line-height: 15px;
 }
 
-#container{
-    margin-top: 50px;
+#container {
+  margin-top: 50px;
 }
 
-#container h2{
-    font-size: 30px;
-    margin-bottom: -20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+#container h2 {
+  font-size: 30px;
 }
 
-#assignmentTable, 
-td, 
-th
-{
-    font-size: large;
-    border-collapse: collapse;border-bottom: 1px solid rgb(39, 0, 0);
-    padding: auto;
-    text-align: left;
-    vertical-align: bottom;
-    height: 50px;
-    width: 800px;
-    padding: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#assignmentTable,
+td,
+th {
+  font-size: large;
+  border-collapse: collapse;
+  border-bottom: 1px solid rgb(39, 0, 0);
+  text-align: left;
+  vertical-align: bottom;
+  height: 50px;
+  width: 800px;
+  padding: 15px;
 }
 
-tr:nth-child(even) {background-color:#F0FEEB;}
+th,
+td {
+  height: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #c9c9c9;
+}
