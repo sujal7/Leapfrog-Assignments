@@ -153,8 +153,8 @@
   .side-navba-item *:hover,
   .side-navbar-topic:hover,
   .side-navbar-topic *:hover {
-    background-color: #fff;
-    text-decoration: underline;
+    background-color: inherit;
+    text-decoration: none;
   }
 
   .navbar {
@@ -333,5 +333,9 @@
 
   .side-navbar-item:hover {
     background-color: #ffffff;
+  }
+
+  .footer {
+    font-size: 1rem;
   }
 }
