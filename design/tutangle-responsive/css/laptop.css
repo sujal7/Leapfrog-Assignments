@@ -1,0 +1,252 @@
+@media (min-width: 780px) {
+  header {
+    min-height: 10rem;
+  }
+  .logo {
+    margin-left: 2rem;
+    float: left;
+    width: 25%;
+  }
+  .search {
+    margin-left: 1rem;
+    float: left;
+    width: 40%;
+    margin-top: 4%;
+  }
+
+  .search-box {
+    height: 2rem;
+    background-color: #caeff7;
+    width: 70%;
+  }
+
+  input[type="text"] {
+    font-size: 1.2rem;
+  }
+  .search input::placeholder {
+    font-size: 1rem;
+  }
+
+  .cross-icon {
+    height: 2rem;
+    width: 1.5rem;
+  }
+
+  .search-icon {
+    height: 2rem;
+    width: 1.5rem;
+    margin-left: 0.2rem;
+  }
+
+  .search-button {
+    padding: 0.2em;
+    font-size: 0.6rem;
+    height: 2rem;
+    width: 3rem;
+    margin-left: 1rem;
+  }
+  .search:before {
+    background-size: 0.3rem 2rem;
+    width: 0.3rem;
+    height: 2rem;
+  }
+
+  .search-button:before {
+    background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border.png");
+    display: inline-block;
+    background-size: 0.3rem 2rem;
+    width: 0.3rem;
+    height: 2rem;
+    content: "";
+  }
+
+  .search-button:after {
+    background-size: 0.3rem 2rem;
+    width: 0.3rem;
+    height: 2rem;
+  }
+
+  .profile {
+    margin-right: 1rem;
+    float: right;
+    width: 24%;
+    margin-top: 4%;
+  }
+
+  .user-nav {
+    margin-left: 1rem;
+  }
+
+  .username {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .user-nav-item a {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  /* 
+  .hamburgrer-menu {
+    display: none;
+  }
+  .hamburgrer {
+    display: none;
+  } */
+  .main-navbar .main-navbar-items {
+    display: inline;
+  }
+
+  .main-navbar:focus-within .main-navbar-items {
+    display: inline;
+  }
+  .notifications .notification {
+    display: inline;
+  }
+
+  .notifications:focus-within .notification {
+    display: inline;
+  }
+
+  .main-container .left-navbar {
+    display: block;
+  }
+
+  .main-container:focus-within .left-navbar {
+    display: block;
+  }
+
+  .right-navbar-menu .right-navbar {
+    display: block;
+  }
+
+  .right-navbar-menu:focus-within .right-navbar {
+    display: block;
+  }
+
+  .hamburger,
+  .hamburger-menu {
+    display: none;
+    visibility: hidden;
+    width: 0;
+  }
+
+  .main-navbar-item-name,
+  .notification-group,
+  .side-navbar-item,
+  .side-navba-item *,
+  .side-navbar-topic,
+  .side-navbar-topic * {
+    display: inline;
+    font-size: 1rem;
+    color: #000;
+    text-align: center;
+    width: auto;
+    padding: 1em 1em;
+    background-color: #dddddd;
+    margin-bottom: 1%;
+  }
+
+  .main-navbar-item-name:hover,
+  .notification-group:hover,
+  .side-navbar-item:hover,
+  .side-navba-item *:hover,
+  .side-navbar-topic:hover,
+  .side-navbar-topic *:hover {
+    background-color: #fff;
+    text-decoration: underline;
+  }
+
+  .navbar {
+    width: 100%;
+    background-color: #f5f5f5;
+    height: 4rem;
+    font-size: 14px;
+  }
+
+  .main-navbar {
+    margin-left: 1%;
+    margin-top: 1rem;
+    width: 50%;
+  }
+
+  .main-navbar-item {
+    margin-right: 1%;
+  }
+
+  .main-navbar-item-name {
+    font-size: 0.8rem;
+    display: inline-block;
+    color: #3c3c3c;
+  }
+  .main-navbar {
+    margin-top: 0.5rem;
+    float: left;
+    height: 4rem;
+  }
+
+  .main-navbar-item {
+    float: left;
+    width: 24%;
+    height: 2rem;
+  }
+
+  .main-navbar-item-name {
+    width: 100%;
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+
+  .main-navbar-item-name:hover {
+    color: #979797;
+    text-decoration: underline;
+  }
+
+  .notifications {
+    float: right;
+    width: 40%;
+    margin: 0;
+    padding: 0;
+    height: 100px;
+  }
+
+  .notification {
+    display: inline;
+    margin-left: 0;
+    float: left;
+    width: 45%;
+    margin-right: 5%;
+    height: 4rem;
+  }
+
+  .notification-group {
+    float: left;
+    height: 2rem;
+    width: 100%;
+    padding: 0;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  .notification-group:hover {
+    color: #979797;
+    text-decoration: underline;
+  }
+
+  .notification-name {
+    font-size: 0.8rem;
+    columns: #3c3c3c;
+    float: left;
+    margin-top: 8px;
+    width: 85%;
+  }
+
+  .notification-logo {
+    float: left;
+  }
+  .navbar:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
