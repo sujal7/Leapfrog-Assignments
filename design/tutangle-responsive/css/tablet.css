@@ -34,31 +34,31 @@
   }
 
   .search-button {
-    padding: 0.2em;
-    font-size: 0.4rem;
+    padding: 0;
+    font-size: 0.45rem;
     height: 2rem;
     width: 2rem;
     margin-left: 1rem;
   }
   .search:before {
-    background-size: 0.3rem 2rem;
-    width: 0.3rem;
+    background-size: 0.6rem 2rem;
+    width: 0.6rem;
     height: 2rem;
+    left: 0.4rem;
   }
 
   .search-button:before {
-    background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border.png");
-    display: inline-block;
-    background-size: 0.3rem 2rem;
-    width: 0.3rem;
+    background-size: 0.6rem 2rem;
+    width: 0.6rem;
     height: 2rem;
-    content: "";
+    left: -0.6rem;
   }
 
   .search-button:after {
-    background-size: 0.3rem 2rem;
-    width: 0.3rem;
+    background-size: 0.6rem 2rem;
+    width: 0.6rem;
     height: 2rem;
+    left: 2rem;
   }
 
   .profile {
@@ -81,6 +81,11 @@
   .main-title {
     font-size: 2rem;
     margin-left: 1rem;
+  }
+
+  .category-navbar-name-1,
+  .category-navbar-name-2 {
+    font-size: 0.6rem;
   }
   .article {
     margin-top: 1rem;
