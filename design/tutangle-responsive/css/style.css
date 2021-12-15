@@ -353,21 +353,29 @@ a:hover {
 }
 
 .article {
-  width: 100%;
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  min-height: 6rem;
   border-bottom: 1px solid #d8d8d8;
 }
 
 .content {
   width: 70%;
   font-size: 0.6rem;
-  margin-left: 0.6rem;
+  margin-left: 2%;
 }
 
 .content-title {
   font-weight: bold;
   font-size: 0.8rem;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.content span {
   line-height: 1rem;
 }
 
