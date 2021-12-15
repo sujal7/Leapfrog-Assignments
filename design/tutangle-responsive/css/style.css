@@ -1,0 +1,460 @@
+.container {
+  font-family: "Mulish", sans-serif;
+}
+
+header {
+  background-color: #7dd9e8;
+  width: 100%;
+  min-height: 6rem;
+}
+
+.logo {
+  margin-left: 1rem;
+  max-width: 30%;
+}
+
+.search {
+  width: 50%;
+  margin-top: 1rem;
+}
+
+.search-box {
+  margin-left: 1rem;
+  border: 0;
+  height: 1rem;
+  background-color: #caeff7;
+  width: 60%;
+  outline: none;
+}
+
+input[type="text"] {
+  font-size: 0.5rem;
+}
+
+.search input::placeholder {
+  font-size: 0.5rem;
+  color: #929fa5;
+}
+
+.cross-icon {
+  background: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-cross-icon.png")
+    no-repeat center;
+  height: 1rem;
+  border: 0;
+  background-color: #caeff7;
+}
+
+.cross-icon:hover {
+  cursor: pointer;
+}
+
+.search-icon {
+  background: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-search-icon.png")
+    no-repeat center;
+  height: 1rem;
+  border: 0;
+  background-color: #caeff7;
+  margin-left: 0.1rem;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+}
+
+.search-button {
+  padding: 0.2em;
+  font-size: 0.4rem;
+  height: 1rem;
+  width: 2rem;
+  background-color: #245053;
+  margin-left: 0.5rem;
+  border: 0;
+  color: #d8dde1;
+}
+
+.search-button:hover {
+  cursor: pointer;
+  color: #929fa5;
+}
+
+.profile {
+  margin-right: 0.2rem;
+  width: 35%;
+}
+
+.username {
+  width: 100%;
+  text-align: right;
+  font-weight: bold;
+  font-size: 0.6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.user-nav-item {
+  list-style-type: none;
+  float: left;
+}
+
+.user-nav-item a {
+  color: #333132;
+  font-size: 0.5rem;
+  font-weight: bold;
+}
+
+.search:before {
+  background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-border.png");
+  display: inline-block;
+  background-size: 0.3rem 1rem;
+  width: 0.3rem;
+  height: 1rem;
+  content: "";
+}
+
+/* .search:after {
+  background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-border-flipped.png");
+  display: inline-block;
+  background-size: 0.3rem 1rem;
+  width: 0.3rem;
+  height: 1rem;
+  content: "";
+} */
+
+.search-button:before {
+  background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border.png");
+  display: inline-block;
+  background-size: 0.3rem 1rem;
+  width: 0.3rem;
+  height: 1rem;
+  content: "";
+}
+
+.search-button:after {
+  background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border-flipped.png");
+  display: inline-block;
+  background-size: 0.3rem 1rem;
+  width: 0.3rem;
+  height: 1rem;
+  content: "";
+}
+
+.main-navbar .main-navbar-items {
+  display: none;
+}
+
+.notifications .notification {
+  display: none;
+}
+
+.main-navbar:focus-within .main-navbar-items {
+  display: block;
+}
+
+.notifications:focus-within .notification {
+  display: block;
+}
+
+.main-container .left-navbar {
+  display: none;
+}
+
+.main-container:focus-within .left-navbar {
+  display: block;
+}
+
+.right-navbar-menu .right-navbar {
+  display: none;
+}
+
+.right-navbar-menu:focus-within .right-navbar {
+  display: block;
+}
+
+.hamburger {
+  display: block;
+  background-color: #2fc1da;
+  min-width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  padding: 0.5em;
+  margin-top: 1rem;
+  border: 0;
+  border-bottom: 3px solid grey;
+  color: white;
+  cursor: pointer;
+}
+
+.hamburger-menu {
+}
+
+.main-navbar {
+}
+
+.main-navbar-item-name,
+.notification-group,
+.side-navbar-item,
+.side-navba-item *,
+.side-navbar-topic,
+.side-navbar-topic * {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #000;
+  text-align: center;
+  width: 100%;
+  padding: 1em 1em;
+  background-color: #dddddd;
+  margin-bottom: 1%;
+}
+
+.main-navbar-item-name:hover,
+.notification-group:hover,
+.side-navbar-item:hover,
+.side-navba-item *:hover,
+.side-navbar-topic:hover,
+.side-navbar-topic *:hover {
+  background-color: #fff;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.side-navbar-title {
+  display: none;
+}
+
+.side-navbar-logo {
+  display: block;
+  float: right;
+
+  margin-top: 0.5rem;
+}
+
+.notification-logo {
+  display: block;
+  float: left;
+  margin-top: 0.5rem;
+}
+
+.notification-name {
+  vertical-align: middle;
+}
+
+.main-title {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.category-left,
+.category-right {
+  width: 40%;
+  height: 65px;
+  background-color: #f5f5f5;
+}
+
+.category-left {
+  margin-left: 1.5rem;
+}
+.category-right {
+  margin-right: 1.5rem;
+}
+
+.category-left:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entry-border-main.png");
+}
+
+.category-right:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entry-border-main-flipped.png");
+}
+
+.categories {
+  margin-top: 1rem;
+  border-bottom: 2px solid #2fc1da;
+  width: 100%;
+}
+
+.category-title {
+  text-align: center;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  font-size: 1rem;
+}
+
+.category-navbar-name-1,
+.category-navbar-name-2 {
+  margin-top: 1.1rem;
+  background-color: #dddddd;
+  width: 38%;
+  height: 28px;
+  font-size: 0.5rem;
+  color: #333333;
+  text-align: center;
+  padding-top: 0.6rem;
+  padding-right: 0.1rem;
+}
+
+.category-navbar-name-1:hover,
+.category-navbar-name-2:hover {
+  background-color: #2fc1da;
+}
+
+.category-left .category-navbar-name-1 {
+  margin-left: 0rem;
+}
+.category-left .category-navbar-name-2 {
+  margin-right: 0.7rem;
+}
+
+.category-right .category-navbar-name-1 {
+  margin-left: 0.7rem;
+}
+.category-right .category-navbar-name-2 {
+  margin-right: 0.7rem;
+}
+
+.category-navbar-name-1:before,
+.category-navbar-name-2:before {
+  background-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-grey.png");
+  content: "";
+  display: inline-block;
+  background-size: 0.5rem 28px;
+  width: 0.5rem;
+  height: 28px;
+}
+
+/* .category-navbar-name-1:after,
+.category-navbar-name-2:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-grey-flipped.png");
+} */
+
+.category-navbar-name-1:hover,
+.category-navbar-name-2:hover {
+  background-color: #2fc1da;
+}
+
+.category-navbar-name-1:hover:before,
+.category-navbar-name-2:hover:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue.png");
+}
+.category-navbar-name-1:focus,
+.category-navbar-name-2:focus {
+  background-color: #2fc1da;
+}
+
+.category-navbar-name-1:focus:before,
+.category-navbar-name-2:focus:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue.png");
+}
+
+.article {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.content {
+  width: 70%;
+  font-size: 0.6rem;
+  margin-left: 0.6rem;
+}
+
+.content-title {
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+.content-title:hover {
+  cursor: pointer;
+}
+
+.author {
+  font-size: 0.6rem;
+}
+
+.author,
+.date-posted,
+.topic-box {
+  color: #626262;
+  font-size: 0.6rem;
+}
+
+.author-name {
+  color: #2fc1da;
+  font-weight: bold;
+}
+
+.author-name:hover {
+  text-decoration: underline;
+}
+
+.subscription-status {
+  color: #6f971d;
+  font-size: 0.6rem;
+}
+
+.topic-box {
+  display: inline-block;
+}
+
+.topic-box-name {
+  color: #2fc1da;
+  font-weight: bold;
+}
+
+.topic-box-name:hover {
+  text-decoration: underline;
+}
+
+.content-info {
+  font-size: 0.6rem;
+  color: #2fc1da;
+  font-weight: bold;
+}
+
+.content-invite {
+  font-size: 0.6rem;
+  color: #d73f1a;
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 2rem;
+  background-color: #727272;
+  color: #cecece;
+  font-size: 0.6rem;
+  min-height: 5rem;
+}
+
+.footer-navbar-list {
+  list-style-type: none;
+}
+
+.footer-navbar {
+  margin-left: 2rem;
+  margin-top: 1.5rem;
+}
+
+.footer-navbar-item {
+  display: inline-block;
+}
+
+.footer-navbar-item-name {
+  color: #cecece;
+}
+
+.footer-navbar-item-name:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 1.5rem;
+  margin-right: 2rem;
+}

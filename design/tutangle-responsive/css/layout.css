@@ -1,0 +1,148 @@
+.search {
+  float: left;
+  position: relative;
+}
+
+/* .serch:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+
+.profile {
+  float: right;
+}
+
+.search-box {
+  float: left;
+}
+
+.cross-icon {
+  float: left;
+}
+
+.search-icon {
+  float: left;
+}
+
+.search-button {
+  float: left;
+}
+
+.header {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.search:before {
+  position: absolute;
+  left: 0.7rem;
+}
+
+.user-nav {
+  float: right;
+}
+
+/* .search:after {
+  position: absolute;
+  right: 2.8rem;
+} */
+
+.search-button {
+  position: absolute;
+}
+
+.search-button:before {
+  position: absolute;
+  top: 0;
+  left: -0.3rem;
+}
+
+.search-button:after {
+  position: absolute;
+  top: 0;
+}
+
+.category-left {
+  float: left;
+}
+
+.category-right {
+  float: right;
+  position: relative;
+}
+
+.category-left:before {
+  float: left;
+}
+.category-right:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.categories {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.category-navbar-name-1,
+.category-navbar-name-2 {
+  position: relative;
+}
+
+.category-navbar-name-1 {
+  float: left;
+}
+.category-navbar-name-2 {
+  float: right;
+}
+
+.category-navbar-name-1:before,
+.category-navbar-name-2:before {
+  position: absolute;
+  top: 0;
+  left: -0.5rem;
+}
+
+/* .category-navbar-name-1:after,
+.category-navbar-name-2:after {
+  position: absolute;
+  top: 0;
+  left: 4rem;
+} */
+
+.article:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.author-photo {
+  float: left;
+}
+
+.content {
+  float: left;
+}
+
+.footer-navbar {
+  float: left;
+}
+
+.copyright {
+  float: right;
+}
+
+.footer:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.subscription-status::after {
+  display: table;
+  content: "";
+  clear: both;
+}

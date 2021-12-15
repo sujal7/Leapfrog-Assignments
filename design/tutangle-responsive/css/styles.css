@@ -1,0 +1,423 @@
+.container {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Mulish", sans-serif;
+}
+
+header {
+  background-color: #7dd9e8;
+}
+
+.header img {
+  margin-left: 32px;
+}
+
+.search {
+  margin-left: 30px;
+  margin-top: 40px;
+}
+
+.search input {
+  border: 0;
+  height: 20px;
+  background-color: #caeff7;
+  width: 232px;
+  outline: none;
+}
+
+.search input::placeholder {
+  font-size: 12px;
+  color: #929fa5;
+}
+.search:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-border.png");
+}
+
+.cross-icon {
+  background: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-cross-icon.png")
+    no-repeat center;
+  height: 20px;
+  width: 15px;
+  border: 0;
+  background-color: #caeff7;
+}
+
+.cross-icon:hover {
+  cursor: pointer;
+}
+
+.search-icon {
+  background: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-search-icon.png")
+    no-repeat center;
+  height: 20px;
+  width: 16px;
+  border: 0;
+  background-color: #caeff7;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+}
+
+.search-icon:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/input-border-flipped.png");
+}
+
+.search-button {
+  padding: 0;
+  font-size: 12px;
+  margin-left: 50px;
+  height: 20px;
+  width: 50px;
+  background-color: #245053;
+  border: 0;
+  color: #d8dde1;
+}
+
+.search-button:hover {
+  cursor: pointer;
+  color: #929fa5;
+}
+
+.search-button:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border.png");
+}
+
+.search-button:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/search-border-flipped.png");
+}
+
+.profile {
+  margin-right: 32px;
+  margin-top: 28px;
+}
+
+.username {
+  width: 100%;
+  text-align: right;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.user-nav-item {
+  list-style-type: none;
+  float: left;
+}
+
+.user-nav-item a {
+  color: #333132;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.user-nav-item a:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+  background-color: #f5f5f5;
+  height: 40px;
+  font-size: 14px;
+}
+
+.main-navbar {
+  margin-left: 40px;
+  margin-top: 15px;
+}
+
+.main-navbar-item {
+  margin-right: 30px;
+}
+
+.main-navbar-item-name {
+  font-size: 14px;
+  display: inline-block;
+  color: #3c3c3c;
+}
+
+.main-navbar-item-name:hover {
+  color: #979797;
+  text-decoration: underline;
+}
+.notifications {
+  margin-right: 30px;
+}
+
+.notification {
+  margin-left: 30px;
+  margin-top: 12px;
+}
+
+.notification-name {
+  color: #3c3c3c;
+}
+
+.notification-name :hover {
+  color: #979797;
+}
+
+.notification-logo {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.left-navbar,
+.main {
+  margin-top: 30px;
+}
+
+.left-navbar {
+  margin-left: 32px;
+  width: 194px;
+}
+
+.right-navbar {
+  float: right;
+  margin-top: 30px;
+  margin-right: 30px;
+  width: 176px;
+}
+
+.side-navbar-title {
+  background-color: #2fc1da;
+  color: #ffffff;
+  height: 42px;
+  padding-left: 12px;
+  padding-top: 15px;
+  font-size: 18px;
+}
+
+.side-navbar-topic {
+  display: inline-block;
+  color: #292929;
+  width: 142px;
+  line-height: 20px;
+}
+
+.side-navbar-logo {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.side-navbar-item {
+  background-color: #f5f5f5;
+  padding-left: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 16px;
+}
+
+.side-navbar-item:hover {
+  background-color: #ffffff;
+}
+
+.main-title {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.category-left,
+.category-right {
+  width: 247px;
+  height: 65px;
+  background-color: #f5f5f5;
+}
+
+.category-left {
+  margin-right: 2px;
+}
+
+.category-left:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entry-border-main.png");
+}
+
+.category-right:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entry-border-main-flipped.png");
+}
+
+.categories {
+  border-bottom: 2px solid #2fc1da;
+  width: 505px;
+}
+
+.category-title {
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 14px;
+}
+
+.category-navbar-name-1,
+.category-navbar-name-2 {
+  background-color: #dddddd;
+  width: 86px;
+  height: 28px;
+  font-size: 10px;
+  color: #333333;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.category-left .category-navbar-name-1 {
+  margin-left: 10px;
+}
+.category-left .category-navbar-name-2 {
+  margin-right: 20px;
+}
+
+.category-right .category-navbar-name-1 {
+  margin-left: 24px;
+}
+.category-right .category-navbar-name-2 {
+  margin-right: 16px;
+}
+
+.category-navbar-name-1:before,
+.category-navbar-name-2:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-grey.png");
+}
+
+.category-navbar-name-1:after,
+.category-navbar-name-2:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-grey-flipped.png");
+}
+
+.category-navbar-name-1:hover,
+.category-navbar-name-2:hover {
+  background-color: #2fc1da;
+}
+
+.category-navbar-name-1:hover:before,
+.category-navbar-name-2:hover:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue.png");
+}
+
+.category-navbar-name-1:hover:after,
+.category-navbar-name-2:hover:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue-flipped.png");
+}
+
+.category-navbar-name-1:focus,
+.category-navbar-name-2:focus {
+  background-color: #2fc1da;
+}
+
+.category-navbar-name-1:focus:before,
+.category-navbar-name-2:focus:before {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue.png");
+}
+
+.category-navbar-name-1:focus:after,
+.category-navbar-name-2:focus:after {
+  content: url("https://sujal7.github.io/Leapfrog-Assignments/design/tutangle-implementation/images/entries-items-border-blue-flipped.png");
+}
+
+.article {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.content {
+  width: 430px;
+  margin-left: 10px;
+}
+
+.content-title {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.content-title:hover {
+  cursor: pointer;
+}
+
+.author {
+  font-size: 12px;
+}
+
+.author,
+.date-posted,
+.topic-box {
+  color: #626262;
+  font-size: 12px;
+}
+
+.author-name {
+  color: #2fc1da;
+  font-weight: bold;
+}
+
+.author-name:hover {
+  text-decoration: underline;
+}
+
+.subscription-status {
+  color: #6f971d;
+  font-size: small;
+}
+
+.topic-box {
+  display: inline-block;
+}
+
+.topic-box-name {
+  color: #2fc1da;
+  font-weight: bold;
+}
+
+.topic-box-name:hover {
+  text-decoration: underline;
+}
+
+.content-info {
+  font-size: small;
+  color: #2fc1da;
+  font-weight: bold;
+}
+
+.content-invite {
+  font-size: small;
+  color: #d73f1a;
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 32px;
+  background-color: #727272;
+  color: #cecece;
+  font-size: small;
+  height: 45px;
+}
+
+.footer-navbar-list {
+  list-style-type: none;
+}
+
+.footer-navbar {
+  margin-left: 35px;
+  margin-top: 18px;
+}
+
+.footer-navbar-item {
+  display: inline-block;
+}
+
+.footer-navbar-item-name {
+  color: #cecece;
+}
+
+.footer-navbar-item-name:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 18px;
+  margin-right: 35px;
+}
