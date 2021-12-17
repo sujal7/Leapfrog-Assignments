@@ -301,7 +301,7 @@ img {
 }
 
 .our-features {
-  margin-top: 13.9rem;
+  margin-top: 12.9rem;
 }
 
 .our-features h5 {
@@ -318,4 +318,150 @@ img {
   font-size: 3.5rem;
   color: #1d1d1f;
   margin-bottom: 6.5rem;
+}
+
+.our-features-image {
+  margin-left: 4.22%;
+  margin-right: 4.22%;
+  width: 91.56%;
+}
+
+.first-feature-image {
+  width: 100%;
+  height: 29.3rem;
+  margin: 0;
+}
+
+.our-features-description {
+  height: 29.3rem;
+  background-color: #f0f1ec;
+  border: 1.5px solid #06c167;
+}
+
+.our-features-description-title {
+  font-size: 3.2rem;
+  line-height: 3.9rem;
+  font-weight: 500;
+  color: #1d1d1f;
+  padding-top: 3.75rem;
+  padding-left: 11.875%;
+  padding-right: 16.875%;
+}
+
+.our-features-description-content {
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  font-weight: normal;
+  color: #1d1d1f;
+  padding-top: 2.5rem;
+  padding-left: 11.875%;
+  padding-right: 16.875%;
+}
+
+.discover-now {
+  border: 0;
+  margin-top: 3.75rem;
+  margin-left: 11.875%;
+  margin-right: 16.875%;
+  height: 4.2rem;
+  font-size: 1.5rem;
+  color: #06c167;
+  background-color: #f0ede2;
+  font-weight: 500;
+  line-height: 1.8rem;
+  padding-top: 1.1rem;
+  padding-left: 9.459%;
+  padding-right: 12.162%;
+  padding-bottom: 1.3rem;
+}
+
+.discover-now-icon {
+  filter: invert(53%) sepia(84%) saturate(1122%) hue-rotate(107deg)
+    brightness(91%) contrast(95%);
+  width: 1.222rem;
+}
+
+.our-product {
+  margin-top: 12.9rem;
+}
+
+.our-product h5 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #1d1d1f;
+  text-align: center;
+  margin-bottom: 1.3rem;
+}
+
+.our-product-title {
+  font-weight: 500;
+  text-align: center;
+  font-size: 3.5rem;
+  color: #1d1d1f;
+  margin-bottom: 7rem;
+}
+
+.our-product-container {
+  height: 44.5rem;
+  width: 100%;
+  border: 2px solid rgba(118, 118, 117, 0.25);
+  text-align: center;
+  margin-bottom: 3.8rem;
+}
+
+.our-product-container:hover {
+  border: 2px solid #06c167;
+}
+
+.our-product-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5rem;
+}
+
+.our-products-star {
+  margin-top: 0.5rem;
+}
+
+.our-product-container-title {
+  margin-top: 2.1rem;
+  color: #1d1d1f;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  font-weight: 400;
+}
+
+.our-product-price {
+  margin-top: 2.5rem;
+  color: #06c167;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 2.4rem;
+}
+
+.our-product-price strike {
+  color: #767675;
+  opacity: 0.35;
+  font-weight: 600;
+}
+
+.buy-now {
+  margin-top: 3rem;
+  border: 2px solid #06c167;
+  padding-top: 1.7rem;
+  padding-bottom: 1.9rem;
+  padding-left: 16.949%;
+  padding-right: 14.124%;
+  color: #06c167;
+  background-color: #ffffff;
+}
+
+.our-product-arrow-icon {
+  filter: invert(53%) sepia(84%) saturate(1122%) hue-rotate(107deg)
+    brightness(91%) contrast(95%);
+}
+
+.veggie {
+  margin-top: 3rem;
 }
