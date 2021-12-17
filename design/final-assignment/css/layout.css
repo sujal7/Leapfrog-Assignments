@@ -67,3 +67,14 @@
   top: -6.1rem;
   left: 2.2rem;
 }
+
+.veggie {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.veggie-image {
+  position: absolute;
+  top: 0;
+  left: -30rem;
+}

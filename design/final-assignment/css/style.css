@@ -78,7 +78,7 @@ img {
 .banner-container {
   position: relative;
   margin-top: 4.7rem;
-  width: 32rem;
+  width: 100%;
   height: 46.9rem;
   overflow: hidden;
   /* need to change this */
@@ -463,5 +463,130 @@ img {
 }
 
 .veggie {
-  margin-top: 3rem;
+  margin-top: 6.8rem;
+  height: 459px;
+}
+
+.veggie-image {
+  z-index: -1;
+  max-width: none;
+}
+
+.veggie-content {
+  text-align: center;
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 4.2rem;
+  width: 91.562%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10.2rem;
+}
+
+.footer {
+  margin-top: 9.5rem;
+}
+
+.footer-foodies {
+  text-align: center;
+}
+
+.footer-content {
+  padding-top: 3.9rem;
+  padding-left: 2.2rem;
+  padding-right: 2.2rem;
+  padding-bottom: 3.66rem;
+  justify-content: center;
+  color: #1d1d1f;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.42rem;
+}
+
+.facebook,
+.instagram {
+  margin-right: 2.5rem;
+}
+
+.footer-about-us {
+  margin-top: 8rem;
+  text-align: center;
+}
+
+.footer-title {
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 2.9rem;
+  color: #1d1d1f;
+  margin-bottom: 4.1rem;
+}
+
+.footer-links {
+  display: block;
+  color: #1d1d1f;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  padding-bottom: 1.6rem;
+}
+
+.footer-company {
+  margin-top: 6.4rem;
+  text-align: center;
+}
+
+.get-in-touch {
+  margin-top: 6.4rem;
+  text-align: center;
+}
+
+.get-in-touch-footer-content {
+  padding-top: 0;
+  justify-content: center;
+  color: #1d1d1f;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  margin-bottom: 3.9rem;
+}
+
+.email {
+  border: 0;
+  width: 100%;
+  background-color: #f0f1ec;
+  text-align: center;
+  padding-top: 1.8rem;
+  padding-bottom: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+.email:placeholder-shown {
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  color: #1d1d1f;
+  opacity: 0.51;
+}
+
+.subscribe {
+  border: 0;
+  width: 100%;
+  background-color: #06c167;
+  text-align: center;
+  padding-top: 1.6rem;
+  padding-bottom: 1.7rem;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.copyright {
+  margin-top: 8.1rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  color: #1d1d1f;
+  text-align: center;
+  margin-bottom: 3.1rem;
 }
