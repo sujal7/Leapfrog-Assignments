@@ -1,0 +1,69 @@
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+  display: table;
+  content: "";
+}
+
+.header-ratings {
+  position: absolute;
+  top: 354px;
+  left: 46px;
+  z-index: 1;
+}
+
+.header-quality-product {
+  position: absolute;
+  top: 417px;
+  left: 46px;
+  z-index: 1;
+}
+
+.header-polcadot {
+  position: absolute;
+  top: 34rem;
+  left: 19.4rem;
+}
+
+.benefits-image-container {
+  position: relative;
+}
+
+.benefits-image {
+  position: absolute;
+  top: -2.9rem;
+  left: 2.2rem;
+}
+
+.benefits-content {
+  position: relative;
+}
+
+.benefits-polcadot {
+  position: absolute;
+  left: -1.3rem;
+  top: -0.5rem;
+  z-index: -1;
+}
+
+.our-stars-image-container {
+  position: relative;
+}
+
+.our-stars-image {
+  position: absolute;
+  top: -6.1rem;
+  left: 2.2rem;
+}

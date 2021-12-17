@@ -5,32 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foodies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    
   </head>
   <body>
     <header class="header">
-      <div class="logo"><img src="images/logo.png" alt="Foodies Logo" /></div>
-      <nav class="navbar">
-        <ul>
-          <li>
-            <a href="" class="navbar-item">Home</a>
-          </li>
-          <li>
-            <a href="" class="navbar-item">About Us</a>
-          </li>
-          <li>
-            <a href="" class="navbar-item">Service Us</a>
-          </li>
-          <li>
-            <a href="" class="navbar-item">Our Company</a>
-          </li>
-          <li>
-            <a href="" class="navbar-item">Pages</a>
-          </li>
-        </ul>
-      </nav>
+      <div class="top-nav clearfix:after">
+        <div class="logo float-left"><img src="images/logo.png" alt="Foodies Logo" /></div>
+        <a href="javascript:void(0);" class="dropdown float-right" onclick="myFunction()">
+          <img class="hamburger" src="images/hamburger-icon.png" alt="Hamburger icon" />
+        </a>
+        <nav class="navbar clearfix" id="navbar">
+          <ul>
+            <li>
+              <a href="#" class="navbar-item">Home</a>
+            </li>
+            <li>
+              <a href="#" class="navbar-item">About Us</a>
+            </li>
+            <li>
+              <a href="#" class="navbar-item">Service Us</a>
+            </li>
+            <li>
+              <a href="#" class="navbar-item">Our Company</a>
+            </li>
+            <li>
+              <a href="#" class="navbar-item">Pages</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <div class="header-content">
-        <h1 class="header-title"></h1>
-        <p class="header-paragraph"></p>
+        <h1 class="header-title">We're Serious For Food.</h1>
+        <p class="header-paragraph">We strive to provide a space where guests can connect with themselves and explore their full potential, offering a safe place.</p>
         <button class="get-started">
           Get Started
           <img
@@ -40,38 +53,40 @@
           />
         </button>
       </div>
+      <div class="banner-container">
       <img
         src="images/header-banner.png"
         alt="Woman Cooking Vegetables"
         class="header-image"
       />
-      <div class="header-ratings">
-        <h5 class="ratings-text">5.0 Ratings</h5>
+      <div class="header-ratings clearfix">
+        <h5 class="ratings-text float-left">5.0 Ratings</h5>
         <img
           src="images/five-stars.png"
           alt="Five Star Ratings"
-          class="header-star"
+          class="header-star float-right"
         />
       </div>
-      <div class="header-quality-product">
+      <div class="header-quality-product clearfix">
         <img
-          class="header-person-picture"
+          class="header-person-picture float-left"
           src="images/header-person-picture.png"
           alt="Potrait Picture of a Person"
         />
-        <h5 class="quality-product-text">Good Quality Product</h5>
+        <h5 class="quality-product-text float-right">Good Quality Product</h5>
       </div>
-      <img class="polcadot" src="images/polcadot.png" alt="Polcadot" />
+      <img class="header-polcadot" src="images/polcadot.png" alt="Polcadot" />
+    </div>
       <div class="brand-logos">
         <img
           src="images/header-brand-logo-1.png"
           alt="Brand Logo"
-          class="brand-one"
+          class="brand-one clearfix:after"
         />
         <img
           src="images/header-brand-logo-2.png"
           alt="Brand Logo"
-          class="brand-two"
+          class="brand-two clearfix:after"
         />
         <img
           src="images/header-brand-logo-3.png"
@@ -80,8 +95,8 @@
         />
       </div>
     </header>
-    <section class="features">
-      <div class="feature">
+    <section class="features clearfix">
+      <div class="feature float-left">
         <div class="feature-container">
           <img
             src="images/features-icon-1.png"
@@ -94,7 +109,7 @@
           <p class="feature-description">Orders over $140</p>
         </div>
       </div>
-      <div class="feature">
+      <div class="feature float-left">
         <div class="feature-container">
           <img
             src="images/features-icon-2.png"
@@ -107,7 +122,7 @@
           <p class="feature-description">100% secure payment</p>
         </div>
       </div>
-      <div class="feature">
+      <div class="feature float-left clearfix feature-second-row">
         <div class="feature-container">
           <img
             src="images/features-icon-3.png"
@@ -120,7 +135,7 @@
           <p class="feature-description">Get special promo</p>
         </div>
       </div>
-      <div class="feature">
+      <div class="feature float-left feature-second-row">
         <div class="feature-container">
           <img
             src="images/features-icon-4.png"
@@ -143,6 +158,7 @@
         />
       </div>
       <div class="benefits-content">
+        <img src="images/polcadot.png" alt="Polcadot image" class="benefits-polcadot">
         <h5>Our Benefit</h5>
         <h2 class="benefits-title">The More Healthy Food The Better</h2>
         <ul class="benefits-list">
@@ -155,6 +171,13 @@
       </div>
     </section>
     <section class="our-stars">
+      <div class="our-stars-image-container">
+        <img
+          src="images/our-stars-mobile.png"
+          alt="Our Stars Image"
+          class="our-stars-image"
+        />
+      </div>
       <div class="our-stars-content">
         <h5>Our Stars</h5>
         <h2 class="our-stars-title">Veggie Food Goes On And Always On</h2>
@@ -170,17 +193,11 @@
           <h3 class="stats-numbers">400</h4>
           <span class="stats-detail">Official Store</span>
         </div>
-        <button class="get-special-promo">
+        <button class="get-started special-promo">
           Get Special Promo <img src="images/arrow-icon.svg" alt="Arrow Icon" />
         </button>
       </div>
-      <div class="our-stars-image-container">
-        <img
-          src="images/stars-image.png"
-          alt="Our Stars Image"
-          class="our-stars-image"
-        />
-      </div>
+
     </section>
     <section class="our-features">
       <h5>Our Features</h5>
@@ -373,7 +390,7 @@
             alt="Arrow Icon"
             class="arrow-icon"
           />
-        </button>
+        </button>   
       </div>
     </section>
     <footer>
@@ -391,17 +408,17 @@
       </div>
       <div class="footer-about-us">
         <h4 class="footer-title">About Us</h4>
-        <a href="" class="footer-links">About Us</a>
-        <a href="" class="footer-links">Service Us</a>
-        <a href="" class="footer-links">Contact</a>
-        <a href="" class="footer-links">Company</a>
+        <a href="#" class="footer-links">About Us</a>
+        <a href="#" class="footer-links">Service Us</a>
+        <a href="#" class="footer-links">Contact</a>
+        <a href="#" class="footer-links">Company</a>
       </div>
       <div class="footer-company">
         <h4 class="footer-title">Company</h4>
-        <a href="" class="footer-links">Partnership</a>
-        <a href="" class="footer-links">Terms of Use</a>
-        <a href="" class="footer-links">Privacy</a>
-        <a href="" class="footer-links">Sitemap</a>
+        <a href="#" class="footer-links">Partnership</a>
+        <a href="#" class="footer-links">Terms of Use</a>
+        <a href="#" class="footer-links">Privacy</a>
+        <a href="#" class="footer-links">Sitemap</a>
       </div>
       <div class="get-in-touch">
         <h4 class="footer-title">Get in touch</h4>
@@ -414,5 +431,15 @@
       </div>
       <p class="copyright">Copyright © 2021 Foodies.</p>
     </footer>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("navbar");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+    </script>
   </body>
 </html>
