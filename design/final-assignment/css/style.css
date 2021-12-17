@@ -227,9 +227,9 @@ img {
   color: #1d1d1f;
 }
 
-.benefits-list {
+.benefits-content ul {
   margin-top: 5.2rem;
-  list-style-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/final-assignment/images/check-icon.png");
+  list-style-image: url("https://sujal7.github.io/Leapfrog-Assignments/design/final-assignment/images/check-icon-backup.png");
   margin-left: 0px;
 }
 
