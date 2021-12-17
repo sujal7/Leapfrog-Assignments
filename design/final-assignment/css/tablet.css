@@ -1,0 +1,21 @@
+@media (min-width: 480px) {
+  .benefits-image-container {
+    height: 51rem;
+    background-color: #f0f1ec;
+  }
+
+  .benefits-image {
+    width: 90%;
+    height: 51.7rem;
+  }
+
+  .our-stars-image-container {
+    height: 56rem;
+    background-color: #f0f1ec;
+  }
+
+  .our-stars-image {
+    width: 90%;
+    height: 58.9rem;
+  }
+}

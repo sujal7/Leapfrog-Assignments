@@ -17,6 +17,12 @@ img {
   max-width: 100%;
 }
 
+.header-background {
+  width: 118.7%;
+  min-height: 932px;
+  background-color: #f3fcf7;
+}
+
 .top-nav {
   margin-top: 2.4rem;
   overflow: hidden;
@@ -68,8 +74,6 @@ img {
   padding-bottom: 2.5rem;
   color: #ffffff;
   font-weight: 400;
-  /* padding-left: 31.22%;
-  padding-right: 31.22%; */
 }
 
 .header-arrow {
@@ -81,7 +85,6 @@ img {
   width: 100%;
   height: 46.9rem;
   overflow: hidden;
-  /* need to change this */
 }
 
 .header-image {
@@ -91,9 +94,8 @@ img {
 .header-ratings,
 .header-quality-product {
   height: 5.3rem;
-  /* width: 71.875%; 230/320 */
   background-color: #ffffff;
-  padding-left: 1.9rem; /* 19/230 */
+  padding-left: 1.9rem;
   padding-right: 1.7rem;
   padding-top: 1.7rem;
   padding-bottom: 1.8rem;
@@ -107,10 +109,6 @@ img {
   font-size: 1.5rem;
   color: #1d1d1f;
 }
-
-/* .ratings-text {
-  margin-right: 1.5rem;
-} */
 
 .header-quality-product {
   max-height: 5.3rem;
