@@ -227,6 +227,16 @@
     margin: 0;
   }
 
+  .our-features-first-row .our-features-image,
+  .our-features-first-row .our-features-description {
+    float: left;
+  }
+
+  .our-features-second-row .our-features-image,
+  .our-features-second-row .our-features-description {
+    float: right;
+  }
+
   .our-features-description-title {
     padding-top: 1.8rem;
     font-size: 3rem;
@@ -240,14 +250,101 @@
     margin-top: 1rem;
   }
 
-  .our-features-second-row {
-  }
-
   .our-features:after {
     display: table;
     content: "";
     clear: both;
   }
-  /* 533+127+468+177-135
-  1170 */
+
+  .our-product:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .our-product-container {
+    width: 23.076%;
+    float: left;
+    margin-left: 2.56%;
+  }
+
+  .first-product-container {
+    margin-left: 0;
+  }
+
+  .veggie {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 15rem;
+  }
+
+  .veggie-image {
+    width: 100%;
+    min-height: 30rem;
+    left: 0;
+    top: 0;
+  }
+
+  .veggie-title {
+    font-size: 6rem;
+    line-height: 6.2rem;
+  }
+
+  .get-started {
+    margin-top: 2rem;
+    width: 25%;
+  }
+
+  .veggie-content {
+    margin-top: 2%;
+  }
+
+  .footer {
+    margin-top: 10rem;
+  }
+
+  .footer-foodies {
+    width: 25%;
+    float: left;
+    margin-bottom: 9rem;
+    margin-right: 4%;
+    text-align: start;
+  }
+
+  .footer-content {
+    padding-left: 0;
+  }
+
+  .footer-about-us {
+    width: 20%;
+    float: left;
+    margin-bottom: 9rem;
+    margin-top: 0;
+    margin-right: 2%;
+    text-align: start;
+  }
+
+  .footer-company {
+    width: 20%;
+    float: left;
+    margin-bottom: 9rem;
+    margin-top: 0;
+    margin-right: 4%;
+    text-align: start;
+  }
+
+  .get-in-touch {
+    width: 25%;
+    float: right;
+    margin-bottom: 9rem;
+    margin-top: 0;
+    text-align: start;
+  }
+
+  .copyright {
+    display: block;
+    clear: both;
+    content: "";
+    width: 100%;
+  }
 }
