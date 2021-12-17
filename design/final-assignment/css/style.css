@@ -30,6 +30,10 @@ img {
   margin-right: -0.39%; /* 7.47% - 7.86% */
 }
 
+.hamburger:active {
+  background-color: #027a40;
+}
+
 .navbar {
   display: none;
 }
@@ -51,8 +55,9 @@ img {
 }
 
 .header-title {
-  font-size: 5rem;
-  font-weight: 500;
+  font-size: 5.1rem;
+  font-weight: 600;
+  line-height: 6.2rem;
   text-align: center;
   color: #1d1d1f;
 }
@@ -62,6 +67,8 @@ img {
   font-size: 1.4rem;
   color: #1d1d1f;
   margin-top: 2.5rem;
+  line-height: 2.2rem;
+  font-weight: 400;
 }
 
 .get-started {
@@ -74,6 +81,7 @@ img {
   padding-bottom: 2.5rem;
   color: #ffffff;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .header-arrow {
@@ -164,6 +172,7 @@ img {
 }
 
 .feature-icon {
+  cursor: pointer;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -176,6 +185,12 @@ img {
 
 .feature-second-row {
   margin-top: 10.4rem;
+}
+
+.col-one {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .feature-title {
@@ -223,6 +238,7 @@ img {
   text-align: center;
   font-size: 3.5rem;
   color: #1d1d1f;
+  line-height: 4.23rem;
 }
 
 .benefits-content ul {
@@ -331,6 +347,7 @@ img {
 }
 
 .our-features-description {
+  cursor: pointer;
   min-height: 29.3rem;
   background-color: #f0f1ec;
   border: 1.5px solid #06c167;
@@ -357,6 +374,7 @@ img {
 }
 
 .discover-now {
+  cursor: pointer;
   border: 0;
   margin-top: 3.75rem;
   margin-left: 11.875%;
@@ -401,6 +419,7 @@ img {
 }
 
 .our-product-container {
+  cursor: pointer;
   height: 44.5rem;
   width: 100%;
   border: 2px solid rgba(118, 118, 117, 0.25);
@@ -410,6 +429,7 @@ img {
 
 .our-product-container:hover {
   border: 2px solid #06c167;
+  background-color: #f0ede2;
 }
 
 .our-product-image {
@@ -446,6 +466,7 @@ img {
 }
 
 .buy-now {
+  cursor: pointer;
   margin-top: 3rem;
   border: 2px solid #06c167;
   padding-top: 1.7rem;
@@ -509,7 +530,12 @@ img {
 
 .facebook,
 .instagram {
+  cursor: pointer;
   margin-right: 2.5rem;
+}
+
+.twitter {
+  cursor: pointer;
 }
 
 .footer-about-us {
@@ -572,6 +598,7 @@ img {
 }
 
 .subscribe {
+  cursor: pointer;
   border: 0;
   width: 100%;
   background-color: #06c167;
@@ -591,4 +618,55 @@ img {
   color: #1d1d1f;
   text-align: center;
   margin-bottom: 3.1rem;
+}
+
+.footer-logo,
+.logo {
+  cursor: pointer;
+}
+
+/* Hover effects */
+
+.get-started:hover,
+.special-promo:hover,
+.discover-now:hover,
+.subscribe:hover {
+  border: 2px solid black;
+}
+
+.our-features-description:hover {
+  background-color: #ffffff;
+  border: 3px solid #06c167;
+}
+
+.buy-now:hover {
+  border: 3px solid #06c167;
+  background-color: #f0ede2;
+}
+
+.our-product-image:hover {
+  transform: scale(1.1);
+}
+
+.facebook:hover {
+  filter: invert(30%) sepia(56%) saturate(589%) hue-rotate(180deg)
+    brightness(97%) contrast(90%);
+}
+
+.instagram:hover {
+  filter: invert(41%) sepia(20%) saturate(2210%) hue-rotate(296deg)
+    brightness(92%) contrast(89%);
+}
+
+.twitter:hover {
+  filter: invert(57%) sepia(98%) saturate(3018%) hue-rotate(162deg)
+    brightness(97%) contrast(101%);
+}
+
+.feature-icon:hover {
+  transform: scale(1.2);
+}
+
+.footer-links:hover {
+  text-decoration: underline;
 }

@@ -1,0 +1,253 @@
+@media (min-width: 780px) {
+  body {
+    margin-left: 9.375%;
+    margin-right: 9.375%;
+  }
+  .dropdown {
+    display: none;
+    visibility: hidden;
+  }
+
+  .navbar {
+    display: block;
+    float: right;
+    max-width: 90%;
+    margin-top: -5rem;
+  }
+
+  .navbar-list {
+    display: inline-block;
+  }
+
+  .navbar-item {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #1d1d1f;
+    margin-left: 3rem;
+  }
+
+  .navbar-item:hover {
+    color: #06c167;
+  }
+
+  .navbar-item:focus {
+    color: #06c167;
+  }
+
+  .header-image {
+    width: 46.8rem;
+    height: 63.4rem;
+  }
+
+  .header-content {
+    float: left;
+    width: 45.55%;
+  }
+  .header-title {
+    width: 100%;
+    font-size: 7.5rem;
+    line-height: 9.1rem;
+  }
+
+  .header-paragraph {
+    font-size: 1.6rem;
+    line-height: 2.3rem;
+    justify-content: start;
+  }
+
+  .get-started {
+    max-width: 50%;
+  }
+  .banner-container {
+    float: right;
+    width: 40%;
+    margin-right: 3.58%;
+    overflow: inherit;
+  }
+
+  .header-background {
+    top: -30rem;
+    left: -12%;
+    z-index: -2;
+    width: 123.5%;
+  }
+
+  .header-ratings {
+    top: 46.3%;
+    left: -19%;
+    z-index: 1;
+  }
+
+  .header-polcadot {
+    top: 75.25%;
+    left: 71.15%;
+  }
+  .header-quality-product {
+    top: 32.01%;
+    left: 59.82%;
+  }
+  /* .header-background {
+    width: 118.7%;
+    min-height: 932px;
+    background-color: #f3fcf7;
+  } */
+
+  .header:after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+
+  .brand-logos {
+    margin-top: 4.6rem;
+    width: 50%;
+    margin-bottom: 16rem;
+  }
+
+  .brand-one {
+    width: 12.3rem;
+    float: left;
+  }
+
+  .brand-two {
+    width: 11.8rem;
+    float: left;
+    margin-left: 5%;
+  }
+
+  .brand-three {
+    float: left;
+    width: 11.9rem;
+    margin-top: -3rem;
+    margin-left: 80%;
+  }
+
+  .feature {
+    width: 25%;
+  }
+
+  .col-one {
+    content: "";
+    clear: none;
+    display: block;
+  }
+
+  .feature-second-row {
+    margin: 0;
+  }
+
+  .our-benefits {
+    margin-top: 13rem;
+  }
+
+  .our-benefits:after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+
+  .benefits-image-container {
+    height: 60.8rem;
+    background-color: #f0f1ec;
+    width: 46.23%;
+    float: left;
+  }
+
+  .benefits-image {
+    width: 82.25%;
+    height: 51.3rem;
+    top: 0;
+    left: 8.87%;
+  }
+
+  .benefits-content {
+    float: right;
+    width: 45.89%;
+  }
+
+  .benefits-title,
+  .our-stars.title,
+  .our-features-title,
+  .our-product-title {
+    font-size: 6rem;
+    line-height: 7.3rem;
+    color: #1d1d1f;
+    font-weight: 500;
+  }
+
+  .our-stars {
+    margin-top: 18.3rem;
+  }
+
+  .our-stars:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .our-stars-image-container {
+    float: right;
+    width: 46.24%;
+    height: 60.8rem;
+    background-color: #f0f1ec;
+  }
+
+  .our-stars-image {
+    width: 82.25%;
+    height: 51.3rem;
+    top: 0;
+    left: 17.744%;
+  }
+
+  .our-stars-content {
+    float: left;
+    width: 48.71%;
+  }
+
+  .our-stars-stats {
+    float: left;
+    padding-right: 10%;
+  }
+
+  .special-promo {
+    clear: both;
+    display: table;
+    content: "";
+    width: 50%;
+  }
+
+  .our-features {
+    margin-top: 19.7rem;
+  }
+
+  .our-features-image,
+  .our-features-description {
+    width: 25%;
+    height: 29.25rem;
+    margin: 0;
+  }
+
+  .our-features-description-title {
+    padding-top: 1.8rem;
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+
+  .our-features-description-content {
+    padding-top: 1.8rem;
+  }
+  .discover-now {
+    margin-top: 1rem;
+  }
+
+  .our-features-second-row {
+  }
+
+  .our-features:after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+  /* 533+127+468+177-135
+  1170 */
+}
