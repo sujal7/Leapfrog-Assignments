@@ -47,12 +47,13 @@
     width: 100%;
     font-size: 7.5rem;
     line-height: 9.1rem;
+    text-align: start;
   }
 
   .header-paragraph {
     font-size: 1.6rem;
     line-height: 2.3rem;
-    justify-content: start;
+    text-align: start;
   }
 
   .get-started {
@@ -99,7 +100,7 @@
   }
 
   .brand-logos {
-    margin-top: 4.6rem;
+    margin-top: 8rem;
     width: 50%;
     margin-bottom: 16rem;
   }
@@ -290,7 +291,7 @@
     line-height: 6.2rem;
   }
 
-  .get-started {
+  .veggie-get-started {
     margin-top: 2rem;
     width: 25%;
   }
