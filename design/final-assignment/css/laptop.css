@@ -32,9 +32,10 @@
   }
 
   .navbar-item:hover:after {
-    content: url("https://sujal7.github.io/Leapfrog-Assignments/design/final-assignment/images/check-icon-backup.png");
-    display: block;
+    content: url("https://sujal7.github.io/Leapfrog-Assignments/design/final-assignment/images/border-image.png");
     position: absolute;
+    left: 45%;
+    top: 50%;
   }
 
   .navbar-item:focus {
