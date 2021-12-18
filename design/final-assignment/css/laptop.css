@@ -87,11 +87,6 @@
     top: 32.01%;
     left: 59.82%;
   }
-  /* .header-background {
-    width: 118.7%;
-    min-height: 932px;
-    background-color: #f3fcf7;
-  } */
 
   .header:after {
     clear: both;
@@ -102,7 +97,7 @@
   .brand-logos {
     margin-top: 8rem;
     width: 50%;
-    margin-bottom: 16rem;
+    margin-bottom: 20rem;
   }
 
   .brand-one {

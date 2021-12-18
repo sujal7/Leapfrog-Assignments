@@ -459,10 +459,11 @@ img {
   line-height: 2.4rem;
 }
 
-.our-product-price strike {
+.strike-text {
   color: #767675;
   opacity: 0.35;
   font-weight: 600;
+  text-decoration: line-through;
 }
 
 .buy-now {
