@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #49c;
+}
+
+.animation-container {
+  width: 250px;
+  height: 300px;
+  border: 1px solid #a22;
+  margin: 0 auto;
+}
