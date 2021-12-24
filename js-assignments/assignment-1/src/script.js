@@ -18,8 +18,8 @@ for(let i=0; i<numberOfImages; i++){
     images[i].style.height = `${IMAGE_HEIGHT}px`;
     images[i].style.top = '0px';
     images[i].style.left = `${i*IMAGE_WIDTH}px`;
-    images[i].style.border = '1px solid grey';
-    images[i].style.opacity = '0.95'
+    images[i].style.border = '1px solid black';
+    images[i].style.opacity = '0.8'
 }
 
 const leftArrow = document.createElement('img');
@@ -46,20 +46,58 @@ carouselContainer[0].appendChild(leftArrow);
 carouselContainer[0].appendChild(rightArrow);
 
 let currentIndex = 0;
+let interval;
+let distance = 0;
 rightArrow.addEventListener('click', ()=>{
     currentIndex++;
-    if(currentIndex===numberOfImages)   currentIndex=0;
-    carouselImageWrapper[0].style.left=`-${currentIndex*IMAGE_WIDTH}px`;
+
+    if(currentIndex===numberOfImages){
+        currentIndex=0;
+        interval = setInterval(()=>{
+            distance-=40;
+            carouselImageWrapper[0].style.left = `-${distance}px`;
+            if (distance<currentIndex*IMAGE_WIDTH){
+                clearInterval(interval);                
+            }
+    
+        }, 5);
+    }
+    else{
+    interval = setInterval(()=>{
+        carouselImageWrapper[0].style.left = `-${distance}px`;
+        distance+=40;
+        if (distance>currentIndex*IMAGE_WIDTH){
+            clearInterval(interval);
+        }
+
+    }, 17);
+    }
 })
 
 leftArrow.addEventListener('click', ()=>{
     currentIndex--;
-    if(currentIndex===-1)   currentIndex=numberOfImages-1;
-    carouselImageWrapper[0].style.left=`-${currentIndex*IMAGE_WIDTH}px`;
-})
+    if(currentIndex === -1) {
+        currentIndex = numberOfImages - 1;
+        interval = setInterval(()=>{
+            distance+=40;
+            carouselImageWrapper[0].style.left = `-${distance}px`;
+            if (distance>=currentIndex*IMAGE_WIDTH){
+                clearInterval(interval);
+            }
+    
+        }, 5);
+    }
+    else{
+        interval = setInterval(()=>{
+            carouselImageWrapper[0].style.left = `-${distance}px`;
+            distance-=40;
+            if (distance<currentIndex*IMAGE_WIDTH){
+                clearInterval(interval);
+            }
 
-// 16 or 17 ms -> 60fps
-// game loop
+        }, 17);
+    }
+})
 
 const indicatorDots = document.createElement('div');
 indicatorDots.style.position = 'absolute';
@@ -69,21 +107,37 @@ const indicatorDotMarginLeftRight = 5;
 for(let i=0; i<numberOfImages; i++){
     const indicatorDot = document.createElement('img');
     indicatorDot.src = 'src/images/indicatorDot.svg';
-    // indicatorDot.style.position = 'absolute';
     indicatorDot.style.width = `${indicatorDotWidth}px`;
     indicatorDot.style.marginBottom = '5px';
     indicatorDot.style.marginLeft = indicatorDotMarginLeftRight+'px';
     indicatorDot.style.marginRight = indicatorDotMarginLeftRight+'px';
     indicatorDot.style.filter = 'invert(76%) sepia(3%) saturate(14%) hue-rotate(331deg) brightness(88%) contrast(88%)';
     indicatorDot.addEventListener('click', ()=>{
-        carouselImageWrapper[0].style.left=`-${i*IMAGE_WIDTH}px`;
-        currentIndex = i;
+        indicatorDot.style.filter = 'invert(76%) sepia(3%) saturate(14%) hue-rotate(331deg) brightness(88%) contrast(88%)';
+        interval = setInterval(()=>{
+            if(currentIndex > i){
+                distance-=40;
+                carouselImageWrapper[0].style.left = `-${distance}px`;
+                if (distance<=i*IMAGE_WIDTH){
+                    clearInterval(interval);
+                    currentIndex = i;
+                }
+            }
+            else{
+                distance+=40       
+                carouselImageWrapper[0].style.left = `-${distance}px`;
+                if (distance>=i*IMAGE_WIDTH){
+                    clearInterval(interval);
+                    currentIndex = i;
+                }
+
+            }
+        }, 17);
     })
+
     indicatorDot.style.cursor = 'pointer';
     indicatorDots.appendChild(indicatorDot);
 }
 
 indicatorDots.style.top = `${IMAGE_HEIGHT-indicatorDotWidth*2}px`;
 indicatorDots.style.left = `${IMAGE_WIDTH/2 - numberOfImages*(indicatorDotWidth-5)}px`;
-console.log(indicatorDots.style.width);
-
