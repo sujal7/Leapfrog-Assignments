@@ -157,7 +157,12 @@ for (let i = 0; i < numberOfImages; i++) {
      * Runs every 17 milliseconds until the interval is cleared.
      */
     interval = setInterval(() => {
-      if (currentIndex > i) {
+      /**
+       * If clicked indicator dot is same as current pos, it clears the interval.
+       */
+      if (currentIndex === i) {
+        clearInterval(interval);
+      } else if (currentIndex > i) {
         /**
          * Runs if clicked indicator dot is before the current position.
          */
