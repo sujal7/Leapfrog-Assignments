@@ -49,70 +49,6 @@ let currentIndex = 0;
 let interval;
 
 /**
- * Function for Right Click.
- */
-const rightArrowClicked = function () {
-  currentIndex++;
-
-  /**
-   * True if last image is being displayed,
-   * else False.
-   */
-  if (currentIndex === numberOfImages) {
-    currentIndex = 0;
-    interval = setInterval(() => {
-      distanceTravelled -= transitionSpeed;
-      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
-
-      if (distanceTravelled < currentIndex * IMAGE_WIDTH) {
-        clearInterval(interval);
-      }
-    }, 5);
-  } else {
-    interval = setInterval(() => {
-      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
-      distanceTravelled += transitionSpeed;
-
-      if (distanceTravelled > currentIndex * IMAGE_WIDTH) {
-        clearInterval(interval);
-      }
-    }, 17);
-  }
-};
-
-/**
- * Function for Left Click.
- */
-const leftArrowClicked = function () {
-  currentIndex--;
-
-  /**
-   * True if first image is being displayed,
-   * else False.
-   */
-  if (currentIndex === -1) {
-    currentIndex = numberOfImages - 1;
-    interval = setInterval(() => {
-      distanceTravelled += transitionSpeed;
-      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
-
-      if (distanceTravelled >= currentIndex * IMAGE_WIDTH) {
-        clearInterval(interval);
-      }
-    }, 5);
-  } else {
-    interval = setInterval(() => {
-      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
-      distanceTravelled -= transitionSpeed;
-
-      if (distanceTravelled < currentIndex * IMAGE_WIDTH) {
-        clearInterval(interval);
-      }
-    }, 17);
-  }
-};
-
-/**
  * Constants for Indicator Dot.
  */
 const indicatorDotWidth = 20;
@@ -135,6 +71,18 @@ indicatorDots.style.left = `${
 }px`;
 
 /**
+ * Resets color of all indicator dots,
+ * and sets different color to the active indicator dot.
+ */
+function setActiveIndicatorDot() {
+  for (let indicatorDot of indicatorDots.children) {
+    indicatorDot.style.filter =
+      'invert(13%) sepia(0%) saturate(133%) hue-rotate(213deg) brightness(107%) contrast(89%)';
+  }
+  indicatorDots.children[currentIndex].style.filter =
+    'invert(76%) sepia(3%) saturate(14%) hue-rotate(331deg) brightness(88%) contrast(88%)';
+}
+/**
  * Generates and styles indicator dots depending on number of images provided in HTML.
  */
 for (let i = 0; i < numberOfImages; i++) {
@@ -147,7 +95,7 @@ for (let i = 0; i < numberOfImages; i++) {
   indicatorDot.style.cursor = 'pointer';
   indicatorDots.appendChild(indicatorDot);
   indicatorDot.style.filter =
-    'invert(76%) sepia(3%) saturate(14%) hue-rotate(331deg) brightness(88%) contrast(88%)';
+    'invert(13%) sepia(0%) saturate(133%) hue-rotate(213deg) brightness(107%) contrast(89%)';
 
   /**
    * Triggers a function when an indicator dot is clicked.
@@ -172,6 +120,7 @@ for (let i = 0; i < numberOfImages; i++) {
         if (distanceTravelled <= i * IMAGE_WIDTH) {
           clearInterval(interval);
           currentIndex = i;
+          setActiveIndicatorDot();
         }
       } else {
         /**
@@ -182,11 +131,80 @@ for (let i = 0; i < numberOfImages; i++) {
         if (distanceTravelled >= i * IMAGE_WIDTH) {
           clearInterval(interval);
           currentIndex = i;
+          setActiveIndicatorDot();
         }
       }
     }, 17);
   });
 }
+
+/**
+ * Function for Right Click.
+ */
+const rightArrowClicked = function () {
+  currentIndex++;
+
+  /**
+   * True if last image is being displayed,
+   * else False.
+   */
+  if (currentIndex === numberOfImages) {
+    currentIndex = 0;
+    interval = setInterval(() => {
+      distanceTravelled -= transitionSpeed;
+      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
+
+      if (distanceTravelled < currentIndex * IMAGE_WIDTH) {
+        clearInterval(interval);
+        setActiveIndicatorDot();
+      }
+    }, 5);
+  } else {
+    interval = setInterval(() => {
+      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
+      distanceTravelled += transitionSpeed;
+
+      if (distanceTravelled > currentIndex * IMAGE_WIDTH) {
+        clearInterval(interval);
+        setActiveIndicatorDot();
+      }
+    }, 17);
+  }
+};
+
+/**
+ * Function for Left Click.
+ */
+const leftArrowClicked = function () {
+  currentIndex--;
+
+  /**
+   * True if first image is being displayed,
+   * else False.
+   */
+  if (currentIndex === -1) {
+    currentIndex = numberOfImages - 1;
+    interval = setInterval(() => {
+      distanceTravelled += transitionSpeed;
+      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
+
+      if (distanceTravelled >= currentIndex * IMAGE_WIDTH) {
+        clearInterval(interval);
+        setActiveIndicatorDot();
+      }
+    }, 5);
+  } else {
+    interval = setInterval(() => {
+      carouselImageWrapper[0].style.left = `-${distanceTravelled}px`;
+      distanceTravelled -= transitionSpeed;
+
+      if (distanceTravelled < currentIndex * IMAGE_WIDTH) {
+        clearInterval(interval);
+        setActiveIndicatorDot();
+      }
+    }, 17);
+  }
+};
 
 /**
  * Left and Right Arrow Styling
@@ -195,6 +213,8 @@ const leftArrow = document.createElement('img');
 const rightArrow = document.createElement('img');
 
 leftArrow.src = 'src/images/leftArrow.png';
+leftArrow.style.filter =
+  'invert(68%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(50%) contrast(100%) drop-shadow(0px 10px 3px black)';
 leftArrow.style.position = 'absolute';
 leftArrow.style.width = '100px';
 leftArrow.style.height = '100px';
@@ -205,6 +225,8 @@ leftArrow.style.top = `${
 leftArrow.style.left = '0px';
 
 rightArrow.src = 'src/images/rightArrow.png';
+rightArrow.style.filter =
+  'invert(68%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(50%) contrast(86%) drop-shadow(0px 10px 3px black)';
 rightArrow.style.position = 'absolute';
 rightArrow.style.top = '0px';
 rightArrow.style.width = '100px';
@@ -227,3 +249,8 @@ rightArrow.addEventListener('click', rightArrowClicked);
  * Triggers a function when right arrow is clicked.
  */
 leftArrow.addEventListener('click', leftArrowClicked);
+
+/**
+ * Sets the default active indicator dot to first dot.
+ */
+setActiveIndicatorDot();
