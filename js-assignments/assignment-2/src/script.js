@@ -124,7 +124,7 @@ class ImageCarousel {
        * Triggers a function when an indicator dot is clicked.
        */
       this.indicatorDots[i].addEventListener('click', () => {
-        clearInterval(this.slide);
+        clearInterval(this.slideInterval);
         /**
          * Runs every 17 milliseconds until the interval is cleared.
          */
@@ -206,7 +206,7 @@ class ImageCarousel {
      * else False.
      */
     if (this.currentIndex === this.numberOfImages) {
-      clearInterval(this.slide);
+      clearInterval(this.slideInterval);
       this.currentIndex = 0;
       this.interval = setInterval(() => {
         this.distanceTravelled -= this.transitionSpeed;
@@ -218,7 +218,7 @@ class ImageCarousel {
         }
       }, this.intervalTime / (this.numberOfImages - 1));
     } else {
-      clearInterval(this.slide);
+      clearInterval(this.slideInterval);
       this.interval = setInterval(() => {
         this.carouselImageWrapper[0].style.left = `-${this.distanceTravelled}px`;
         this.distanceTravelled += this.transitionSpeed;
@@ -264,7 +264,7 @@ class ImageCarousel {
   }
 
   slideAutomatically() {
-    this.slide = setInterval(() => {
+    this.slideInterval = setInterval(() => {
       this.rightArrowClicked();
     }, this.holdTime);
   }
@@ -273,6 +273,17 @@ class ImageCarousel {
 const carouselContainers =
   document.getElementsByClassName('carousel-container');
 
-for (let carouselContainer of carouselContainers) {
-  new ImageCarousel(carouselContainer, 1000, 4000);
-}
+// for (let carouselContainer of carouselContainers) {
+//   new ImageCarousel(carouselContainer, 1000, 4000);
+// }
+
+// OR: If we want to set different transition time and hold times for different carousels,
+//     Then we can do the following:
+
+const transitionTimeOne = 1000;
+const transitionTimeTwo = 500;
+const holdTimeOne = 4000;
+const holdTimeTwo = 3000;
+
+new ImageCarousel(carouselContainers[0], transitionTimeOne, holdTimeOne);
+new ImageCarousel(carouselContainers[1], transitionTimeTwo, holdTimeTwo);
