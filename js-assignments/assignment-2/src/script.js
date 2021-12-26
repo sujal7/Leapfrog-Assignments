@@ -58,18 +58,7 @@ class ImageCarousel {
     this.leftArrow.addEventListener('click', this.leftArrowClicked.bind(this));
     this.slideAutomatically();
 
-    /**
-     * Sets responsive property to the carousel.
-     */
-    // value++;
-    // if (value == 1) {
-    // }
-
     this.setDynamicProperties();
-    // const carouselContainers =
-    //   document.getElementsByClassName('carousel-container');
-    // carouselContainers[0].style.height = `${IMAGE_HEIGHT}px`;
-    // carouselContainers[1].style.height = `${IMAGE_HEIGHT}px`;
     /**
      * Sets responsive property when window is resized.
      */
@@ -147,87 +136,6 @@ class ImageCarousel {
     }
   }
 
-  // /**
-  //  * Sets responsive properties to the carousel.
-  //  */
-  // setDynamicProperties() {
-  //   /**
-  //    * Adjusts the height of carousel container with respect to image height for responsiveness.
-  //    */
-  //   // const carouselContainers =
-  //   //   document.getElementsByClassName('carousel-container');
-  //   // for (let carouselContainer of carouselContainers) {
-  //   //   carouselContainer.style.height = `${this.images[0].offsetHeight}px`;
-  //   // }
-
-  //   this.carouselContainer.style.height = `${this.images[0].offsetHeight}px`;
-  //   this.carouselContainer.style.backgroundColor = 'red';
-  //   // console.log(this.carouselContainer);
-
-  //   /**
-  //    * Adjuts the position of indicator dots responsively.
-  //    */
-  //   // const indicatorDots = document.getElementsByClassName('indicator-dots');
-  //   // for (let indicatorDot of indicatorDots) {
-  //   //   indicatorDot.style.left = `${
-  //   //     this.images[0].offsetWidth / 2 -
-  //   //     this.numberOfImages *
-  //   //       (this.indicatorDotWidth - this.indicatorDotMarginLeftRight)
-  //   //   }px`;
-  //   // }
-
-  //   this.indicatorDots.style.left = `${
-  //     this.images[0].offsetWidth / 2 -
-  //     this.numberOfImages *
-  //       (this.indicatorDotWidth - this.indicatorDotMarginLeftRight)
-  //   }px`;
-
-  //   /**
-  //    * Adjusts the position of left and right arrow responsively.
-  //    */
-  //   // const leftArrows = document.getElementsByClassName('left-arrow');
-  //   // for (let leftArrow of leftArrows) {
-  //   //   leftArrow.style.top = `${
-  //   //     this.images[0].offsetHeight / 2 -
-  //   //     parseInt(this.leftArrow.style.height) / 2
-  //   //   }px`;
-  //   // }
-
-  //   // const rightArrows = document.getElementsByClassName('right-arrow');
-  //   // for (let rightArrow of rightArrows) {
-  //   //   rightArrow.style.top = `${
-  //   //     this.images[0].offsetHeight / 2 -
-  //   //     parseInt(this.rightArrow.style.height) / 2
-  //   //   }px`;
-  //   // }
-
-  //   this.leftArrow.style.top = `${
-  //     this.images[0].offsetHeight / 2 -
-  //     parseInt(this.leftArrow.style.height) / 2
-  //   }px`;
-
-  //   if (
-  //     this.images[0].offsetHeight / 2 -
-  //       parseInt(this.leftArrow.style.height) / 2 ==
-  //     -49
-  //   ) {
-  //     this.leftArrow.style.top = '150px';
-  //   }
-
-  //   this.rightArrow.style.top = `${
-  //     this.images[0].offsetHeight / 2 -
-  //     parseInt(this.rightArrow.style.height) / 2
-  //   }px`;
-
-  //   if (
-  //     this.images[0].offsetHeight / 2 -
-  //       parseInt(this.rightArrow.style.height) / 2 ==
-  //     -49
-  //   ) {
-  //     this.rightArrow.style.top = '150px';
-  //   }
-  // }
-
   /**
    * Styles the indicator dots div.
    */
@@ -282,60 +190,6 @@ class ImageCarousel {
       'invert(76%) sepia(3%) saturate(14%) hue-rotate(331deg) brightness(88%) contrast(88%)';
   }
 
-  // /**
-  //  * Handles click event for indicator dot.
-  //  */
-  // indicatorDotClicked() {
-  //   for (let i = 0; i < this.numberOfImages; i++) {
-  //     /**
-  //      * Triggers a function when an indicator dot is clicked.
-  //      */
-  //     this.indicatorDots[i].addEventListener('click', () => {
-  //       clearInterval(this.slideInterval);
-  //       /**
-  //        * Runs every 'intervalTime' until the interval is cleared.
-  //        */
-  //       this.interval = setInterval(() => {
-  //         /**
-  //          * If clicked indicator dot is same as current pos, it clears the interval.
-  //          */
-  //         if (this.currentIndex === i) {
-  //           clearInterval(this.interval);
-  //           this.slideAutomatically();
-  //         } else if (this.currentIndex > i) {
-  //           /**
-  //            * Runs if clicked indicator dot is before the current position.
-  //            */
-  //           // this.distanceTravelled -=
-  //           //   this.transitionSpeed * (this.currentIndex - i);
-  //           this.distanceTravelled -=
-  //             this.transitionSpeed * (this.currentIndex - i);
-  //           this.carouselImageWrapper[0].style.left = `-${this.distanceTravelled}px`;
-
-  //           if (this.distanceTravelled <= i * IMAGE_WIDTH) {
-  //             clearInterval(this.interval);
-  //             this.currentIndex = i;
-  //             this.setActiveIndicatorDot();
-  //             this.slideAutomatically();
-  //           }
-  //         } else {
-  //           /**
-  //            * Runs if clicked indicator dot is after the current position.
-  //            */
-  //           this.distanceTravelled +=
-  //             this.transitionSpeed * (i - this.currentIndex);
-  //           this.carouselImageWrapper[0].style.left = `-${this.distanceTravelled}px`;
-  //           if (this.distanceTravelled >= i * IMAGE_WIDTH) {
-  //             clearInterval(this.interval);
-  //             this.currentIndex = i;
-  //             this.setActiveIndicatorDot();
-  //             this.slideAutomatically();
-  //           }
-  //         }
-  //       }, this.intervalTime);
-  //     });
-  //   }
-  // }
   /**
    * Handles click event for indicator dot.
    */
@@ -521,47 +375,9 @@ const holdTimeTwo = 3000;
 
 new ImageCarousel(carouselContainers[0], transitionTimeOne, holdTimeOne);
 new ImageCarousel(carouselContainers[1], transitionTimeTwo, holdTimeTwo);
+new ImageCarousel(carouselContainers[2], transitionTimeTwo, holdTimeTwo);
 
 // Simply, run the below code if you want to set same transition time and hold time for different carousels.
 // for (let carouselContainer of carouselContainers) {
 //   new ImageCarousel(carouselContainer, 1000, 4000);
 // }
-
-// function setDynamic() {
-//   /**
-//   //    * Adjusts the height of carousel container with respect to image height for responsiveness.
-//   //    */
-//   const carouselContainers =
-//     document.getElementsByClassName('carousel-container');
-//   const image = document.getElementsByClassName('image');
-//   for (let carouselContainer of carouselContainers) {
-//     carouselContainer.style.height = `${image[0].offsetHeight}px`;
-//   }
-
-//   /**
-//    * Adjuts the position of indicator dots responsively.
-//    */
-//   const indicatorDots = document.getElementsByClassName('indicator-dots');
-//   for (let indicatorDot of indicatorDots) {
-//     indicatorDot.style.left = `${image[0].offsetWidth / 2 - 4 * (20 - 5)}px`;
-//   }
-
-//   /**
-//    * Adjusts the position of left and right arrow responsively.
-//    */
-//   const leftArrows = document.getElementsByClassName('left-arrow');
-//   for (let leftArrow of leftArrows) {
-//     leftArrow.style.top = `${
-//       image[0].offsetHeight / 2 - parseInt(leftArrow.style.height) / 2
-//     }px`;
-//   }
-
-//   const rightArrows = document.getElementsByClassName('right-arrow');
-//   for (let rightArrow of rightArrows) {
-//     rightArrow.style.top = `${
-//       image[0].offsetHeight / 2 - parseInt(rightArrow.style.height) / 2
-//     }px`;
-//   }
-// }
-
-// window.addEventListener('resize', setDynamic);
