@@ -69,6 +69,9 @@ class ImageCarousel {
     window.onresize = this.setDynamicProperties.bind(this);
   }
 
+  /**
+   * Styles the carousel container.
+   */
   styleContainer() {
     this.carouselContainer.style.width = `${IMAGE_WIDTH}px`;
     this.carouselContainer.style.height = `400px`;
@@ -77,6 +80,9 @@ class ImageCarousel {
     this.carouselImageWrapper[0].style.position = 'relative';
   }
 
+  /**
+   * Styles the images placed inside the wrapper.
+   */
   styleImages() {
     for (let i = 0; i < this.numberOfImages; i++) {
       this.images[i].setAttribute('class', 'image');
@@ -89,6 +95,9 @@ class ImageCarousel {
     }
   }
 
+  /**
+   * Sets responsive properties to the carousel.
+   */
   setDynamicProperties() {
     /**
      * Adjusts the height of carousel container with respect to image height for responsiveness.
@@ -130,6 +139,10 @@ class ImageCarousel {
       }px`;
     }
   }
+
+  /**
+   * Styles the indicator dots div.
+   */
   styleIndicatorDots() {
     this.indicatorDots.style.position = 'absolute';
     this.indicatorDots.style.left = `${
@@ -142,6 +155,9 @@ class ImageCarousel {
       2 * this.numberOfImages * this.indicatorDotMarginLeftRight;
   }
 
+  /**
+   * Creates indicator dot images and appends it inside indicator dots div.
+   */
   createIndicatorDot() {
     for (let i = 0; i < this.numberOfImages; i++) {
       this.indicatorDots[i] = document.createElement('img');
@@ -150,6 +166,9 @@ class ImageCarousel {
     }
   }
 
+  /**
+   * Styles the indicator dot images.
+   */
   styleIndicatorDot() {
     for (let i = 0; i < this.numberOfImages; i++) {
       this.indicatorDots[i].style.width = `${this.indicatorDotWidth}px`;
@@ -163,6 +182,9 @@ class ImageCarousel {
     }
   }
 
+  /**
+   * Changes color of active indicator dot.
+   */
   setActiveIndicatorDot() {
     for (let indicatorDot of this.indicatorDots.children) {
       indicatorDot.style.filter =
@@ -172,6 +194,9 @@ class ImageCarousel {
       'invert(76%) sepia(3%) saturate(14%) hue-rotate(331deg) brightness(88%) contrast(88%)';
   }
 
+  /**
+   * Handles click event for indicator dot.
+   */
   indicatorDotClicked() {
     for (let i = 0; i < this.numberOfImages; i++) {
       /**
@@ -180,7 +205,7 @@ class ImageCarousel {
       this.indicatorDots[i].addEventListener('click', () => {
         clearInterval(this.slideInterval);
         /**
-         * Runs every 17 milliseconds until the interval is cleared.
+         * Runs every 'intervalTime' until the interval is cleared.
          */
         this.interval = setInterval(() => {
           /**
@@ -222,6 +247,9 @@ class ImageCarousel {
     }
   }
 
+  /**
+   * Styles the left arrow image.
+   */
   styleLeftArrow() {
     this.leftArrow.src = 'src/images/leftArrow.png';
     this.leftArrow.style.filter =
@@ -237,6 +265,9 @@ class ImageCarousel {
     this.carouselContainer.appendChild(this.leftArrow);
   }
 
+  /**
+   * Styles the right arrow image.
+   */
   styleRightArrow() {
     this.rightArrow.src = 'src/images/rightArrow.png';
     this.rightArrow.style.filter =
@@ -253,6 +284,9 @@ class ImageCarousel {
     this.carouselContainer.appendChild(this.rightArrow);
   }
 
+  /**
+   * Switches to right image when right arrow is clicked.
+   */
   rightArrowClicked() {
     this.currentIndex++;
     /**
@@ -286,6 +320,9 @@ class ImageCarousel {
     }
   }
 
+  /**
+   * Switches to left image when left arrow is clicked.
+   */
   leftArrowClicked() {
     this.currentIndex--;
 
@@ -317,6 +354,9 @@ class ImageCarousel {
     }
   }
 
+  /**
+   * Slides the images automatically every 'holdTime'.
+   */
   slideAutomatically() {
     this.slideInterval = setInterval(() => {
       this.rightArrowClicked();
