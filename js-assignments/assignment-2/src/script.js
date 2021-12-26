@@ -32,6 +32,7 @@ class ImageCarousel {
     this.transitionSpeed =
       IMAGE_WIDTH / (this.transitionTime / this.intervalTime);
     this.indicatorDots = document.createElement('div');
+    this.indicatorDots.setAttribute('class', 'indicator-dots');
     this.carouselContainer.appendChild(this.indicatorDots);
 
     this.styleIndicatorDots();
@@ -43,7 +44,9 @@ class ImageCarousel {
     this.setActiveIndicatorDot();
 
     this.leftArrow = document.createElement('img');
+    this.leftArrow.setAttribute('class', 'left-arrow');
     this.rightArrow = document.createElement('img');
+    this.rightArrow.setAttribute('class', 'right-arrow');
 
     this.styleLeftArrow();
     this.styleRightArrow();
@@ -54,11 +57,21 @@ class ImageCarousel {
     );
     this.leftArrow.addEventListener('click', this.leftArrowClicked.bind(this));
     this.slideAutomatically();
+
+    /**
+     * Sets responsive property to the carousel.
+     */
+    this.setDynamicProperties();
+
+    /**
+     * Sets responsive property when window is resized.
+     */
+    window.onresize = this.setDynamicProperties.bind(this);
   }
 
   styleContainer() {
     this.carouselContainer.style.width = `${IMAGE_WIDTH}px`;
-    this.carouselContainer.style.height = `${IMAGE_HEIGHT}px`;
+    this.carouselContainer.style.height = `400px`;
     this.carouselContainer.style.position = `relative`;
     this.carouselContainer.style.overflow = `hidden`;
     this.carouselImageWrapper[0].style.position = 'relative';
@@ -66,25 +79,67 @@ class ImageCarousel {
 
   styleImages() {
     for (let i = 0; i < this.numberOfImages; i++) {
+      this.images[i].setAttribute('class', 'image');
       this.images[i].style.position = 'absolute';
       this.images[i].style.width = `${IMAGE_WIDTH}px`;
-      this.images[i].style.height = `${IMAGE_HEIGHT}px`;
       this.images[i].style.top = '0px';
       this.images[i].style.left = `${i * IMAGE_WIDTH}px`;
       this.images[i].style.border = '1px solid black';
       this.images[i].style.opacity = '0.9';
     }
   }
+
+  setDynamicProperties() {
+    /**
+     * Adjusts the height of carousel container with respect to image height for responsiveness.
+     */
+    const carouselContainers =
+      document.getElementsByClassName('carousel-container');
+    for (let carouselContainer of carouselContainers) {
+      carouselContainer.style.height = `${this.images[0].offsetHeight}px`;
+    }
+
+    /**
+     * Adjuts the position of indicator dots responsively.
+     */
+    const indicatorDots = document.getElementsByClassName('indicator-dots');
+    for (let indicatorDot of indicatorDots) {
+      indicatorDot.style.left = `${
+        this.images[0].offsetWidth / 2 -
+        this.numberOfImages *
+          (this.indicatorDotWidth - this.indicatorDotMarginLeftRight)
+      }px`;
+    }
+
+    /**
+     * Adjusts the position of left and right arrow responsively.
+     */
+    const leftArrows = document.getElementsByClassName('left-arrow');
+    for (let leftArrow of leftArrows) {
+      leftArrow.style.top = `${
+        this.images[0].offsetHeight / 2 -
+        parseInt(this.leftArrow.style.height) / 2
+      }px`;
+    }
+
+    const rightArrows = document.getElementsByClassName('right-arrow');
+    for (let rightArrow of rightArrows) {
+      rightArrow.style.top = `${
+        this.images[0].offsetHeight / 2 -
+        parseInt(this.rightArrow.style.height) / 2
+      }px`;
+    }
+  }
   styleIndicatorDots() {
     this.indicatorDots.style.position = 'absolute';
-    this.indicatorDots.style.top = `${
-      IMAGE_HEIGHT - this.indicatorDotWidth * 2
-    }px`;
     this.indicatorDots.style.left = `${
       IMAGE_WIDTH / 2 -
       this.numberOfImages *
         (this.indicatorDotWidth - this.indicatorDotMarginLeftRight)
     }px`;
+    this.indicatorDots.style.bottom = '5%';
+    this.numberOfImages * this.indicatorDotWidth +
+      2 * this.numberOfImages * this.indicatorDotMarginLeftRight;
   }
 
   createIndicatorDot() {
@@ -98,7 +153,6 @@ class ImageCarousel {
   styleIndicatorDot() {
     for (let i = 0; i < this.numberOfImages; i++) {
       this.indicatorDots[i].style.width = `${this.indicatorDotWidth}px`;
-      this.indicatorDots[i].style.marginBottom = '5px';
       this.indicatorDots[i].style.marginLeft =
         this.indicatorDotMarginLeftRight + 'px';
       this.indicatorDots[i].style.marginRight =
@@ -273,12 +327,8 @@ class ImageCarousel {
 const carouselContainers =
   document.getElementsByClassName('carousel-container');
 
-// for (let carouselContainer of carouselContainers) {
-//   new ImageCarousel(carouselContainer, 1000, 4000);
-// }
-
-// OR: If we want to set different transition time and hold times for different carousels,
-//     Then we can do the following:
+//  If you want to set different transition time and hold times for different carousels
+//  Then you can do the following:
 
 const transitionTimeOne = 1000;
 const transitionTimeTwo = 500;
@@ -287,3 +337,8 @@ const holdTimeTwo = 3000;
 
 new ImageCarousel(carouselContainers[0], transitionTimeOne, holdTimeOne);
 new ImageCarousel(carouselContainers[1], transitionTimeTwo, holdTimeTwo);
+
+// Simply, run the below code if you want to set same transition time and hold time for different carousels.
+// for (let carouselContainer of carouselContainers) {
+//   new ImageCarousel(carouselContainer, 1000, 4000);
+// }
