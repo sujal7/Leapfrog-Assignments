@@ -373,9 +373,12 @@ const transitionTimeTwo = 500;
 const holdTimeOne = 4000;
 const holdTimeTwo = 3000;
 
-new ImageCarousel(carouselContainers[0], transitionTimeOne, holdTimeOne);
-new ImageCarousel(carouselContainers[1], transitionTimeTwo, holdTimeTwo);
-new ImageCarousel(carouselContainers[2], 500, 2000);
+// I have used setTimeout because sometimes, the image is not loaded properly.
+setTimeout(() => {
+  new ImageCarousel(carouselContainers[0], transitionTimeOne, holdTimeOne);
+  new ImageCarousel(carouselContainers[1], transitionTimeTwo, holdTimeTwo);
+  new ImageCarousel(carouselContainers[2], 500, 2000);
+}, 100);
 
 // Simply, run the below code if you want to set same transition time and hold time for different carousels.
 // for (let carouselContainer of carouselContainers) {
