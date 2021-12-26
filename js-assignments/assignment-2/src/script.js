@@ -375,7 +375,7 @@ const holdTimeTwo = 3000;
 
 new ImageCarousel(carouselContainers[0], transitionTimeOne, holdTimeOne);
 new ImageCarousel(carouselContainers[1], transitionTimeTwo, holdTimeTwo);
-new ImageCarousel(carouselContainers[2], transitionTimeTwo, holdTimeTwo);
+new ImageCarousel(carouselContainers[2], 500, 2000);
 
 // Simply, run the below code if you want to set same transition time and hold time for different carousels.
 // for (let carouselContainer of carouselContainers) {
