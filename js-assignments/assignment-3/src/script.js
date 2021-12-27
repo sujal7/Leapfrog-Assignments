@@ -40,8 +40,8 @@ class Ball {
     this.dx = getDirection();
     this.dy = getDirection();
     this.ball.style.position = 'absolute';
-    this.ball.style.left = this.y + 'px';
-    this.ball.style.top = this.x + 'px';
+    this.ball.style.left = this.x + 'px';
+    this.ball.style.top = this.y + 'px';
     this.ball.style.backgroundColor = getRandomColor();
 
     // I have used getRandomFloat to move the balls in random angles.
