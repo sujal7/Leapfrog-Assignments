@@ -17,8 +17,7 @@ class Ant {
     this.antIndex = antIndex;
     antIndex++;
     this.ant = document.createElement('img');
-    this.ant.src =
-      'https://sujal7.github.io/Leapfrog-Assignments/js-assignments/antsmasher/src/images/ant.gif';
+    this.ant.src = './src/images/ant.gif';
     this.antWidth = antSize;
     this.antHeight = antSize;
     this.ant.style.width = this.antWidth + 'px';
