@@ -6,6 +6,18 @@
   position: relative;
 }
 
+#container:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('https://sujal7.github.io/Leapfrog-Assignments/js-assignments/antsmasher/src/images/background.jpg');
+  opacity: 0.7;
+}
+
 .ball {
   border-radius: 50%;
 }

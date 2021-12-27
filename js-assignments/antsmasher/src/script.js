@@ -74,14 +74,6 @@ class Ant {
         ) {
           this.x = getRandomInt(0, CONTAINER_WIDTH - this.antWidth);
           this.y = getRandomInt(0, CONTAINER_HEIGHT - this.antHeight);
-          // console.log('yes');
-          // this.ant.innerHTML = 'lol';
-          // this.radius = 10;
-          // this.mass = this.radius;
-          // this.ballWidth = this.radius * 2;
-          // this.ballHeight = this.radius * 2;
-          // this.ball.style.width = this.radius * 2 + 'px';
-          // this.ball.style.height = this.radius * 2 + 'px';
           this.xSpeed = SPEED_CONSTANT / this.mass;
           this.ySpeed = SPEED_CONSTANT / this.mass;
         }
@@ -100,7 +92,6 @@ class Ant {
     this.checkWallCollision();
     this.checkAntCollision();
     this.changeAntAngle();
-    // console.log(antArray);
     window.requestAnimationFrame(this.move.bind(this));
   }
 
@@ -161,7 +152,7 @@ class Ant {
       this.ant.style.transform = `rotate(${
         getAngle(this.xSpeed, this.ySpeed) + 180
       }deg)`;
-    } else {
+    } else if (this.dx === -1 && this.dy === -1) {
       this.ant.style.transform = `rotate(${
         getAngle(this.xSpeed, this.ySpeed) + 270
       }deg)`;
