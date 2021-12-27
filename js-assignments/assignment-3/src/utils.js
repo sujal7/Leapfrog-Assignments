@@ -7,3 +7,8 @@ function getRandomInt(min, max) {
 function getDirection() {
   return Math.random() > 0.5 ? 1 : -1;
 }
+
+function changeDirection(direction) {
+  if (direction === -1) return 1;
+  else if (direction === 1) return -1;
+}
