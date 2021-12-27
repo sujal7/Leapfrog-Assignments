@@ -12,7 +12,7 @@ function getRandomInt(min, max) {
 }
 
 /**
- * Returns 1 or -1 value randomly.
+ * Generates a direction randomly.
  * @returns 1 or -1 value randomly.
  */
 function getDirection() {

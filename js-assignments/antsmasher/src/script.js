@@ -17,7 +17,8 @@ class Ant {
     this.antIndex = antIndex;
     antIndex++;
     this.ant = document.createElement('img');
-    this.ant.src = '/src/images/ant.gif';
+    this.ant.src =
+      'https://sujal7.github.io/Leapfrog-Assignments/js-assignments/antsmasher/src/images/ant.gif';
     this.antWidth = antSize;
     this.antHeight = antSize;
     this.ant.style.width = this.antWidth + 'px';
@@ -49,9 +50,13 @@ class Ant {
     container.appendChild(this.ant);
   }
 
+  /**
+   * Removes the clicked instance of ant and also deletes it from the antArray.
+   */
   createAntSmash() {
     this.ant.addEventListener('click', () => {
       container.removeChild(this.ant);
+      antArray.splice(this.antIndex, 1);
     });
   }
 
@@ -96,6 +101,7 @@ class Ant {
     this.checkWallCollision();
     this.checkAntCollision();
     this.changeAntAngle();
+    // console.log(antArray);
     window.requestAnimationFrame(this.move.bind(this));
   }
 
