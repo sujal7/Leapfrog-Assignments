@@ -14,6 +14,8 @@ backgroundImage.style.zIndex = '-1';
 const carWidth = 50;
 const carHeight = 80;
 
+const increaseGameSpeed = 0.1;
+
 let scorePoint = 0;
 const score = document.getElementById('score');
 let index = 1;
@@ -129,7 +131,7 @@ class Obstacle {
       this.checkPosition();
       scorePoint++;
       score.innerHTML = `Score: ${scorePoint}`;
-      this.speed += 1;
+      this.speed += increaseGameSpeed;
     }
   }
 
