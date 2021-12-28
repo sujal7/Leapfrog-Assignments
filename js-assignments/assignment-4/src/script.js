@@ -1,7 +1,10 @@
 const car = document.getElementById('car');
 car.style.background =
   'url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/car.png)';
+
 const road = document.getElementById('road');
+// road.style.background = 'url(/src/images/road.png)';
+
 const carWidth = 50;
 const carHeight = 80;
 
@@ -90,7 +93,7 @@ class Obstacle {
     this.checkPosition();
     this.element.style.top = this.y + this.clearObstacle + 'px';
     this.element.style.transition = 'none';
-    score.innerHTML = `Score ${scorePoint}`;
+    score.innerHTML = `Score: ${scorePoint}`;
     road.appendChild(this.element);
   }
 
@@ -111,7 +114,7 @@ class Obstacle {
       this.element.setAttribute('class', `car ${laneMapValue}`);
       this.checkPosition();
       scorePoint++;
-      score.innerHTML = `Score ${scorePoint}`;
+      score.innerHTML = `Score: ${scorePoint}`;
     }
   }
 
