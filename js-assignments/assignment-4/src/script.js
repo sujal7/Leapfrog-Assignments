@@ -4,7 +4,7 @@ car.style.background =
 
 const road = document.getElementById('road');
 const backgroundImage = document.createElement('img');
-backgroundImage.src = './src/images/road5.png';
+backgroundImage.src = './src/images/road.png';
 road.appendChild(backgroundImage);
 backgroundImage.style.position = 'absolute';
 backgroundImage.style.top = '-1200px';
@@ -14,10 +14,12 @@ backgroundImage.style.zIndex = '-1';
 const carWidth = 50;
 const carHeight = 80;
 
-const increaseGameSpeed = 0.1;
+const increaseGameSpeed = 0.2;
 
 let scorePoint = 0;
 const score = document.getElementById('score');
+
+score.innerHTML = `Score: ${scorePoint}`;
 let index = 1;
 let obstacleID = 0;
 
@@ -38,6 +40,23 @@ const laneXPosition = {
   2: 225,
 };
 
+function getHighScore() {
+  let highScore = JSON.parse(localStorage.getItem('highScore'));
+
+  if (highScore === null) return 0;
+  return highScore.score;
+}
+
+function setHighScore(score) {
+  var highScore = {
+    score: score,
+  };
+  localStorage.setItem('highScore', JSON.stringify(highScore));
+}
+
+const highScore = document.getElementById('high-score');
+highScore.innerHTML = `High Score: ${getHighScore()}`;
+
 function animateMovement(oldIndex, newIndex) {
   if (oldIndex > newIndex) {
     let difference = laneXPosition[oldIndex] - laneXPosition[newIndex];
@@ -45,7 +64,7 @@ function animateMovement(oldIndex, newIndex) {
     let animation = setInterval(() => {
       carX -= difference / 10;
       car.style.left = carX + 'px';
-      if (carX <= laneXPosition[newIndex]) {
+      if (carX <= laneXPosition[newIndex] || gameOverFlag === true) {
         clearInterval(animation);
       }
     }, 40);
@@ -55,7 +74,7 @@ function animateMovement(oldIndex, newIndex) {
     let animation = setInterval(() => {
       carX += difference / 10;
       car.style.left = carX + 'px';
-      if (carX >= laneXPosition[newIndex]) {
+      if (carX >= laneXPosition[newIndex] || gameOverFlag === true) {
         clearInterval(animation);
       }
     }, 40);
@@ -110,6 +129,7 @@ class Obstacle {
   }
 
   move() {
+    // console.log(myRequest);
     // this.index = getRandomInt(0, 3);
     this.y += this.speed + this.clearObstacle;
     this.backgroundY += this.speed * 2;
@@ -118,6 +138,14 @@ class Obstacle {
     // console.log(this.obstacleID);
     this.clearObstacle = 0;
     this.checkCarCollision();
+    // console.log(this.checkCarCollision());
+    // console.log(myRequest);
+    // cancelAnimationFrame(myRequest);
+    // if (checkCarCollision()) {
+    //   console.log(myRequest);
+    //   cancelAnimationFrame(myRequest);
+    // }
+    // this.checkCarCollision();
     if (this.backgroundY >= -600) {
       this.backgroundY = -1200;
     }
@@ -157,30 +185,66 @@ class Obstacle {
       carY < this.y + this.obstacleHeight &&
       carHeight + carY > this.y
     ) {
-      gameOver();
+      // clearInterval(gameInterval);
+      // console.log('collided');
+      gameOverFlag = true;
     }
   }
 }
 
-const obstacleArray = [];
-
-let myRequest;
-
-for (let i = 0; i < 3; i++) {
-  const obstacle = new Obstacle();
-  obstacle.draw();
-  obstacleArray.push(obstacle);
-  function move() {
-    obstacleArray.forEach((obstacle) => obstacle.move());
-    myRequest = requestAnimationFrame(move);
-  }
-}
-move();
-
 function gameOver() {
-  // console.log(myRequest);
-  cancelAnimationFrame(myRequest);
+  const gameOverScreen = document.getElementById('game-over-screen');
+  gameOverScreen.style.display = 'block';
+  const gameOverDescription = document.getElementById('game-over-description');
+  if (scorePoint > getHighScore()) {
+    setHighScore(scorePoint);
+  }
+  gameOverDescription.innerHTML = `Game Over<br>Your Score was ${scorePoint}`;
+  gameOverScreen.addEventListener('click', function () {
+    window.location.reload();
+  });
 }
+
+let gameOverFlag = false;
+let gameInterval;
+const obstacleArray = [];
+let requestID;
+function startGame() {
+  // console.log('started');
+  startScreen.style.display = 'none';
+  // startScreen.style.visibility = 'hidden';
+  for (let i = 0; i < 3; i++) {
+    const obstacle = new Obstacle();
+    obstacle.draw();
+    obstacleArray.push(obstacle);
+    function move() {
+      obstacleArray.forEach((obstacle) => {
+        obstacle.move();
+      });
+      // if (obstacle.checkCarCollision()) {
+      //   console.log(myRequest);
+      //   cancelAnimationFrame(myRequest);
+      // }
+      // if (requestID) {
+      //   // console.log(requestID);
+      //   cancelAnimationFrame(requestID);
+      // }
+      if (gameOverFlag) {
+        gameOver();
+        cancelAnimationFrame(requestID);
+      } else {
+        requestAnimationFrame(move);
+      }
+    }
+  }
+  requestID = window.requestAnimationFrame(move);
+}
+
+const startScreen = document.getElementById('start-screen');
+const startDescription = document.getElementById('start-description');
+const startButton = document.getElementById('start');
+
+startScreen.addEventListener('click', startGame);
 
 // new Game({
 //   keyBindings: {
