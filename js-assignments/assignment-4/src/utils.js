@@ -6,7 +6,15 @@ function getRandomInt(min, max) {
 }
 
 function getRandomObstacle() {
-  let obstacles = ['obstacle1', 'obstacle2', 'obstacle3'];
+  let obstacles = [
+    'obstacle1',
+    'obstacle2',
+    'obstacle3',
+    'obstacle4',
+    'obstacle5',
+    'obstacle6',
+    'obstacle7',
+  ];
   let randomObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
 
   return randomObstacle;
