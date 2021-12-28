@@ -8,11 +8,9 @@ let obstacleID = 0;
 
 let laneCount = 3;
 const laneHeight = 600;
-let iter = 0;
 
 const carY = 510;
 let carX = 125;
-
 const laneMap = {
   0: 'lane-left',
   1: 'lane-middle',
@@ -32,7 +30,6 @@ function animateMovement(oldIndex, newIndex) {
     let animation = setInterval(() => {
       carX -= difference / 10;
       car.style.left = carX + 'px';
-      // console.log(carX);
       if (carX <= laneXPosition[newIndex]) {
         clearInterval(animation);
       }
@@ -43,7 +40,6 @@ function animateMovement(oldIndex, newIndex) {
     let animation = setInterval(() => {
       carX += difference / 10;
       car.style.left = carX + 'px';
-      // console.log(carX);
       if (carX >= laneXPosition[newIndex]) {
         clearInterval(animation);
       }
@@ -72,7 +68,6 @@ document.addEventListener('keydown', (event) => {
 class Obstacle {
   constructor() {
     this.obstacleID = obstacleID;
-    // console.log(obstacleID);
     obstacleID++;
     this.index = getRandomInt(0, 3);
     this.y = getRandomInt(-150, -700);
@@ -112,86 +107,54 @@ class Obstacle {
       this.element.setAttribute('class', `car ${laneMapValue}`);
       this.checkPosition();
     }
-
-    // window.requestAnimationFrame(this.move.bind(this));
   }
 
   checkPosition() {
     obsArray.forEach((obstacle) => {
-      // console.log(obstacleID);
-      // console.log(obstacle.obstacleID);
-      // console.log(this.element.obstacleID);
       if (obstacle.obstacleID !== this.obstacleID) {
-        // console.log('tay' + this.obstacleID);
         if (
           obstacle.y < this.y + this.obstacleHeight &&
           obstacle.y + obstacle.obstacleHeight > this.y
         ) {
           if (obstacle.index == this.index) {
-            // console.log('collied');
-            // console.log(this.element.obstacleID === obstacle.obstacleID);
-            // this.element.style.backgroundColor = 'red';
-            // console.log(obstacle.obstacleID);
             obstacle.clearObstacle = obstacle.y - obstacle.obstacleHeight;
-            // obstacle.clearObstacle = -obstacle.obstacleHeight;
-            // if (iter <= 1) {
-            //   console.log(obstacle);
-            //   console.log(this.element);
-            //   iter++;
-            // }
           }
-          // console.log('collided');
-          // obstacle.y = obstacle.y - obstacle.obstacleHeight;
-          // console.log((obstacle.y -= obstacle.obstacleHeight));
         }
       }
-      // if (
-      //   rect1.x < rect2.x + rect2.w &&
-      //   rect1.x + rect1.w > rect2.x &&
-      //   rect1.y < rect2.y + rect2.h &&
-      //   rect1.h + rect1.y > rect2.y
-      // ) {
-      //   // collision detected!
-      //   this.color('green');
-      // } else {
-      //   // no collision
-      //   this.color('blue');
-      // }
     });
   }
 
   checkCarCollision() {
     if (
-      carX < this.index == this.index &&
+      carX < laneXPosition[this.index] + this.obstacleWidth &&
+      carX + carWidth > laneXPosition[this.index] &&
       carY < this.y + this.obstacleHeight &&
       carHeight + carY > this.y
     ) {
-      // alert('collision detected!');
-      // console.log('collision detected');
-      // this.color('green');
-    } else {
-      // no collision
-      // this.color('blue');
+      gameOver();
     }
   }
 }
 
 const obsArray = [];
 
+let myRequest;
+
 for (let i = 0; i < 3; i++) {
   const obs = new Obstacle();
   obs.draw();
   obsArray.push(obs);
-  // obs.move();
+  function move() {
+    obsArray.forEach((obs) => obs.move());
+    myRequest = requestAnimationFrame(move);
+  }
 }
-
-function move() {
-  obsArray.forEach((obs) => obs.move());
-
-  requestAnimationFrame(move);
-}
-
 move();
+
+function gameOver() {
+  // console.log(myRequest);
+  cancelAnimationFrame(myRequest);
+}
 
 // new Game({
 //   keyBindings: {
