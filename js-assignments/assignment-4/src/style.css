@@ -1,12 +1,11 @@
 body {
   font-family: 'Press Start 2P', cursive;
-  background-image: url(/src/images/background2.png);
+  background-image: url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/background.png);
 }
 .road {
   margin: 10px auto;
   width: 300px;
   height: 600px;
-  /* display: flex; */
   overflow: hidden;
   position: relative;
   z-index: -1;
@@ -19,11 +18,9 @@ body {
 }
 
 .lane {
-  /* flex: 1; */
   width: 100px;
   height: 600px;
   float: left;
-  /* border: 1px solid black; */
 }
 
 .left,
@@ -35,9 +32,7 @@ body {
   width: 50px;
   height: 80px;
   position: absolute;
-  /* background: #49c; */
   bottom: 10px;
-  /* transition: 0.4s; */
 }
 
 .car.lane-left {
