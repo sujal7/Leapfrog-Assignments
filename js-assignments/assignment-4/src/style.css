@@ -1,0 +1,48 @@
+.road {
+  margin: 10px auto;
+  width: 300px;
+  height: 600px;
+  /* display: flex; */
+  overflow: hidden;
+  position: relative;
+}
+
+.road:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+.lane {
+  /* flex: 1; */
+  width: 100px;
+  height: 600px;
+  float: left;
+  border: 1px solid black;
+}
+
+.left,
+.middle {
+  border-right: none;
+}
+
+.car {
+  width: 50px;
+  height: 80px;
+  position: absolute;
+  background: #49c;
+  bottom: 10px;
+  /* transition: 0.4s; */
+}
+
+.car.lane-left {
+  left: 25px;
+}
+
+.car.lane-middle {
+  left: 125px;
+}
+
+.car.lane-right {
+  left: 225px;
+}
