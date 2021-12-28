@@ -46,3 +46,9 @@
 .car.lane-right {
   left: 225px;
 }
+
+.score {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10px;
+}

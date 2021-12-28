@@ -5,6 +5,8 @@ const road = document.getElementById('road');
 const carWidth = 50;
 const carHeight = 80;
 
+let scorePoint = 0;
+const score = document.getElementById('score');
 let index = 1;
 let obstacleID = 0;
 
@@ -88,7 +90,7 @@ class Obstacle {
     this.checkPosition();
     this.element.style.top = this.y + this.clearObstacle + 'px';
     this.element.style.transition = 'none';
-
+    score.innerHTML = `Score ${scorePoint}`;
     road.appendChild(this.element);
   }
 
@@ -108,6 +110,8 @@ class Obstacle {
       const laneMapValue = laneMap[this.index];
       this.element.setAttribute('class', `car ${laneMapValue}`);
       this.checkPosition();
+      scorePoint++;
+      score.innerHTML = `Score ${scorePoint}`;
     }
   }
 
