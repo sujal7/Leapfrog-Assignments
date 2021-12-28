@@ -1,3 +1,6 @@
+body {
+  font-family: 'Press Start 2P', cursive;
+}
 .road {
   margin: 10px auto;
   width: 300px;
@@ -52,31 +55,38 @@
   text-align: center;
   font-size: 2rem;
   margin-top: 10px;
+  color: rgb(3, 69, 122);
 }
 
 .start-screen {
   position: absolute;
-  background-color: #e2e2e2;
+  background-color: #000000;
+  color: #e2e2e2;
   width: 40%;
-  height: 100px;
+  height: auto;
   margin-left: 30%;
   margin-right: 30%;
-  top: 200px;
+  padding: 20px;
+  line-height: 3rem;
+  bottom: 200px;
   text-align: center;
   font-size: 2rem;
 }
 
 .game-over-screen {
   position: absolute;
-  background-color: #e2e2e2;
+  background-color: #000000;
   width: 40%;
-  height: 100px;
+  height: auto;
   margin-left: 30%;
   margin-right: 30%;
-  top: 200px;
+  line-height: 3rem;
+  padding: 20px;
+  bottom: 200px;
   text-align: center;
   font-size: 2rem;
   display: none;
+  color: rgb(206, 20, 20);
 }
 
 .high-score {
@@ -87,5 +97,7 @@
   height: 100px;
   top: 10px;
   text-align: center;
+  font-size: 2rem;
+  color: green;
   font-size: 2rem;
 }

@@ -1,8 +1,17 @@
+const roadHeight = 600;
+const roadWidth = 300;
+const carWidth = 50;
+const carHeight = 80;
+const carBottomPadding = 10;
+const increaseGameSpeed = 0.2;
+let scorePoint = 0;
+
 const car = document.getElementById('car');
 car.style.background =
   'url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/car.png)';
 
 const road = document.getElementById('road');
+
 const backgroundImage = document.createElement('img');
 backgroundImage.src = './src/images/road.png';
 road.appendChild(backgroundImage);
@@ -11,22 +20,17 @@ backgroundImage.style.top = '-1200px';
 backgroundImage.style.left = '0px';
 backgroundImage.style.zIndex = '-1';
 
-const carWidth = 50;
-const carHeight = 80;
-
-const increaseGameSpeed = 0.2;
-
-let scorePoint = 0;
 const score = document.getElementById('score');
 
 score.innerHTML = `Score: ${scorePoint}`;
 let index = 1;
 let obstacleID = 0;
 
-let laneCount = 3;
+const laneCount = 3;
 const laneHeight = 600;
-
-const carY = 510;
+const laneWidth = 100;
+const carYPosition = roadHeight - carHeight - carBottomPadding;
+// console.log(carYPosition);
 let carX = 125;
 const laneMap = {
   0: 'lane-left',
@@ -44,6 +48,7 @@ function getHighScore() {
   let highScore = JSON.parse(localStorage.getItem('highScore'));
 
   if (highScore === null) return 0;
+
   return highScore.score;
 }
 
@@ -93,10 +98,6 @@ document.addEventListener('keydown', (event) => {
   if (oldIndex != index) {
     animateMovement(oldIndex, index);
   }
-
-  // const laneMapValue = laneMap[index];
-
-  // car.setAttribute('class', `car ${laneMapValue}`);
 });
 
 class Obstacle {
@@ -107,7 +108,6 @@ class Obstacle {
     this.y = getRandomInt(-150, -700);
     this.backgroundY = -600;
     this.speed = 5;
-    // this.backgroundY = this.speed * 2;
     this.obstacleHeight = 80;
     this.obstacleWidth = 50;
     this.clearObstacle = 0;
@@ -119,33 +119,21 @@ class Obstacle {
     this.element.style.background = `url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/${getRandomObstacle()}.png)`;
     this.element.setAttribute('class', `car ${laneMapValue}`);
     backgroundImage.style.top = '-1200px';
-    // this.element.style.bottom = 'auto';
+    this.element.style.bottom = 'auto';
     this.checkPosition();
     this.element.style.top = this.y + this.clearObstacle + 'px';
-    // backgroundImage.style.top = '-600px';
     this.element.style.transition = 'none';
     score.innerHTML = `Score: ${scorePoint}`;
     road.appendChild(this.element);
   }
 
   move() {
-    // console.log(myRequest);
-    // this.index = getRandomInt(0, 3);
     this.y += this.speed + this.clearObstacle;
     this.backgroundY += this.speed * 2;
     backgroundImage.style.top = this.backgroundY + 'px';
     this.element.style.top = this.y + this.clearObstacle + 'px';
-    // console.log(this.obstacleID);
     this.clearObstacle = 0;
     this.checkCarCollision();
-    // console.log(this.checkCarCollision());
-    // console.log(myRequest);
-    // cancelAnimationFrame(myRequest);
-    // if (checkCarCollision()) {
-    //   console.log(myRequest);
-    //   cancelAnimationFrame(myRequest);
-    // }
-    // this.checkCarCollision();
     if (this.backgroundY >= -600) {
       this.backgroundY = -1200;
     }
@@ -170,8 +158,10 @@ class Obstacle {
           obstacle.y < this.y + this.obstacleHeight &&
           obstacle.y + obstacle.obstacleHeight > this.y
         ) {
-          if (obstacle.index == this.index) {
+          if (obstacle.index === this.index) {
             obstacle.clearObstacle = obstacle.y - obstacle.obstacleHeight;
+          } else {
+            obstacle.index = this.index;
           }
         }
       }
@@ -182,11 +172,9 @@ class Obstacle {
     if (
       carX < laneXPosition[this.index] + this.obstacleWidth &&
       carX + carWidth > laneXPosition[this.index] &&
-      carY < this.y + this.obstacleHeight &&
-      carHeight + carY > this.y
+      carYPosition < this.y + this.obstacleHeight &&
+      carHeight + carYPosition > this.y
     ) {
-      // clearInterval(gameInterval);
-      // console.log('collided');
       gameOverFlag = true;
     }
   }
@@ -198,21 +186,19 @@ function gameOver() {
   const gameOverDescription = document.getElementById('game-over-description');
   if (scorePoint > getHighScore()) {
     setHighScore(scorePoint);
+    gameOverDescription.innerHTML += 'New High Score! <br/>';
   }
-  gameOverDescription.innerHTML = `Game Over<br>Your Score was ${scorePoint}`;
+  gameOverDescription.innerHTML += `Game Over.<br/>Your Score was ${scorePoint}.<br/>Click Here to Play Again.`;
   gameOverScreen.addEventListener('click', function () {
     window.location.reload();
   });
 }
 
 let gameOverFlag = false;
-let gameInterval;
 const obstacleArray = [];
 let requestID;
 function startGame() {
-  // console.log('started');
   startScreen.style.display = 'none';
-  // startScreen.style.visibility = 'hidden';
   for (let i = 0; i < 3; i++) {
     const obstacle = new Obstacle();
     obstacle.draw();
@@ -221,14 +207,6 @@ function startGame() {
       obstacleArray.forEach((obstacle) => {
         obstacle.move();
       });
-      // if (obstacle.checkCarCollision()) {
-      //   console.log(myRequest);
-      //   cancelAnimationFrame(myRequest);
-      // }
-      // if (requestID) {
-      //   // console.log(requestID);
-      //   cancelAnimationFrame(requestID);
-      // }
       if (gameOverFlag) {
         gameOver();
         cancelAnimationFrame(requestID);
@@ -245,17 +223,3 @@ const startDescription = document.getElementById('start-description');
 const startButton = document.getElementById('start');
 
 startScreen.addEventListener('click', startGame);
-
-// new Game({
-//   keyBindings: {
-//     left: 'ArrowLeft',
-//     right: 'ArrowRight'
-//   }
-// })
-
-// new Game({
-//   keyBindings: {
-//     left: 'A',
-//     right: 'D'
-//   }
-// })
