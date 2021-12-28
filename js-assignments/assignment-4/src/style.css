@@ -1,5 +1,6 @@
 body {
   font-family: 'Press Start 2P', cursive;
+  background-image: url(/src/images/background2.png);
 }
 .road {
   margin: 10px auto;
@@ -71,6 +72,7 @@ body {
   bottom: 200px;
   text-align: center;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .game-over-screen {
@@ -87,6 +89,7 @@ body {
   font-size: 2rem;
   display: none;
   color: rgb(206, 20, 20);
+  cursor: pointer;
 }
 
 .high-score {
@@ -94,10 +97,12 @@ body {
   width: 20%;
   margin-left: 10%;
   margin-right: 70%;
-  height: 100px;
+  height: auto;
   top: 10px;
   text-align: center;
   font-size: 2rem;
-  color: green;
+  color: rgb(22, 189, 22);
   font-size: 2rem;
+  background-color: #000000;
+  padding: 20px;
 }
