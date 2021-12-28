@@ -1,4 +1,6 @@
 const car = document.getElementById('car');
+car.style.background =
+  'url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/car.png)';
 const road = document.getElementById('road');
 const carWidth = 50;
 const carHeight = 80;
@@ -79,9 +81,8 @@ class Obstacle {
 
   draw() {
     this.element = document.createElement('div');
-
     const laneMapValue = laneMap[this.index];
-
+    this.element.style.background = `url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/${getRandomObstacle()}.png)`;
     this.element.setAttribute('class', `car ${laneMapValue}`);
     // this.element.style.bottom = 'auto';
     this.checkPosition();
@@ -100,6 +101,7 @@ class Obstacle {
     this.checkCarCollision();
 
     if (this.y > laneHeight) {
+      this.element.style.background = `url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/${getRandomObstacle()}.png)`;
       // this.element.style.backgroundColor = 'green';
       this.y = getRandomInt(-150, -700);
       this.index = getRandomInt(0, 3);
@@ -110,7 +112,7 @@ class Obstacle {
   }
 
   checkPosition() {
-    obsArray.forEach((obstacle) => {
+    obstacleArray.forEach((obstacle) => {
       if (obstacle.obstacleID !== this.obstacleID) {
         if (
           obstacle.y < this.y + this.obstacleHeight &&
@@ -136,16 +138,16 @@ class Obstacle {
   }
 }
 
-const obsArray = [];
+const obstacleArray = [];
 
 let myRequest;
 
 for (let i = 0; i < 3; i++) {
-  const obs = new Obstacle();
-  obs.draw();
-  obsArray.push(obs);
+  const obstacle = new Obstacle();
+  obstacle.draw();
+  obstacleArray.push(obstacle);
   function move() {
-    obsArray.forEach((obs) => obs.move());
+    obstacleArray.forEach((obstacle) => obstacle.move());
     myRequest = requestAnimationFrame(move);
   }
 }
