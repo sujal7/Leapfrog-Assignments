@@ -3,7 +3,13 @@ car.style.background =
   'url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/car.png)';
 
 const road = document.getElementById('road');
-// road.style.background = 'url(/src/images/road.png)';
+const backgroundImage = document.createElement('img');
+backgroundImage.src = '/src/images/road4.png';
+road.appendChild(backgroundImage);
+backgroundImage.style.position = 'absolute';
+backgroundImage.style.top = '-600px';
+backgroundImage.style.left = '0px';
+backgroundImage.style.zIndex = '-1';
 
 const carWidth = 50;
 const carHeight = 80;
@@ -78,7 +84,9 @@ class Obstacle {
     obstacleID++;
     this.index = getRandomInt(0, 3);
     this.y = getRandomInt(-150, -700);
+    this.backgroundY = -600;
     this.speed = 5;
+    // this.backgroundY = this.speed * 2;
     this.obstacleHeight = 80;
     this.obstacleWidth = 50;
     this.clearObstacle = 0;
@@ -89,9 +97,11 @@ class Obstacle {
     const laneMapValue = laneMap[this.index];
     this.element.style.background = `url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/${getRandomObstacle()}.png)`;
     this.element.setAttribute('class', `car ${laneMapValue}`);
+    backgroundImage.style.top = '-600px';
     // this.element.style.bottom = 'auto';
     this.checkPosition();
     this.element.style.top = this.y + this.clearObstacle + 'px';
+    // backgroundImage.style.top = '-600px';
     this.element.style.transition = 'none';
     score.innerHTML = `Score: ${scorePoint}`;
     road.appendChild(this.element);
@@ -100,14 +110,19 @@ class Obstacle {
   move() {
     // this.index = getRandomInt(0, 3);
     this.y += this.speed + this.clearObstacle;
+    this.backgroundY += this.speed * 2;
+    backgroundImage.style.top = this.backgroundY + 'px';
     this.element.style.top = this.y + this.clearObstacle + 'px';
     // console.log(this.obstacleID);
     this.clearObstacle = 0;
     this.checkCarCollision();
 
+    if (this.backgroundY >= 0) {
+      this.backgroundY = -600;
+    }
+
     if (this.y > laneHeight) {
       this.element.style.background = `url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-4/src/images/${getRandomObstacle()}.png)`;
-      // this.element.style.backgroundColor = 'green';
       this.y = getRandomInt(-150, -700);
       this.index = getRandomInt(0, 3);
       const laneMapValue = laneMap[this.index];
