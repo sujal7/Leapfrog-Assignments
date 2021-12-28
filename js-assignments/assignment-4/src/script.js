@@ -59,9 +59,9 @@ const laneMap = {
  * Object to map index with X position of car & obstacle cars.
  */
 const laneXPosition = {
-  0: 25,
+  0: 35,
   1: 125,
-  2: 225,
+  2: 215,
 };
 
 /**

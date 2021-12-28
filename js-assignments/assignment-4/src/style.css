@@ -36,7 +36,7 @@ body {
 }
 
 .car.lane-left {
-  left: 25px;
+  left: 35px;
 }
 
 .car.lane-middle {
@@ -44,7 +44,7 @@ body {
 }
 
 .car.lane-right {
-  left: 225px;
+  left: 215px;
 }
 
 .score {
