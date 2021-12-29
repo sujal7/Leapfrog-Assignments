@@ -18,7 +18,7 @@ const MAX_PIPE_POSITION = -250;
 // Styles the bird.
 let birdPositionY = GAME_SCREEN_HEIGHT / 3 - BIRD_HEIGHT;
 const bird = document.createElement('img');
-bird.src = '/src/images/bird1.png';
+bird.src = './src/images/bird1.png';
 bird.style.position = 'absolute';
 bird.style.top = birdPositionY + 'px';
 bird.style.left = BIRD_POSITION_X + 'px';
@@ -30,7 +30,7 @@ let birdChange;
  * Generates new picture of bird every 100ms to make the bird look like flapping wings.
  */
 birdChange = setInterval(() => {
-  bird.src = `/src/images/${getBird()}.png`;
+  bird.src = `./src/images/${getBird()}.png`;
 }, 100);
 
 // Display the initial score.
@@ -41,7 +41,7 @@ scoreBoard.innerHTML = `<img src="/src/images/${scorePoint}.png"/>`;
 // Styles the base/ground.
 let baseXPosition = GAME_SCREEN_WIDTH;
 const base = document.createElement('img');
-base.src = '/src/images/base.png';
+base.src = './src/images/base.png';
 base.style.position = 'absolute';
 base.style.bottom = 0 + 'px';
 base.style.left = -baseXPosition + 'px';
