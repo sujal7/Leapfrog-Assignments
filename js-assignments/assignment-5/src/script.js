@@ -36,8 +36,9 @@ birdChange = setInterval(() => {
 // Display the initial score.
 let scorePoint = 0;
 const scoreBoard = document.getElementById('scoreboard');
-scoreBoard.innerHTML = `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${scorePoint}.png"/>`;
-
+const rightDigitImage = document.getElementById('right-digit');
+const leftDigitImage = document.getElementById('left-digit');
+rightDigitImage.src = `./src/images/${scorePoint}.png`;
 // Styles the base/ground.
 let baseXPosition = GAME_SCREEN_WIDTH;
 const base = document.createElement('img');
@@ -159,15 +160,15 @@ class Pipe {
       BIRD_POSITION_X - this.pipeXPosition
     ) {
       scorePoint++;
-
+      console.log(scorePoint);
       // To update the score with the help of digit images for two or more digits.
       if (scorePoint > 9) {
         let leftDigit = Math.floor(scorePoint / 10);
         let rightDigit = scorePoint % 10;
-        scoreBoard.innerHTML = `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${leftDigit}.png" />`;
-        scoreBoard.innerHTML += `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${rightDigit}.png" />`;
+        leftDigitImage.src = `./src/images/${leftDigit}.png`;
+        rightDigitImage.src = `./src/images/${rightDigit}.png`;
       } else {
-        scoreBoard.innerHTML = `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${scorePoint}.png" />`;
+        rightDigitImage.src = `./src/images/${scorePoint}.png`;
       }
     }
   }

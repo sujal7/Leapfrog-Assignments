@@ -22,7 +22,7 @@ function getInitialPipePosition(index) {
 }
 
 // Difficulty decreases with increase in number. (1 is max difficulty)
-const difficultyLevel = 4;
+const difficultyLevel = 3;
 
 /**
  * Calculates the position of bottom pipe by keeping enough space for the bird in between.
