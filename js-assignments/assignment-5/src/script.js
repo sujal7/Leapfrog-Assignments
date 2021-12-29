@@ -36,7 +36,7 @@ birdChange = setInterval(() => {
 // Display the initial score.
 let scorePoint = 0;
 const scoreBoard = document.getElementById('scoreboard');
-scoreBoard.innerHTML = `<img src="/src/images/${scorePoint}.png"/>`;
+scoreBoard.innerHTML = `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${scorePoint}.png"/>`;
 
 // Styles the base/ground.
 let baseXPosition = GAME_SCREEN_WIDTH;
@@ -164,10 +164,10 @@ class Pipe {
       if (scorePoint > 9) {
         let leftDigit = Math.floor(scorePoint / 10);
         let rightDigit = scorePoint % 10;
-        scoreBoard.innerHTML = `<img src="/src/images/${leftDigit}.png" />`;
-        scoreBoard.innerHTML += `<img src="/src/images/${rightDigit}.png" />`;
+        scoreBoard.innerHTML = `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${leftDigit}.png" />`;
+        scoreBoard.innerHTML += `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${rightDigit}.png" />`;
       } else {
-        scoreBoard.innerHTML = `<img src="/src/images/${scorePoint}.png" />`;
+        scoreBoard.innerHTML = `<img src="https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/${scorePoint}.png" />`;
       }
     }
   }
