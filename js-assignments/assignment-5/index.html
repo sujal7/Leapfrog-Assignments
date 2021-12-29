@@ -7,11 +7,17 @@
     <title>Flappy Bird Clone</title>
     <link rel="stylesheet" href="src/style.css" />
     <link rel="stylesheet" href="src/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="high-score" id="high-score"></div>
     <div class="scoreboard" id="scoreboard">
-      <h2 class="score" id="score"></h2>
+      <!-- <h2 class="score" id="score"></h2> -->
     </div>
     <div class="start-screen" id="start-screen">
       <p id="start-description"></p>
@@ -20,7 +26,8 @@
       <p id="game-over-description"></p>
     </div>
     <div class="game-screen" id="game-screen"></div>
+    <script src="src/utils.js"></script>
+    <script src="src/highScore.js"></script>
+    <script src="src/script.js"></script>
   </body>
-  <script src="src/utils.js"></script>
-  <script src="src/script.js"></script>
 </html>

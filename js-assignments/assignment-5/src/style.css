@@ -1,9 +1,52 @@
+body {
+  font-family: 'Press Start 2P', cursive;
+}
+
 .game-screen {
   width: 900px;
   height: 500px;
-  background-color: red;
   margin: 10px auto;
   position: relative;
   background: url(/src/images/background.png);
   overflow: hidden;
+}
+
+.start-screen {
+  position: absolute;
+  width: 200px;
+  height: 290px;
+  left: 43%;
+  top: 100px;
+  z-index: 1;
+  background: url(./images/getReady.png);
+}
+
+.game-over-screen {
+  font-family: 'Press Start 2P', cursive;
+  position: absolute;
+  z-index: 1;
+  left: 43%;
+  top: 200px;
+  display: none;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.scoreboard {
+  position: absolute;
+  width: 20%;
+  height: 30%;
+  left: 40%;
+  top: 20px;
+  z-index: 1;
+  text-align: center;
+}
+
+.high-score {
+  font-size: 1rem;
+  position: absolute;
+  font-family: 'Press Start 2P', cursive;
+  left: 20%;
+  top: 20px;
+  z-index: 1;
 }

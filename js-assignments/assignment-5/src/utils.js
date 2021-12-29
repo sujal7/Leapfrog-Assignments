@@ -7,6 +7,7 @@
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
+
   return Math.floor(Math.random() * (max - min) + min);
 }
 
@@ -18,9 +19,14 @@ function getInitialPipePosition(index) {
   if (index === 4) return GAME_SCREEN_WIDTH + 1200;
 }
 
+function getPipeDownYPosition(pipeUpYPosition) {
+  return pipeUpYPosition + PIPE_HEIGHT + BIRD_HEIGHT * 3;
+}
+
 const birds = ['bird1', 'bird2', 'bird3', 'bird2'];
 let birdIndex = 0;
 function getBird() {
   if (birdIndex === birds.length) birdIndex = 0;
+
   return birds[birdIndex++];
 }
