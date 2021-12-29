@@ -1,0 +1,9 @@
+.game-screen {
+  width: 900px;
+  height: 500px;
+  background-color: red;
+  margin: 10px auto;
+  position: relative;
+  background: url(/src/images/background.png);
+  overflow: hidden;
+}
