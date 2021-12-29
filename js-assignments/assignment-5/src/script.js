@@ -69,7 +69,8 @@ class Pipe {
     // Styles the top pipe.
     this.pipeTop = document.createElement('div');
     this.pipeTop.setAttribute('class', 'pipe-top');
-    this.pipeTop.style.background = 'url(/src/images/pipe.png)';
+    this.pipeTop.style.background =
+      'url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/pipe.png)';
     this.pipeTop.style.position = 'absolute';
     this.pipeTop.style.top = this.pipeUpYPosition + 'px';
     this.pipeTop.style.width = PIPE_WIDTH + 'px';
@@ -80,7 +81,8 @@ class Pipe {
     // Styles the bottom pipe.
     this.pipeBottom = document.createElement('div');
     this.pipeBottom.setAttribute('class', 'pipe-bottom');
-    this.pipeBottom.style.background = 'url(/src/images/pipe.png)';
+    this.pipeBottom.style.background =
+      'url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/pipe.png)';
     this.pipeBottom.style.position = 'absolute';
     this.pipeBottom.style.top = this.pipeDownYPosition + 'px';
     this.pipeBottom.style.width = PIPE_WIDTH + 'px';

@@ -7,7 +7,7 @@ body {
   height: 500px;
   margin: 10px auto;
   position: relative;
-  background: url(/src/images/background.png);
+  background: url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/background.png);
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@ body {
   left: 43%;
   top: 100px;
   z-index: 1;
-  background: url(./images/getReady.png);
+  background: url(https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/getReady.png);
 }
 
 .game-over-screen {
