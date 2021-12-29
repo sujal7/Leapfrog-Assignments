@@ -19,14 +19,12 @@ function gameOver() {
   const gameOverDescription = document.getElementById('game-over-description');
   gameOverDescription.innerText = `Score: ${scorePoint}`;
   gameOverDescription.style.marginBottom = '5px';
-  gameOverIcon.src =
-    'https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/gameOver.png';
+  gameOverIcon.src = './src/images/gameOver.png';
   gameOverIcon.style.width = '200px';
   restart.style.width = '100px';
   restart.style.marginLeft = '70px';
   restart.style.cursor = 'pointer';
-  restart.src =
-    'https://sujal7.github.io/Leapfrog-Assignments/js-assignments/assignment-5/src/images/restart.png';
+  restart.src = './src/images/restart.png';
   restart.style.display = 'block';
   restart.style.zIndex = 1;
   restart.addEventListener('click', () => {
