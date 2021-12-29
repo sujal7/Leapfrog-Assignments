@@ -11,20 +11,35 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+let minGap = 300;
+/**
+ * Calculates the initial position of pipes.
+ * @param {number} index - The index of pipe. (pipeID)
+ * @returns
+ */
 function getInitialPipePosition(index) {
-  if (index === 0) return GAME_SCREEN_WIDTH;
-  if (index === 1) return GAME_SCREEN_WIDTH + 300;
-  if (index === 2) return GAME_SCREEN_WIDTH + 600;
-  if (index === 3) return GAME_SCREEN_WIDTH + 900;
-  if (index === 4) return GAME_SCREEN_WIDTH + 1200;
+  return GAME_SCREEN_WIDTH + index * minGap;
 }
 
+// Difficulty decreases with increase in number. (1 is max difficulty)
+const difficultyLevel = 4;
+
+/**
+ * Calculates the position of bottom pipe by keeping enough space for the bird in between.
+ * @param {number} pipeUpYPosition - Position of top pipe in Y-coordinate.
+ * @returns - The position of bottom pipe in Y-coordinate.
+ */
 function getPipeDownYPosition(pipeUpYPosition) {
-  return pipeUpYPosition + PIPE_HEIGHT + BIRD_HEIGHT * 3;
+  return pipeUpYPosition + PIPE_HEIGHT + BIRD_HEIGHT * difficultyLevel;
 }
 
 const birds = ['bird1', 'bird2', 'bird3', 'bird2'];
 let birdIndex = 0;
+
+/**
+ * Helps to generate images of bird flapping.
+ * @returns A string from the array based on birdIndex.
+ */
 function getBird() {
   if (birdIndex === birds.length) birdIndex = 0;
 
