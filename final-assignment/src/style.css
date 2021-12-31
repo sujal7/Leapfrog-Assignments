@@ -1,0 +1,12 @@
+body {
+  background-color: #0e1217;
+}
+
+.simulation-area {
+  /* background-color: #a00000; */
+  width: 400px;
+  height: 400px;
+  margin: 10px auto;
+  border: 1px solid #a00000;
+  position: relative;
+}
