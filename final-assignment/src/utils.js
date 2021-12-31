@@ -25,3 +25,13 @@ function getDirection() {
 function getRandomFloat(min, max) {
   return (Math.random() * (max - min) + min).toFixed(2);
 }
+
+function getPersonState(personID) {
+  if (personID < sickPeople) return 1;
+  return 0;
+}
+
+function getPersonColor(personState) {
+  if (personState === 1) return 'red';
+  return 'skyblue';
+}
