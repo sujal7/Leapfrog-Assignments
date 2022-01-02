@@ -31,7 +31,7 @@ function getPersonState(personID) {
   return 0;
 }
 
-function getPersonColor(personState) {
-  if (personState === 1) return 'red';
-  return 'skyblue';
-}
+// function getPersonColor(personState) {
+//   if (personState === 1) return 'red';
+//   return 'skyblue';
+// }
