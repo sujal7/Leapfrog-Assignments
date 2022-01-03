@@ -11,6 +11,7 @@ const MAX_SPEED = 1;
 const simulationTime = 30;
 let time = 0;
 let timeInterval = setInterval(() => {
+  // console.log(peronStateCount);
   time++;
   if (time === 30) {
     clearInterval(timeInterval);
@@ -22,6 +23,10 @@ const personStateMap = {
   1: 'red', // Infected
 };
 
+const peronStateCount = {
+  0: 0,
+  1: 0,
+};
 // let ms = 0;
 // setInterval(() => {
 //   ms += 10;
@@ -32,7 +37,7 @@ let personID = 0;
 let fpsCount = 0;
 
 let duration = [];
-const numberofPeople = 200;
+const numberofPeople = 100;
 let transmissionTime = {
   // 0: {},
   // 1: {},
@@ -59,6 +64,7 @@ class People {
     this.people.style.position = 'absolute';
 
     this.personState = getPersonState(this.personID);
+    peronStateCount[this.personState]++;
     // if (personID === 1) {
     //   this.people.style.width = personWidth * 2 + 'px';
     //   this.people.style.height = personHeight * 2 + 'px';
@@ -103,6 +109,7 @@ class People {
     // this.checkFps();
 
     fpsCount += 1;
+    // console.log(peronStateCount);
     // this.changeDirection();
   }
 
@@ -143,11 +150,11 @@ class People {
   //   }
   // }
 
-  runEverySecond() {
-    setInterval(() => {
-      console.log(this.personID + 'i run every second' + time);
-    }, 1000);
-  }
+  // runEverySecond() {
+  //   setInterval(() => {
+  //     console.log(this.personID + 'i run every second' + time);
+  //   }, 1000);
+  // }
 
   checkTransmission() {
     peopleArray.forEach((people) => {
@@ -180,6 +187,8 @@ class People {
           if (transmissionTime[this.personID][people.personID] >= 60) {
             this.people.style.backgroundColor = 'red';
             this.personState = 1;
+            peronStateCount[this.personState]++;
+            peronStateCount[0]--;
             transmissionTime[this.personID][people.personID] = 0;
           }
 
@@ -197,10 +206,16 @@ class People {
   }
 
   checkRecovery() {}
+
+  // updatePeronStateCount(){
+  //   peopleArray.forEach(()=>{
+
+  //   })
+  // }
 }
 
 let requestID;
-const sickPeople = 20;
+const sickPeople = 1;
 
 const peopleArray = [];
 for (let i = 0; i < numberofPeople; i++) {
