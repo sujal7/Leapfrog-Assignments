@@ -30,3 +30,15 @@ body {
 #infected-population {
   color: red;
 }
+
+#vaccinated-population {
+  color: green;
+}
+
+#recovered-population {
+  color: yellow;
+}
+
+#deceased-population {
+  color: white;
+}

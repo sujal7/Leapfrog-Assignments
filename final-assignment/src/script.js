@@ -11,9 +11,10 @@ const MAX_SPEED = 1;
 const simulationTime = 30;
 let time = 0;
 let timeInterval = setInterval(() => {
-  // console.log(peronStateCount);
+  // console.log(personStateCount);
   time++;
   if (time === 30) {
+    // console.log(recoveryTime);
     clearInterval(timeInterval);
   }
 }, 1000);
@@ -21,15 +22,24 @@ let timeInterval = setInterval(() => {
 const personStateMap = {
   0: 'skyblue', // Healthy
   1: 'red', // Infected
+  2: 'yellow', // Recovered
+  3: 'white', // Deceased
+  4: 'green', // Vaccinated
 };
 
-const peronStateCount = {
+const personStateCount = {
   0: 0,
   1: 0,
+  2: 0,
+  3: 0,
+  4: 0,
 };
 
-const healthyPopulation = document.getElementById('healthy-population');
-const infectedPopulation = document.getElementById('infected-population');
+// const healthyPopulation = document.getElementById('healthy-population');
+// const vaccinatedPopulation = document.getElementById('vaccinated-population');
+// const infectedPopulation = document.getElementById('infected-population');
+// const recoveredPopulation = document.getElementById('recovered-population');
+// const deceasedPopulation = document.getElementById('deceased-population');
 
 // let ms = 0;
 // setInterval(() => {
@@ -40,18 +50,25 @@ const infectedPopulation = document.getElementById('infected-population');
 let personID = 0;
 let fpsCount = 0;
 
+let deathRate = 10;
 let duration = [];
 const numberofPeople = 200;
-let transmissionTime = {
-  // 0: {},
-  // 1: {},
-  // 2: {},
-  // 3: {},
-  // 4: {},
-  // 5: {},
-};
+const sickPeople = 20;
+const vaccinatedPerson = 20;
+const vaccineEfficiency = 80;
+let transmissionTime = {};
 for (let i = 0; i < numberofPeople; i++) {
   transmissionTime[i] = {};
+}
+
+let recoveryTime = {};
+for (let i = 0; i < numberofPeople; i++) {
+  recoveryTime[i] = 0;
+}
+
+let recoveryDuration = {};
+for (let i = 0; i < numberofPeople; i++) {
+  recoveryDuration[i] = getRandomInt(7, 14 + 1);
 }
 class People {
   constructor() {
@@ -64,9 +81,11 @@ class People {
     this.people.style.position = 'absolute';
 
     this.personState = getPersonState(this.personID);
-    peronStateCount[this.personState]++;
-    healthyPopulation.innerText = peronStateCount[0];
-    infectedPopulation.innerText = peronStateCount[1];
+    personStateCount[this.personState]++;
+    updateStats();
+    // healthyPopulation.innerText = personStateCount[0];
+    // infectedPopulation.innerText = personStateCount[1];
+    // vaccinatedPopulation.innerText = personStateCount[4];
     // if (personID === 1) {
     //   this.people.style.width = personWidth * 2 + 'px';
     //   this.people.style.height = personHeight * 2 + 'px';
@@ -108,10 +127,11 @@ class People {
     this.collisionDuration += 1;
     this.checkBoundaryCollision();
     this.checkTransmission();
+    this.checkRecovery();
     // this.checkFps();
 
     fpsCount += 1;
-    // console.log(peronStateCount);
+    // console.log(personStateCount);
     // this.changeDirection();
   }
 
@@ -163,7 +183,7 @@ class People {
       // here this is uninfected person
       if (
         this.personID !== people.personID &&
-        this.personState === 0 &&
+        (this.personState === 0 || this.personState === 4) &&
         people.personState === 1
       ) {
         // num = 0;
@@ -187,13 +207,32 @@ class People {
           transmissionTime[this.personID][people.personID] += 1;
           // console.log(transmissionTime);
           if (transmissionTime[this.personID][people.personID] >= 60) {
-            this.people.style.backgroundColor = 'red';
-            this.personState = 1;
-            peronStateCount[this.personState]++;
-            peronStateCount[0]--;
+            // this.people.style.backgroundColor = 'red';
             transmissionTime[this.personID][people.personID] = 0;
-            healthyPopulation.innerText = peronStateCount[0];
-            infectedPopulation.innerText = peronStateCount[1];
+            if (
+              this.personState === 4 &&
+              probability(100 - vaccineEfficiency)
+            ) {
+              // console.log('prob true');
+              this.personState = 1;
+              this.people.style.backgroundColor =
+                personStateMap[this.personState];
+              personStateCount[this.personState]++;
+              personStateCount[4]--;
+              // healthyPopulation.innerText = personStateCount[0];
+              // vaccinatedPopulation.innerText = personStateCount[4];
+              // infectedPopulation.innerText = personStateCount[1];
+              updateStats();
+            } else {
+              this.personState = 1;
+              this.people.style.backgroundColor =
+                personStateMap[this.personState];
+              personStateCount[this.personState]++;
+              personStateCount[0]--;
+              // healthyPopulation.innerText = personStateCount[0];
+              // infectedPopulation.innerText = personStateCount[1];
+              updateStats();
+            }
           }
 
           // console.log('yes');
@@ -209,9 +248,32 @@ class People {
     });
   }
 
-  checkRecovery() {}
+  checkRecovery() {
+    if (this.personState === 1) {
+      recoveryTime[this.personID] += 1;
+      if (recoveryTime[this.personID] >= recoveryDuration[this.personID] * 60) {
+        if (probability(deathRate)) {
+          this.personState = 3;
+          this.people.style.backgroundColor = personStateMap[this.personState];
+          // this.people.style.backgroundColor = 'white';
+          this.xDirection = 0;
+          this.yDirection = 0;
+          personStateCount[this.personState]++;
+          personStateCount[1]--;
+        } else {
+          // this.people.style.backgroundColor = 'yellow';
+          this.personState = 2;
+          this.people.style.backgroundColor = personStateMap[this.personState];
+          personStateCount[this.personState]++;
+          personStateCount[1]--;
+        }
+        updateStats();
+        // console.log('yes');
+      }
+    }
+  }
 
-  // updatePeronStateCount(){
+  // updatepersonStateCount(){
   //   peopleArray.forEach(()=>{
 
   //   })
@@ -219,7 +281,6 @@ class People {
 }
 
 let requestID;
-const sickPeople = 20;
 
 const peopleArray = [];
 for (let i = 0; i < numberofPeople; i++) {
