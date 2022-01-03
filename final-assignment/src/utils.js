@@ -33,11 +33,6 @@ function getPersonState(personID) {
   return 0;
 }
 
-// function getPersonColor(personState) {
-//   if (personState === 1) return 'red';
-//   return 'skyblue';
-// }
-
 function probability(n) {
   n = n / 100;
   return Math.random() <= n;
