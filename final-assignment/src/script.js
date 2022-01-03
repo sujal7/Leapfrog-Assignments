@@ -215,7 +215,7 @@ class People {
 }
 
 let requestID;
-const sickPeople = 1;
+const sickPeople = 20;
 
 const peopleArray = [];
 for (let i = 0; i < numberofPeople; i++) {
