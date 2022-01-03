@@ -13,11 +13,12 @@ body {
 }
 
 .stats {
+  margin: 1rem 0;
   text-align: center;
 }
 
 .stats-title {
-  margin-right: 1rem;
+  margin: 0 0.5rem;
   display: inline-block;
   font-size: 2rem;
   color: #cfcfcf;
@@ -40,5 +41,6 @@ body {
 }
 
 #deceased-population {
-  color: white;
+  /* color: mediumorchid; */
+  color: hotpink;
 }

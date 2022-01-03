@@ -23,7 +23,7 @@ const personStateMap = {
   0: 'skyblue', // Healthy
   1: 'red', // Infected
   2: 'yellow', // Recovered
-  3: 'white', // Deceased
+  3: 'hotpink', // Deceased
   4: 'green', // Vaccinated
 };
 
@@ -158,9 +158,13 @@ class People {
   }
 
   changeSpeed() {
-    setInterval(() => {
+    let speedInterval = setInterval(() => {
       this.speedX = getRandomFloat(0.1, 1) * MIN_SPEED;
       this.speedY = getRandomFloat(0.1, 1) * MIN_SPEED;
+      if (time === 30) {
+        // console.log(recoveryTime);
+        clearInterval(speedInterval);
+      }
       // this.speedY =
       //   getRandomFloat(this.speedY - 0.25, this.speedY + 0.26) * MIN_SPEED;
     }, 1000);
