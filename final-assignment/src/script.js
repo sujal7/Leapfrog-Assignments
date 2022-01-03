@@ -41,7 +41,7 @@ let personID = 0;
 let fpsCount = 0;
 
 let duration = [];
-const numberofPeople = 100;
+const numberofPeople = 200;
 let transmissionTime = {
   // 0: {},
   // 1: {},
@@ -53,10 +53,6 @@ let transmissionTime = {
 for (let i = 0; i < numberofPeople; i++) {
   transmissionTime[i] = {};
 }
-// let num = [];]
-// personState
-// 0 healthy
-// 1 sick
 class People {
   constructor() {
     this.personID = personID++;
