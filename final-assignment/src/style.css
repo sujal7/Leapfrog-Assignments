@@ -10,3 +10,22 @@ body {
   border: 2px solid #cfcfcf;
   position: relative;
 }
+
+.stats {
+  text-align: center;
+}
+
+.stats-title {
+  margin-right: 1rem;
+  display: inline-block;
+  font-size: 2rem;
+  color: #cfcfcf;
+}
+
+#healthy-population {
+  color: skyblue;
+}
+
+#infected-population {
+  color: red;
+}

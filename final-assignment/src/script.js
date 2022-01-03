@@ -27,6 +27,10 @@ const peronStateCount = {
   0: 0,
   1: 0,
 };
+
+const healthyPopulation = document.getElementById('healthy-population');
+const infectedPopulation = document.getElementById('infected-population');
+
 // let ms = 0;
 // setInterval(() => {
 //   ms += 10;
@@ -65,6 +69,8 @@ class People {
 
     this.personState = getPersonState(this.personID);
     peronStateCount[this.personState]++;
+    healthyPopulation.innerText = peronStateCount[0];
+    infectedPopulation.innerText = peronStateCount[1];
     // if (personID === 1) {
     //   this.people.style.width = personWidth * 2 + 'px';
     //   this.people.style.height = personHeight * 2 + 'px';
@@ -190,6 +196,8 @@ class People {
             peronStateCount[this.personState]++;
             peronStateCount[0]--;
             transmissionTime[this.personID][people.personID] = 0;
+            healthyPopulation.innerText = peronStateCount[0];
+            infectedPopulation.innerText = peronStateCount[1];
           }
 
           // console.log('yes');
