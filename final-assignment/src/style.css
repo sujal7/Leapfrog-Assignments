@@ -1,6 +1,7 @@
 body {
   background-color: #0e1217;
   font-family: 'Franklin Gothic Medium';
+  color: #cfcfcf;
 }
 
 .simulation-area {
@@ -41,6 +42,36 @@ body {
 }
 
 #deceased-population {
-  /* color: mediumorchid; */
   color: hotpink;
+}
+
+.main-menu {
+  text-align: center;
+}
+
+.main-menu-title {
+  font-size: 3rem;
+  margin: 10px 0;
+}
+
+.main-menu label {
+  font-size: 2rem;
+}
+
+.main-menu input {
+  width: 30%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.simulation-container {
+  /* visibility: hidden; */
+  display: none;
+}
+
+#start-simulation {
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Franklin Gothic Medium';
+  color: #0e1217;
 }

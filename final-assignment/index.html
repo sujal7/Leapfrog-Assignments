@@ -10,25 +10,114 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <div class="stats" id="stats">
-      <h3 class="stats-title">
-        Healthy: <span id="healthy-population">0</span>
-      </h3>
-      <h3 class="stats-title">
-        Vaccinated: <span id="vaccinated-population">0</span>
-      </h3>
-      <h3 class="stats-title">
-        Infected: <span id="infected-population">0</span>
-      </h3>
-      <h3 class="stats-title">
-        Recovered: <span id="recovered-population">0</span>
-      </h3>
-      <h3 class="stats-title">
-        Deceased: <span id="deceased-population">0</span>
-      </h3>
+    <div class="main-menu" id="main-menu">
+      <h1 class="main-menu-title" id="main-menu-title">
+        Coronavirus Simulation
+      </h1>
+      <br />
+      <label for="total-population">
+        Total Population:
+        <span id="total-population-input" class="input-values"></span> </label
+      ><br />
+      <input
+        type="range"
+        name="total-population"
+        id="total-population"
+        min="50"
+        max="500"
+        value="200"
+      />
+      <br />
+      <label for="sick-population">
+        Sick Population:
+        <span id="total-population-input" class="input-values"></span>%</label
+      ><br />
+      <input
+        type="range"
+        name="sick-population"
+        id="sick-population"
+        min="0"
+        max="100"
+        value="20"
+      />
+      <br />
+      <label for="vaccinated-percentage">
+        Vaccinated Population:
+        <span id="vaccinated-percentage-input" class="input-values"></span
+        >%</label
+      ><br />
+      <input
+        type="range"
+        name="vaccinated-percentage"
+        id="vaccinated-percentage"
+        min="0"
+        max="100"
+        value="5"
+      />
+      <br />
+      <label for="vaccine-efficiency">
+        Vaccine Efficiency:
+        <span id="vaccine-efficiency-input" class="input-values"></span>%</label
+      ><br />
+      <input
+        type="range"
+        name="vaccine-efficiency"
+        id="vaccine-efficiency"
+        min="0"
+        max="100"
+        value="90"
+      />
+      <br />
+      <label for="total-population">
+        Infection Rate:
+        <span id="infection-rate-input" class="input-values"></span>%</label
+      ><br />
+      <input
+        type="range"
+        name="infection-rate"
+        id="infection-rate"
+        min="0"
+        max="100"
+        value="100"
+      />
+      <br />
+      <label for="total-population">
+        Death Rate:
+        <span id="death-rate-input" class="input-values"></span>%</label
+      ><br />
+      <input
+        type="range"
+        name="death-rate"
+        id="death-rate"
+        min="0"
+        max="100"
+        value="10"
+      /><br />
+      <button id="start-simulation">Start Simulation</button>
     </div>
-    <div class="simulation-area" id="simulation-area"></div>
+    <div class="simulation-container" id="simulation-container">
+      <div class="stats" id="stats">
+        <h3 class="stats-title">
+          Healthy: <span id="healthy-population"></span>
+        </h3>
+        <h3 class="stats-title">
+          Vaccinated: <span id="vaccinated-population"></span>
+        </h3>
+        <h3 class="stats-title">
+          Infected: <span id="infected-population"></span>
+        </h3>
+        <h3 class="stats-title">
+          Recovered: <span id="recovered-population"></span>
+        </h3>
+        <h3 class="stats-title">
+          Deceased: <span id="deceased-population"></span>
+        </h3>
+      </div>
+      <div class="simulation-area" id="simulation-area"></div>
+    </div>
   </body>
   <script src="src/utils.js"></script>
+  <script src="src/mainMenu.js"></script>
+  <script src="src/updateStats.js"></script>
   <script src="src/script.js"></script>
 </html>

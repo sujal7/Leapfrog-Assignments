@@ -25,8 +25,7 @@ function getDirection() {
 function getRandomFloat(min, max) {
   return (Math.random() * (max - min) + min).toFixed(2);
 }
-
-function getPersonState(personID) {
+function getPersonState(personID, sickPeople, vaccinatedPerson) {
   if (personID < sickPeople) return 1;
   if (personID >= sickPeople && personID < sickPeople + vaccinatedPerson)
     return 4;
@@ -36,17 +35,4 @@ function getPersonState(personID) {
 function probability(n) {
   n = n / 100;
   return Math.random() <= n;
-}
-
-const healthyPopulation = document.getElementById('healthy-population');
-const infectedPopulation = document.getElementById('infected-population');
-const recoveredPopulation = document.getElementById('recovered-population');
-const deceasedPopulation = document.getElementById('deceased-population');
-const vaccinatedPopulation = document.getElementById('vaccinated-population');
-function updateStats() {
-  healthyPopulation.innerHTML = personStateCount[0];
-  infectedPopulation.innerHTML = personStateCount[1];
-  recoveredPopulation.innerHTML = personStateCount[2];
-  deceasedPopulation.innerHTML = personStateCount[3];
-  vaccinatedPopulation.innerHTML = personStateCount[4];
 }
