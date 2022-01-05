@@ -5,12 +5,10 @@ body {
 }
 
 .simulation-area {
-  /* background-color: #a00000; */
   width: 400px;
   height: 400px;
   margin: 10px auto;
   border: 2px solid #cfcfcf;
-  position: relative;
 }
 
 .stats {
@@ -71,7 +69,6 @@ body {
 }
 
 .simulation-container {
-  /* visibility: hidden; */
   display: none;
 }
 
@@ -80,4 +77,10 @@ body {
   font-size: 1rem;
   font-family: 'Franklin Gothic Medium';
   color: #0e1217;
+}
+
+#simulation-timeline {
+  display: block;
+  margin: 10px auto;
+  width: 400px;
 }

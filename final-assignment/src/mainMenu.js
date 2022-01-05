@@ -17,6 +17,5 @@ for (let i = 0; i < inputSliders.length; i++) {
 startButton.addEventListener('click', () => {
   mainMenu.style.display = 'none';
   simulationContainer.style.display = 'block';
-  // simulationContainer.style.visibility = 'visible';
   startSimulation();
 });
