@@ -23,12 +23,29 @@ function startSimulation() {
   const deathRatePercentage = inputParameters[5];
   // console.log(totalPopulation);
 
-  const simulationTime = 30;
+  const simulationTime = 10;
+  const personHistory = {};
+  for (let i = 0; i <= simulationTime; i++) {
+    personHistory[i] = {};
+    for (let j = 0; j < totalPopulation; j++) {
+      personHistory[i][j] = {};
+    }
+  }
+
+  const dayCount = document.getElementById('day-count');
   let time = 0;
+  // console.log('Day ' + time);
+  dayCount.innerText = 'Day ' + time;
   let timeInterval = setInterval(() => {
+    // console.log(peopleArray);
     time++;
-    if (time === 30) {
+    if (time >= simulationTime + 1) {
       clearInterval(timeInterval);
+      console.log(personHistory);
+    } else {
+      // console.log('Day ' + time);
+      dayCount.innerText = 'Day ' + time;
+      recordPeopleHistory(time);
     }
   }, 1000);
 
@@ -88,9 +105,9 @@ function startSimulation() {
       );
       personStateCount[this.personState]++;
       updateStats();
-      this.collisionDuration = 0;
-      this.collisionTime = 0;
-      this.collisionFlag = false;
+      // this.collisionDuration = 0;
+      // this.collisionTime = 0;
+      // this.collisionFlag = false;
 
       this.xPosition = getRandomInt(0, simulationAreaWidth + 1 - personWidth);
       this.yPosition = getRandomInt(0, simulationAreaHeight + 1 - personHeight);
@@ -112,7 +129,7 @@ function startSimulation() {
       this.yPosition += this.speedY * this.yDirection;
       this.people.style.left = this.xPosition + 'px';
       this.people.style.top = this.yPosition + 'px';
-      this.collisionDuration += 1;
+      // this.collisionDuration += 1;
       this.checkBoundaryCollision();
       this.checkTransmission();
       this.checkRecovery();
@@ -151,7 +168,6 @@ function startSimulation() {
           (this.personState === 0 || this.personState === 4) &&
           people.personState === 1
         ) {
-          // num = 0;
           let distanceX =
             this.xPosition +
             personRadius -
@@ -171,18 +187,20 @@ function startSimulation() {
                 this.personState === 4 &&
                 probability(100 - vaccineEfficiency)
               ) {
+                personStateCount[this.personState]--;
                 this.personState = 1;
                 this.people.style.backgroundColor =
                   personStateMap[this.personState];
                 personStateCount[this.personState]++;
-                personStateCount[4]--;
+                // personStateCount[4]--;
                 updateStats();
-              } else if (probability(infectionRate)) {
+              } else if (this.personState === 0 && probability(infectionRate)) {
+                personStateCount[this.personState]--;
                 this.personState = 1;
                 this.people.style.backgroundColor =
                   personStateMap[this.personState];
                 personStateCount[this.personState]++;
-                personStateCount[0]--;
+                // personStateCount[0]--;
                 updateStats();
               }
             }
@@ -201,19 +219,21 @@ function startSimulation() {
           recoveryDuration[this.personID] * 60
         ) {
           if (probability(deathRate)) {
+            personStateCount[this.personState]--;
             this.personState = 3;
             this.people.style.backgroundColor =
               personStateMap[this.personState];
             this.xDirection = 0;
             this.yDirection = 0;
             personStateCount[this.personState]++;
-            personStateCount[1]--;
+            // personStateCount[1]--;
           } else {
+            personStateCount[this.personState]--;
             this.personState = 2;
             this.people.style.backgroundColor =
               personStateMap[this.personState];
             personStateCount[this.personState]++;
-            personStateCount[1]--;
+            // personStateCount[1]--;
           }
           updateStats();
         }
@@ -226,6 +246,7 @@ function startSimulation() {
   const peopleArray = [];
   for (let i = 0; i < numberofPeople; i++) {
     let people = new People();
+    peopleArray.push(people);
     function run() {
       people.runSimulation();
       requestID = requestAnimationFrame(run);
@@ -235,8 +256,23 @@ function startSimulation() {
     }
     people.changeSpeed();
     run();
-    peopleArray.push(people);
   }
+  //15 10 25
+  function recordPeopleHistory(time) {
+    peopleArray.forEach((people) => {
+      personHistory[time][people.personID]['personState'] = people.personState;
+      personHistory[time][people.personID]['xPosition'] = people.xPosition;
+      personHistory[time][people.personID]['yPosition'] = people.yPosition;
+    });
+    personHistory[time]['healthyCount'] = personStateCount[0];
+    personHistory[time]['infectedCount'] = personStateCount[1];
+    personHistory[time]['recoveredCount'] = personStateCount[2];
+    personHistory[time]['deceasedCount'] = personStateCount[3];
+    personHistory[time]['vaccinatedCount'] = personStateCount[4];
+  }
+  // console.log(peopleArray);
+  recordPeopleHistory(0);
+  // console.log(personHistory);
 }
 
 // setInterval(() => {

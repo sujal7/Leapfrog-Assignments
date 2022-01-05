@@ -25,6 +25,12 @@ body {
   color: #cfcfcf;
 }
 
+.day-count {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
 #healthy-population {
   color: skyblue;
 }
