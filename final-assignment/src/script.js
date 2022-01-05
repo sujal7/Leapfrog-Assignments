@@ -21,9 +21,8 @@ function startSimulation() {
   const vaccineEfficiencyPercentage = inputParameters[3];
   const infectionRatePercentage = inputParameters[4];
   const deathRatePercentage = inputParameters[5];
-  // console.log(totalPopulation);
 
-  const simulationTime = 10;
+  const simulationTime = 30;
   const personHistory = {};
   for (let i = 0; i <= simulationTime; i++) {
     personHistory[i] = {};
@@ -34,16 +33,13 @@ function startSimulation() {
 
   const dayCount = document.getElementById('day-count');
   let time = 0;
-  // console.log('Day ' + time);
   dayCount.innerText = 'Day ' + time;
   let timeInterval = setInterval(() => {
-    // console.log(peopleArray);
     time++;
     if (time >= simulationTime + 1) {
       clearInterval(timeInterval);
       console.log(personHistory);
     } else {
-      // console.log('Day ' + time);
       dayCount.innerText = 'Day ' + time;
       recordPeopleHistory(time);
     }
@@ -105,9 +101,6 @@ function startSimulation() {
       );
       personStateCount[this.personState]++;
       updateStats();
-      // this.collisionDuration = 0;
-      // this.collisionTime = 0;
-      // this.collisionFlag = false;
 
       this.xPosition = getRandomInt(0, simulationAreaWidth + 1 - personWidth);
       this.yPosition = getRandomInt(0, simulationAreaHeight + 1 - personHeight);
@@ -192,7 +185,6 @@ function startSimulation() {
                 this.people.style.backgroundColor =
                   personStateMap[this.personState];
                 personStateCount[this.personState]++;
-                // personStateCount[4]--;
                 updateStats();
               } else if (this.personState === 0 && probability(infectionRate)) {
                 personStateCount[this.personState]--;
@@ -200,7 +192,6 @@ function startSimulation() {
                 this.people.style.backgroundColor =
                   personStateMap[this.personState];
                 personStateCount[this.personState]++;
-                // personStateCount[0]--;
                 updateStats();
               }
             }
@@ -226,14 +217,12 @@ function startSimulation() {
             this.xDirection = 0;
             this.yDirection = 0;
             personStateCount[this.personState]++;
-            // personStateCount[1]--;
           } else {
             personStateCount[this.personState]--;
             this.personState = 2;
             this.people.style.backgroundColor =
               personStateMap[this.personState];
             personStateCount[this.personState]++;
-            // personStateCount[1]--;
           }
           updateStats();
         }
@@ -257,7 +246,6 @@ function startSimulation() {
     people.changeSpeed();
     run();
   }
-  //15 10 25
   function recordPeopleHistory(time) {
     peopleArray.forEach((people) => {
       personHistory[time][people.personID]['personState'] = people.personState;
@@ -270,9 +258,7 @@ function startSimulation() {
     personHistory[time]['deceasedCount'] = personStateCount[3];
     personHistory[time]['vaccinatedCount'] = personStateCount[4];
   }
-  // console.log(peopleArray);
   recordPeopleHistory(0);
-  // console.log(personHistory);
 }
 
 // setInterval(() => {
