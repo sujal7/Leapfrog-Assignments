@@ -291,6 +291,7 @@ function startSimulation() {
         personHistory[simulationTimeline.value].deceasedCount;
       vaccinatedPopulation.innerHTML =
         personHistory[simulationTimeline.value].vaccinatedCount;
+      dayCount.innerText = 'Day ' + simulationTimeline.value;
     });
   }
 }
