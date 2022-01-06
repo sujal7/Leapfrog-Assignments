@@ -1,9 +1,9 @@
 const personStateCount = {
-  0: 0,
-  1: 0,
-  2: 0,
-  3: 0,
-  4: 0,
+  0: 0, // Healthy
+  1: 0, // Infected
+  2: 0, // Recovered
+  3: 0, // Deceased
+  4: 0, // Vaccinated
 };
 function startSimulation() {
   const simulationArea = document.getElementById('simulation-area');
@@ -15,9 +15,20 @@ function startSimulation() {
   const personHeight = personRadius * 2;
   const SPEED = 1;
 
+  const FPS = 60;
+
   const restartSimulation = document.getElementById('restart-simulation');
   restartSimulation.addEventListener('click', () => {
     window.location.reload();
+  });
+
+  const helpImage = document.getElementById('help-image');
+  const helpText = document.getElementById('help-text');
+  helpImage.addEventListener('mouseover', () => {
+    helpText.style.display = 'inline';
+  });
+  helpImage.addEventListener('mouseout', () => {
+    helpText.style.display = 'none';
   });
   const totalPopulation = inputParameters[0];
   const sickPopulationPercentage = inputParameters[1];
@@ -52,21 +63,13 @@ function startSimulation() {
     }
   }, 1000);
 
-  const personStateMap = {
+  const stateColorMap = {
     0: 'skyblue', // Healthy
     1: 'red', // Infected
     2: 'yellow', // Recovered
     3: 'hotpink', // Deceased
     4: 'green', // Vaccinated
   };
-
-  // const personStateCount = {
-  //   0: 0,
-  //   1: 0,
-  //   2: 0,
-  //   3: 0,
-  //   4: 0,
-  // };
 
   let personID = 0;
   let fpsCount = 0;
@@ -87,9 +90,15 @@ function startSimulation() {
   for (let i = 0; i < numberofPeople; i++) {
     recoveryTime[i] = 0;
   }
+
+  const MIN_RECOVERY_DAYS = 7;
+  const MAX_RECOVERY_DAYS = 14;
   let recoveryDuration = {};
   for (let i = 0; i < numberofPeople; i++) {
-    recoveryDuration[i] = getRandomInt(7, 14 + 1);
+    recoveryDuration[i] = getRandomInt(
+      MIN_RECOVERY_DAYS,
+      MAX_RECOVERY_DAYS + 1
+    );
   }
 
   class People {
@@ -124,7 +133,7 @@ function startSimulation() {
       this.people.style.left = this.xPosition + 'px';
       this.people.style.top = this.yPosition + 'px';
       this.people.style.borderRadius = '50%';
-      this.people.style.backgroundColor = personStateMap[this.personState];
+      this.people.style.backgroundColor = stateColorMap[this.personState];
       this.speedX = getRandomFloat(0.1, 1) * SPEED;
       this.speedY = getRandomFloat(0.1, 1) * SPEED;
       simulationArea.appendChild(this.people);
@@ -159,7 +168,7 @@ function startSimulation() {
       let speedInterval = setInterval(() => {
         this.speedX = getRandomFloat(0.1, 1) * SPEED;
         this.speedY = getRandomFloat(0.1, 1) * SPEED;
-        if (time >= 30) {
+        if (time >= simulationTime) {
           clearInterval(speedInterval);
         }
       }, 1000);
@@ -186,7 +195,7 @@ function startSimulation() {
           );
           if (distance < personRadius + personRadius * 2) {
             transmissionTime[this.personID][people.personID] += 1;
-            if (transmissionTime[this.personID][people.personID] >= 60) {
+            if (transmissionTime[this.personID][people.personID] >= FPS) {
               transmissionTime[this.personID][people.personID] = 0;
               if (
                 this.personState === 4 &&
@@ -195,14 +204,14 @@ function startSimulation() {
                 personStateCount[this.personState]--;
                 this.personState = 1;
                 this.people.style.backgroundColor =
-                  personStateMap[this.personState];
+                  stateColorMap[this.personState];
                 personStateCount[this.personState]++;
                 updateStats();
               } else if (this.personState === 0 && probability(infectionRate)) {
                 personStateCount[this.personState]--;
                 this.personState = 1;
                 this.people.style.backgroundColor =
-                  personStateMap[this.personState];
+                  stateColorMap[this.personState];
                 personStateCount[this.personState]++;
                 updateStats();
               }
@@ -219,21 +228,19 @@ function startSimulation() {
         recoveryTime[this.personID] += 1;
         if (
           recoveryTime[this.personID] >=
-          recoveryDuration[this.personID] * 60
+          recoveryDuration[this.personID] * FPS
         ) {
           if (probability(deathRate)) {
             personStateCount[this.personState]--;
             this.personState = 3;
-            this.people.style.backgroundColor =
-              personStateMap[this.personState];
+            this.people.style.backgroundColor = stateColorMap[this.personState];
             this.xDirection = 0;
             this.yDirection = 0;
             personStateCount[this.personState]++;
           } else {
             personStateCount[this.personState]--;
             this.personState = 2;
-            this.people.style.backgroundColor =
-              personStateMap[this.personState];
+            this.people.style.backgroundColor = stateColorMap[this.personState];
             personStateCount[this.personState]++;
           }
           updateStats();
@@ -243,14 +250,16 @@ function startSimulation() {
   }
 
   let requestID;
-
   const peopleArray = [];
+
   for (let i = 0; i < numberofPeople; i++) {
     let people = new People();
     peopleArray.push(people);
+
     function run() {
       people.runSimulation();
       requestID = requestAnimationFrame(run);
+
       if (time >= simulationTime) {
         cancelAnimationFrame(requestID);
       }
@@ -258,12 +267,14 @@ function startSimulation() {
     people.changeSpeed();
     run();
   }
+
   function recordPeopleHistory(time) {
     peopleArray.forEach((people) => {
       personHistory[time][people.personID]['personState'] = people.personState;
       personHistory[time][people.personID]['xPosition'] = people.xPosition;
       personHistory[time][people.personID]['yPosition'] = people.yPosition;
     });
+
     personHistory[time]['healthyCount'] = personStateCount[0];
     personHistory[time]['infectedCount'] = personStateCount[1];
     personHistory[time]['recoveredCount'] = personStateCount[2];
@@ -283,8 +294,9 @@ function startSimulation() {
         peopleObjects[i].personState =
           personHistory[simulationTimeline.value][i].personState;
         peopleObjects[i].style.backgroundColor =
-          personStateMap[peopleObjects[i].personState];
+          stateColorMap[peopleObjects[i].personState];
       }
+
       healthyPopulation.innerHTML =
         personHistory[simulationTimeline.value].healthyCount;
       infectedPopulation.innerHTML =

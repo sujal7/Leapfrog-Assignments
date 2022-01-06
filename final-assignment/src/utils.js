@@ -25,14 +25,17 @@ function getDirection() {
 function getRandomFloat(min, max) {
   return (Math.random() * (max - min) + min).toFixed(2);
 }
+
 function getPersonState(personID, sickPeople, vaccinatedPerson) {
   if (personID < sickPeople) return 1;
   if (personID >= sickPeople && personID < sickPeople + vaccinatedPerson)
     return 4;
+
   return 0;
 }
 
 function probability(n) {
   n = n / 100;
+
   return Math.random() <= n;
 }

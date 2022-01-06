@@ -87,3 +87,16 @@ body {
   margin: 10px auto;
   width: 400px;
 }
+
+.help-image {
+  width: 20px;
+  cursor: pointer;
+}
+
+.help-text {
+  font-size: 0.9rem;
+  display: none;
+  background-color: #cfcfcf;
+  color: #0e1217;
+  padding: 5px;
+}

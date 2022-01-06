@@ -1,3 +1,13 @@
 .simulation-area {
   position: relative;
 }
+
+.timeline-container {
+  position: relative;
+}
+
+.help {
+  position: absolute;
+  left: 65%;
+  top: 0px;
+}

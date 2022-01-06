@@ -115,14 +115,28 @@
       </div>
       <div class="day-count" id="day-count"></div>
       <div class="simulation-area" id="simulation-area"></div>
-      <input
-        type="range"
-        name="simulation-timeline"
-        id="simulation-timeline"
-        min="0"
-        max="30"
-        value="30"
-      />
+      <div class="timeline-container">
+        <input
+          type="range"
+          name="simulation-timeline"
+          id="simulation-timeline"
+          min="0"
+          max="30"
+          value="30"
+        />
+        <div class="help">
+          <img
+            class="help-image"
+            id="help-image"
+            src="src/images/help.png"
+            alt="Help Image"
+          />
+          <p class="help-text" id="help-text">
+            View the history of simulation using the slider after its
+            completion.
+          </p>
+        </div>
+      </div>
       <button id="restart-simulation">Restart Simulation</button>
     </div>
   </body>
