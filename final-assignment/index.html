@@ -81,7 +81,7 @@
         value="90"
       />
       <br />
-      <label for="total-population">
+      <label for="infection-rate">
         Infection Rate:
         <span id="infection-rate-input" class="input-values"></span>%</label
       ><br />
@@ -94,7 +94,7 @@
         value="100"
       />
       <br />
-      <label for="total-population">
+      <label for="death-rate">
         Death Rate:
         <span id="death-rate-input" class="input-values"></span>%</label
       ><br />
@@ -105,6 +105,19 @@
         min="0"
         max="100"
         value="10"
+      /><br />
+      <h2 class="extra-features">Extra Features</h2>
+      <label for="social-distancing">
+        Social Distancing Obeyed by:
+        <span id="death-rate-input" class="input-values"></span>%</label
+      ><br />
+      <input
+        type="range"
+        name="social-distancing"
+        id="social-distancing"
+        min="0"
+        max="100"
+        value="0"
       /><br />
       <button id="start-simulation">Start Simulation</button>
     </div>

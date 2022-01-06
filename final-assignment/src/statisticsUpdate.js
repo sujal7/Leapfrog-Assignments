@@ -3,6 +3,7 @@ const infectedPopulation = document.getElementById('infected-population');
 const recoveredPopulation = document.getElementById('recovered-population');
 const deceasedPopulation = document.getElementById('deceased-population');
 const vaccinatedPopulation = document.getElementById('vaccinated-population');
+
 function updateStats() {
   healthyPopulation.innerHTML = personStateCount[0];
   infectedPopulation.innerHTML = personStateCount[1];

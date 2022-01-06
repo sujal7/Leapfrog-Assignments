@@ -64,6 +64,7 @@ function startSimulation() {
   const vaccineEfficiency = inputParameters[4];
   const infectionRate = inputParameters[5];
   const deathRate = inputParameters[6];
+  const socialDistancingPercentage = inputParameters[7];
 
   const simulationTimeline = document.getElementById('simulation-timeline');
   simulationTimeline.max = SIMULATION_TIME;
@@ -93,10 +94,8 @@ function startSimulation() {
 
     if (time >= SIMULATION_TIME + 1) {
       clearInterval(timeInterval);
-      console.log('cleared');
       viewHistory();
     } else {
-      console.log('nop');
       simulationTimeline.value = time;
       dayCount.innerText = 'Day ' + time;
       recordPeopleHistory(time);
@@ -126,6 +125,9 @@ function startSimulation() {
   const vaccinatedPopulation = Math.round(
     (vaccinatedPopulationPercentage * totalPopulation) / 100
   );
+  const socialDistancingPopulation = Math.round(
+    (socialDistancingPercentage * totalPopulation) / 100
+  );
 
   let transmissionTime = {};
 
@@ -134,6 +136,9 @@ function startSimulation() {
    */
   for (let i = 0; i < totalPopulation; i++) {
     transmissionTime[i] = {};
+    for (let j = 0; j < totalPopulation; j++) {
+      transmissionTime[i][j] = 0;
+    }
   }
 
   let recoveryTime = {};
@@ -158,6 +163,13 @@ function startSimulation() {
     );
   }
 
+  let socialDistancingPeople = [];
+  while (socialDistancingPeople.length < socialDistancingPopulation) {
+    let r = Math.floor(Math.random() * (totalPopulation - 0) + 0);
+    if (socialDistancingPeople.indexOf(r) === -1)
+      socialDistancingPeople.push(r);
+  }
+
   /**
    * Represents a person.
    */
@@ -177,6 +189,8 @@ function startSimulation() {
         vaccinatedPopulation
       );
 
+      this.socialDistancingFlag = this.getSocialDistancing();
+
       // Updates the count of person's state.
       personStateCount[this.personState]++;
 
@@ -185,17 +199,22 @@ function startSimulation() {
 
       // Gets random positions within the simulation container.
       this.xPosition = getRandomInt(
-        0,
+        PERSON_WIDTH,
         SIMULATION_AREA_WIDTH + 1 - 2 * PERSON_WIDTH
       );
       this.yPosition = getRandomInt(
-        0,
+        PERSON_HEIGHT,
         SIMULATION_AREA_HEIGHT + 1 - 2 * PERSON_HEIGHT
       );
 
       // Gets random initial direction.
       this.xDirection = getRandomDirection();
       this.yDirection = getRandomDirection();
+
+      if (this.socialDistancingFlag) {
+        this.xDirection = 0;
+        this.yDirection = 0;
+      }
 
       this.people.style.left = this.xPosition + 'px';
       this.people.style.top = this.yPosition + 'px';
@@ -217,6 +236,7 @@ function startSimulation() {
       this.yPosition += this.speedY * this.yDirection;
       this.people.style.left = this.xPosition + 'px';
       this.people.style.top = this.yPosition + 'px';
+      // if (!this.socialDistancingFlag)
       this.checkBoundaryCollision();
       this.checkTransmission();
       this.checkRecovery();
@@ -268,11 +288,15 @@ function startSimulation() {
           let distanceX =
             this.xPosition +
             PERSON_RADIUS -
-            (people.xPosition + PERSON_RADIUS * INFECTION_RADIUS);
+            (people.xPosition -
+              (INFECTION_RADIUS - 1) * PERSON_RADIUS +
+              PERSON_RADIUS * INFECTION_RADIUS);
           let distanceY =
             this.yPosition +
             PERSON_RADIUS -
-            (people.yPosition + PERSON_RADIUS * INFECTION_RADIUS);
+            (people.yPosition -
+              (INFECTION_RADIUS - 1) * PERSON_RADIUS +
+              PERSON_RADIUS * INFECTION_RADIUS);
           let distance = Math.sqrt(
             distanceX * distanceX + distanceY * distanceY
           );
@@ -350,6 +374,11 @@ function startSimulation() {
           updateStats();
         }
       }
+    }
+
+    getSocialDistancing() {
+      if (socialDistancingPeople.indexOf(this.personID) === -1) return false;
+      return true;
     }
   }
 
