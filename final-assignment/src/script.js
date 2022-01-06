@@ -18,13 +18,14 @@ function startSimulation() {
   const SIMULATION_AREA_HEIGHT = simulationArea.offsetHeight;
   const PERSON_RADIUS = 5;
   const INFECTION_RADIUS = 2;
+  const MIN_INFECTION_TRANSMISSION_TIME = 1;
   const PERSON_WIDTH = PERSON_RADIUS * 2;
   const PERSON_HEIGHT = PERSON_RADIUS * 2;
   const SPEED = 1;
   const MIN_ANGLE = 0.1;
   const MAX_ANGLE = 1;
   const FPS = 60;
-  const SIMULATION_TIME = 30;
+  const SIMULATION_TIME = inputParameters[0];
   const MIN_RECOVERY_DAYS = 7;
   const MAX_RECOVERY_DAYS = 14;
 
@@ -57,14 +58,15 @@ function startSimulation() {
   /**
    * Gets the input parameters entered by the user.
    */
-  const totalPopulation = inputParameters[0];
-  const sickPopulationPercentage = inputParameters[1];
-  const vaccinatedPopulationPercentage = inputParameters[2];
-  const vaccineEfficiency = inputParameters[3];
-  const infectionRate = inputParameters[4];
-  const deathRate = inputParameters[5];
+  const totalPopulation = inputParameters[1];
+  const sickPopulationPercentage = inputParameters[2];
+  const vaccinatedPopulationPercentage = inputParameters[3];
+  const vaccineEfficiency = inputParameters[4];
+  const infectionRate = inputParameters[5];
+  const deathRate = inputParameters[6];
 
   const simulationTimeline = document.getElementById('simulation-timeline');
+  simulationTimeline.max = SIMULATION_TIME;
 
   const personHistory = {};
 
@@ -197,11 +199,17 @@ function startSimulation() {
       this.people.style.top = this.yPosition + 'px';
       this.people.style.borderRadius = '50%';
       this.people.style.backgroundColor = stateColorMap[this.personState];
+
+      // Moves the person at random angles by assigning random speed in x and y axis.
       this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
       this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
       simulationArea.appendChild(this.people);
     }
 
+    /**
+     * Runs the simulation by changing position of people, checking boundary collision,
+     * checking for transmission of virus and recovery.
+     */
     runSimulation() {
       this.xPosition += this.speedX * this.xDirection;
       this.yPosition += this.speedY * this.yDirection;
@@ -213,6 +221,9 @@ function startSimulation() {
       fpsCount += 1;
     }
 
+    /**
+     * Checks and redirects people back if they reach the boundary of simulation container.
+     */
     checkBoundaryCollision() {
       if (this.xPosition > SIMULATION_AREA_WIDTH - 2 * PERSON_WIDTH) {
         this.xDirection = -1;
@@ -227,19 +238,26 @@ function startSimulation() {
       }
     }
 
-    changeSpeed() {
+    /**
+     * Changes movement of people by changing their angle each second.
+     */
+    changeAngle() {
       let speedInterval = setInterval(() => {
         this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
         this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
+
         if (time >= SIMULATION_TIME) {
           clearInterval(speedInterval);
         }
       }, 1000);
     }
 
+    /**
+     * Checks for transmission of virus between infected and healthy or vaccinated person.
+     */
     checkTransmission() {
       peopleArray.forEach((people) => {
-        // here, 'this' is uninfected person
+        // 'this' is a healthy or vaccinated person, while 'people' is an infected person.
         if (
           this.personID !== people.personID &&
           (this.personState === 0 || this.personState === 4) &&
@@ -256,10 +274,20 @@ function startSimulation() {
           let distance = Math.sqrt(
             distanceX * distanceX + distanceY * distanceY
           );
+
+          // Checks if the uninfected person is within the radius of infected person for each frame.
           if (distance < PERSON_RADIUS + PERSON_RADIUS * INFECTION_RADIUS) {
             transmissionTime[this.personID][people.personID] += 1;
-            if (transmissionTime[this.personID][people.personID] >= FPS) {
+
+            // Checks if the uinfected person has been within the radius of infected person
+            // for minimum infection time multiplied by FPS.
+            if (
+              transmissionTime[this.personID][people.personID] >=
+              MIN_INFECTION_TRANSMISSION_TIME * FPS
+            ) {
               transmissionTime[this.personID][people.personID] = 0;
+
+              // Checks transmission to vaccinated people depending on the vaccine efficiency.
               if (
                 this.personState === 4 &&
                 probability(100 - vaccineEfficiency)
@@ -271,6 +299,7 @@ function startSimulation() {
                 personStateCount[this.personState]++;
                 updateStats();
               } else if (this.personState === 0 && probability(infectionRate)) {
+                // Checks transmission to healthy people depending on infection rate.
                 personStateCount[this.personState]--;
                 this.personState = 1;
                 this.people.style.backgroundColor =
@@ -280,19 +309,29 @@ function startSimulation() {
               }
             }
           } else {
+            // Resets the value when the infected and uninfected people are out of contact.
             transmissionTime[this.personID][people.personID] = 0;
           }
         }
       });
     }
 
+    /**
+     * Checks whether an infected person has been recovered or deceased.
+     */
     checkRecovery() {
+      // Increments recoveryTime value of the infected person on each frame.
       if (this.personState === 1) {
         recoveryTime[this.personID] += 1;
+
+        // Checks if the infected person has been infected for their
+        // recovery duration multiplied by FPS.
         if (
           recoveryTime[this.personID] >=
           recoveryDuration[this.personID] * FPS
         ) {
+          // Checks whether a person is gonna be deceased depending on death rate,
+          // else the person will recover.
           if (probability(deathRate)) {
             personStateCount[this.personState]--;
             this.personState = 3;
@@ -321,16 +360,24 @@ function startSimulation() {
 
     function run() {
       people.runSimulation();
+
+      // Iteratively calls the run function to keep the simulation running.
+      // It tries to maintain around 60fps.
       requestID = requestAnimationFrame(run);
 
+      // If simulation time is reached, then it stops requesting the animation.
       if (time >= SIMULATION_TIME) {
         cancelAnimationFrame(requestID);
       }
     }
-    people.changeSpeed();
+    people.changeAngle();
     run();
   }
 
+  /**
+   * Records the history of people on each second.
+   * @param {number} time - The time elapsed since the beginning of simulation.
+   */
   function recordPeopleHistory(time) {
     peopleArray.forEach((people) => {
       personHistory[time][people.personID]['personState'] = people.personState;
@@ -347,6 +394,9 @@ function startSimulation() {
 
   recordPeopleHistory(0);
 
+  /**
+   * Generates history of people depending on the input in the slider.
+   */
   function viewHistory() {
     const peopleObjects = document.getElementsByClassName('people');
     simulationTimeline.addEventListener('input', () => {
