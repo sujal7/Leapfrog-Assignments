@@ -5,44 +5,75 @@ const personStateCount = {
   3: 0, // Deceased
   4: 0, // Vaccinated
 };
+
+/**
+ * Runs the simulation when the user presses the start simulation button.
+ */
 function startSimulation() {
+  /**
+   * GLOBAL CONSTANTS FOR SIMULATION.
+   */
   const simulationArea = document.getElementById('simulation-area');
-  const simulationAreaWidth = simulationArea.offsetWidth;
-  const simulationAreaHeight = simulationArea.offsetHeight;
-
-  const personRadius = 5;
-  const personWidth = personRadius * 2;
-  const personHeight = personRadius * 2;
+  const SIMULATION_AREA_WIDTH = simulationArea.offsetWidth;
+  const SIMULATION_AREA_HEIGHT = simulationArea.offsetHeight;
+  const PERSON_RADIUS = 5;
+  const INFECTION_RADIUS = 2;
+  const PERSON_WIDTH = PERSON_RADIUS * 2;
+  const PERSON_HEIGHT = PERSON_RADIUS * 2;
   const SPEED = 1;
-
+  const MIN_ANGLE = 0.1;
+  const MAX_ANGLE = 1;
   const FPS = 60;
+  const SIMULATION_TIME = 30;
+  const MIN_RECOVERY_DAYS = 7;
+  const MAX_RECOVERY_DAYS = 14;
 
   const restartSimulation = document.getElementById('restart-simulation');
+
+  /**
+   * Redirects user to the main menu when the button is clicked.
+   */
   restartSimulation.addEventListener('click', () => {
     window.location.reload();
   });
 
   const helpImage = document.getElementById('help-image');
   const helpText = document.getElementById('help-text');
+
+  /**
+   * Displays help text when mouse is hovered.
+   */
   helpImage.addEventListener('mouseover', () => {
     helpText.style.display = 'inline';
   });
+
+  /**
+   * Hides the help text when mouse is out.
+   */
   helpImage.addEventListener('mouseout', () => {
     helpText.style.display = 'none';
   });
+
+  /**
+   * Gets the input parameters entered by the user.
+   */
   const totalPopulation = inputParameters[0];
   const sickPopulationPercentage = inputParameters[1];
   const vaccinatedPopulationPercentage = inputParameters[2];
-  const vaccineEfficiencyPercentage = inputParameters[3];
-  const infectionRatePercentage = inputParameters[4];
-  const deathRatePercentage = inputParameters[5];
+  const vaccineEfficiency = inputParameters[3];
+  const infectionRate = inputParameters[4];
+  const deathRate = inputParameters[5];
 
-  const simulationTime = 30;
   const simulationTimeline = document.getElementById('simulation-timeline');
-  simulationTimeline.value = 0;
+
   const personHistory = {};
-  for (let i = 0; i <= simulationTime; i++) {
+
+  /**
+   * Creates empty object to store history of each person for every second of simulation time.
+   */
+  for (let i = 0; i <= SIMULATION_TIME; i++) {
     personHistory[i] = {};
+
     for (let j = 0; j < totalPopulation; j++) {
       personHistory[i][j] = {};
     }
@@ -51,9 +82,14 @@ function startSimulation() {
   const dayCount = document.getElementById('day-count');
   let time = 0;
   dayCount.innerText = 'Day ' + time;
+
+  /**
+   * Runs every second until a condition is met.
+   */
   let timeInterval = setInterval(() => {
     time++;
-    if (time >= simulationTime + 1) {
+
+    if (time >= SIMULATION_TIME + 1) {
       clearInterval(timeInterval);
       viewHistory();
     } else {
@@ -63,6 +99,9 @@ function startSimulation() {
     }
   }, 1000);
 
+  /**
+   * Creates an object to map person state with their respective color.
+   */
   const stateColorMap = {
     0: 'skyblue', // Healthy
     1: 'red', // Infected
@@ -74,68 +113,92 @@ function startSimulation() {
   let personID = 0;
   let fpsCount = 0;
 
-  let infectionRate = infectionRatePercentage;
-  let deathRate = deathRatePercentage;
-  const numberofPeople = totalPopulation;
-  const sickPeople = (sickPopulationPercentage * totalPopulation) / 100;
-  const vaccinatedPerson =
-    (vaccinatedPopulationPercentage * totalPopulation) / 100;
-  const vaccineEfficiency = vaccineEfficiencyPercentage;
+  /**
+   * Converts percentage to positive integer by rounding it off.
+   */
+  const sickPopulation = Math.round(
+    (sickPopulationPercentage * totalPopulation) / 100
+  );
+  const vaccinatedPopulation = Math.round(
+    (vaccinatedPopulationPercentage * totalPopulation) / 100
+  );
+
   let transmissionTime = {};
-  for (let i = 0; i < numberofPeople; i++) {
+
+  /**
+   * Records the time when infected and healthy person are within infection radius.
+   */
+  for (let i = 0; i < totalPopulation; i++) {
     transmissionTime[i] = {};
   }
 
   let recoveryTime = {};
-  for (let i = 0; i < numberofPeople; i++) {
+
+  /**
+   * Records the time elapsed for an infected person.
+   */
+  for (let i = 0; i < totalPopulation; i++) {
     recoveryTime[i] = 0;
   }
 
-  const MIN_RECOVERY_DAYS = 7;
-  const MAX_RECOVERY_DAYS = 14;
   let recoveryDuration = {};
-  for (let i = 0; i < numberofPeople; i++) {
+
+  /**
+   * It takes 7 to 14 days to recover from coronavirus.
+   * This generates recovery time for all persons randomly in that range.
+   */
+  for (let i = 0; i < totalPopulation; i++) {
     recoveryDuration[i] = getRandomInt(
       MIN_RECOVERY_DAYS,
       MAX_RECOVERY_DAYS + 1
     );
   }
 
+  /**
+   * Represents a person.
+   */
   class People {
     constructor() {
       this.personID = personID++;
       this.people = document.createElement('div');
       this.people.setAttribute('class', 'people');
-      this.people.style.width = personWidth + 'px';
-      this.people.style.height = personHeight + 'px';
+      this.people.style.width = PERSON_WIDTH + 'px';
+      this.people.style.height = PERSON_HEIGHT + 'px';
       this.people.style.position = 'absolute';
 
+      // Gets the state of a person i.e. either healthy, vaccinated or sick.
       this.personState = getPersonState(
         this.personID,
-        sickPeople,
-        vaccinatedPerson
+        sickPopulation,
+        vaccinatedPopulation
       );
+
+      // Updates the count of person's state.
       personStateCount[this.personState]++;
+
+      // Updates the statistics.
       updateStats();
 
+      // Gets random positions within the simulation container.
       this.xPosition = getRandomInt(
         0,
-        simulationAreaWidth + 1 - 2 * personWidth
+        SIMULATION_AREA_WIDTH + 1 - 2 * PERSON_WIDTH
       );
       this.yPosition = getRandomInt(
         0,
-        simulationAreaHeight + 1 - 2 * personHeight
+        SIMULATION_AREA_HEIGHT + 1 - 2 * PERSON_HEIGHT
       );
 
-      this.xDirection = getDirection();
-      this.yDirection = getDirection();
+      // Gets random initial direction.
+      this.xDirection = getRandomDirection();
+      this.yDirection = getRandomDirection();
 
       this.people.style.left = this.xPosition + 'px';
       this.people.style.top = this.yPosition + 'px';
       this.people.style.borderRadius = '50%';
       this.people.style.backgroundColor = stateColorMap[this.personState];
-      this.speedX = getRandomFloat(0.1, 1) * SPEED;
-      this.speedY = getRandomFloat(0.1, 1) * SPEED;
+      this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
+      this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
       simulationArea.appendChild(this.people);
     }
 
@@ -151,24 +214,24 @@ function startSimulation() {
     }
 
     checkBoundaryCollision() {
-      if (this.xPosition > simulationAreaWidth - 2 * personWidth) {
+      if (this.xPosition > SIMULATION_AREA_WIDTH - 2 * PERSON_WIDTH) {
         this.xDirection = -1;
-      } else if (this.xPosition < personWidth) {
+      } else if (this.xPosition < PERSON_WIDTH) {
         this.xDirection = 1;
       }
 
-      if (this.yPosition > simulationAreaHeight - 2 * personHeight) {
+      if (this.yPosition > SIMULATION_AREA_HEIGHT - 2 * PERSON_HEIGHT) {
         this.yDirection = -1;
-      } else if (this.yPosition < personHeight) {
+      } else if (this.yPosition < PERSON_HEIGHT) {
         this.yDirection = 1;
       }
     }
 
     changeSpeed() {
       let speedInterval = setInterval(() => {
-        this.speedX = getRandomFloat(0.1, 1) * SPEED;
-        this.speedY = getRandomFloat(0.1, 1) * SPEED;
-        if (time >= simulationTime) {
+        this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
+        this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
+        if (time >= SIMULATION_TIME) {
           clearInterval(speedInterval);
         }
       }, 1000);
@@ -184,16 +247,16 @@ function startSimulation() {
         ) {
           let distanceX =
             this.xPosition +
-            personRadius -
-            (people.xPosition + personRadius * 2);
+            PERSON_RADIUS -
+            (people.xPosition + PERSON_RADIUS * INFECTION_RADIUS);
           let distanceY =
             this.yPosition +
-            personRadius -
-            (people.yPosition + personRadius * 2);
+            PERSON_RADIUS -
+            (people.yPosition + PERSON_RADIUS * INFECTION_RADIUS);
           let distance = Math.sqrt(
             distanceX * distanceX + distanceY * distanceY
           );
-          if (distance < personRadius + personRadius * 2) {
+          if (distance < PERSON_RADIUS + PERSON_RADIUS * INFECTION_RADIUS) {
             transmissionTime[this.personID][people.personID] += 1;
             if (transmissionTime[this.personID][people.personID] >= FPS) {
               transmissionTime[this.personID][people.personID] = 0;
@@ -252,7 +315,7 @@ function startSimulation() {
   let requestID;
   const peopleArray = [];
 
-  for (let i = 0; i < numberofPeople; i++) {
+  for (let i = 0; i < totalPopulation; i++) {
     let people = new People();
     peopleArray.push(people);
 
@@ -260,7 +323,7 @@ function startSimulation() {
       people.runSimulation();
       requestID = requestAnimationFrame(run);
 
-      if (time >= simulationTime) {
+      if (time >= SIMULATION_TIME) {
         cancelAnimationFrame(requestID);
       }
     }
@@ -281,6 +344,7 @@ function startSimulation() {
     personHistory[time]['deceasedCount'] = personStateCount[3];
     personHistory[time]['vaccinatedCount'] = personStateCount[4];
   }
+
   recordPeopleHistory(0);
 
   function viewHistory() {
@@ -313,6 +377,6 @@ function startSimulation() {
 }
 
 // setInterval(() => {
-//   console.log(fpsCount / numberofPeople);
+//   console.log(fpsCount / totalPopulation);
 //   fpsCount = 0;
 // }, 1000);
