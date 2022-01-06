@@ -15,6 +15,10 @@ function startSimulation() {
   const personHeight = personRadius * 2;
   const SPEED = 1;
 
+  const restartSimulation = document.getElementById('restart-simulation');
+  restartSimulation.addEventListener('click', () => {
+    window.location.reload();
+  });
   const totalPopulation = inputParameters[0];
   const sickPopulationPercentage = inputParameters[1];
   const vaccinatedPopulationPercentage = inputParameters[2];
