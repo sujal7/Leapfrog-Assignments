@@ -25,7 +25,7 @@ function startSimulation() {
   const MIN_ANGLE = 0.1;
   const MAX_ANGLE = 1;
   const FPS = 60;
-  const SIMULATION_TIME = inputParameters[0];
+  const SIMULATION_TIME = parseInt(inputParameters[0]);
   const MIN_RECOVERY_DAYS = 7;
   const MAX_RECOVERY_DAYS = 14;
 
@@ -93,8 +93,10 @@ function startSimulation() {
 
     if (time >= SIMULATION_TIME + 1) {
       clearInterval(timeInterval);
+      console.log('cleared');
       viewHistory();
     } else {
+      console.log('nop');
       simulationTimeline.value = time;
       dayCount.innerText = 'Day ' + time;
       recordPeopleHistory(time);
