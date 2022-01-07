@@ -6,7 +6,7 @@ const inputSliders = document.querySelectorAll('.main-menu input');
 const inputValues = document.getElementsByClassName('input-values');
 const startButton = document.getElementById('start-simulation');
 
-for (let i = 0; i < inputSliders.length; i++) {
+for (let i = 0; i < inputSliders.length - 1; i++) {
   inputValues[i].innerText = inputSliders[i].value;
   inputParameters[i] = inputSliders[i].value;
   inputSliders[i].addEventListener('input', () => {

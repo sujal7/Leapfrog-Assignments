@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="src/reset.css" />
     <link rel="stylesheet" href="src/layout.css" />
     <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="src/effect.css" />
   </head>
   <body>
     <div class="main-menu" id="main-menu">
@@ -148,6 +149,16 @@
         max="5"
         value="1"
       /><br />
+      <label for="wave-effect"> Enable Wave Effect: </label>
+      <input
+        type="checkbox"
+        name="wave-effect"
+        id="wave-effect"
+        value="enable-wave-effect"
+      /><br />
+      <span class="note"
+        >(NOTE: Enabling wave effect might affect the performance.)</span
+      ><br />
       <button id="start-simulation">Start Simulation</button>
     </div>
     <div class="simulation-container" id="simulation-container">

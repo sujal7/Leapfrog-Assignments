@@ -65,6 +65,7 @@ function startSimulation() {
   const infectionRate = inputParameters[5];
   const deathRate = inputParameters[6];
   const socialDistancingPercentage = inputParameters[7];
+  const waveEffect = document.getElementById('wave-effect').checked;
 
   const simulationTimeline = document.getElementById('simulation-timeline');
   simulationTimeline.max = SIMULATION_TIME;
@@ -94,6 +95,10 @@ function startSimulation() {
 
     if (time >= SIMULATION_TIME + 1) {
       clearInterval(timeInterval);
+      const people = document.getElementsByClassName('people');
+      for (let person of people) {
+        person.removeAttribute('id');
+      }
       viewHistory();
     } else {
       simulationTimeline.value = time;
@@ -188,6 +193,8 @@ function startSimulation() {
         sickPopulation,
         vaccinatedPopulation
       );
+      if (this.personState === 1 && waveEffect)
+        this.people.setAttribute('id', `p${this.personState}`);
 
       this.socialDistancingFlag = this.getSocialDistancing();
 
@@ -320,6 +327,8 @@ function startSimulation() {
               ) {
                 personStateCount[this.personState]--;
                 this.personState = 1;
+                if (waveEffect)
+                  this.people.setAttribute('id', `p${this.personState}`);
                 this.people.style.backgroundColor =
                   stateColorMap[this.personState];
                 personStateCount[this.personState]++;
@@ -328,6 +337,8 @@ function startSimulation() {
                 // Checks transmission to healthy people depending on infection rate.
                 personStateCount[this.personState]--;
                 this.personState = 1;
+                if (waveEffect)
+                  this.people.setAttribute('id', `p${this.personState}`);
                 this.people.style.backgroundColor =
                   stateColorMap[this.personState];
                 personStateCount[this.personState]++;
@@ -361,6 +372,7 @@ function startSimulation() {
           if (probability(deathRate)) {
             personStateCount[this.personState]--;
             this.personState = 3;
+            if (waveEffect) this.people.removeAttribute('id');
             this.people.style.backgroundColor = stateColorMap[this.personState];
             this.xDirection = 0;
             this.yDirection = 0;
@@ -368,6 +380,7 @@ function startSimulation() {
           } else {
             personStateCount[this.personState]--;
             this.personState = 2;
+            if (waveEffect) this.people.removeAttribute('id');
             this.people.style.backgroundColor = stateColorMap[this.personState];
             personStateCount[this.personState]++;
           }
