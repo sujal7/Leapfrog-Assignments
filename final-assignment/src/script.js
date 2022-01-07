@@ -17,8 +17,8 @@ function startSimulation() {
   const SIMULATION_AREA_WIDTH = simulationArea.offsetWidth;
   const SIMULATION_AREA_HEIGHT = simulationArea.offsetHeight;
   const PERSON_RADIUS = 5;
-  const INFECTION_RADIUS = 2;
-  const MIN_INFECTION_TRANSMISSION_TIME = 1;
+  const INFECTION_RADIUS = inputParameters[8];
+  const MIN_INFECTION_TRANSMISSION_TIME = inputParameters[9];
   const PERSON_WIDTH = PERSON_RADIUS * 2;
   const PERSON_HEIGHT = PERSON_RADIUS * 2;
   const SPEED = 1;

@@ -119,6 +119,35 @@
         max="100"
         value="0"
       /><br />
+      <label for="infection-radius">
+        Infection Radius:
+        <span id="infection-radius-input" class="input-values"></span></label
+      ><br />
+      <input
+        type="range"
+        name="infection-radius"
+        id="infection-radius"
+        min="0"
+        max="4"
+        step="0.1"
+        value="2"
+      /><br />
+      <label for="infection-transmission-time">
+        Minimum Infection Transmission Time:
+        <span
+          id="infection-transmission-time-input"
+          class="input-values"
+        ></span>
+        day(s)</label
+      ><br />
+      <input
+        type="range"
+        name="infection-transmission-time"
+        id="infection-transmission-time"
+        min="0"
+        max="5"
+        value="1"
+      /><br />
       <button id="start-simulation">Start Simulation</button>
     </div>
     <div class="simulation-container" id="simulation-container">
