@@ -88,6 +88,153 @@ function startSimulation() {
   dayCount.innerText = 'Day ' + time;
 
   /**
+   * Creates an object to map person state with their respective color.
+   */
+  const stateColorMap = {
+    0: 'skyblue', // Healthy
+    1: 'red', // Infected
+    2: 'yellow', // Recovered
+    3: 'hotpink', // Deceased
+    4: 'green', // Vaccinated
+  };
+
+  /**
+   * Converts percentage to positive integer by rounding it off.
+   */
+  const sickPopulation = Math.round(
+    (sickPopulationPercentage * totalPopulation) / 100
+  );
+  const vaccinatedPopulation = Math.round(
+    (vaccinatedPopulationPercentage * totalPopulation) / 100
+  );
+  const socialDistancingPopulation = Math.round(
+    (socialDistancingPercentage * totalPopulation) / 100
+  );
+  const healthyPopulationNumber =
+    totalPopulation - sickPopulation - vaccinatedPopulation;
+
+  personStateCount[0] = healthyPopulationNumber;
+  personStateCount[1] = sickPopulation;
+  personStateCount[4] = vaccinatedPopulation;
+
+  const canvas = document.getElementById('graph');
+  const GRAPH_TOP = 25;
+  const GRAPH_BOTTOM = 200;
+
+  const GRAPH_LEFT = 25;
+  const GRAPH_RIGHT = 1000;
+  // const GRAPH_LEFT = 65;
+  // const GRAPH_RIGHT = 515;
+
+  const GRAPH_HEIGHT = GRAPH_BOTTOM - GRAPH_TOP;
+  const GRAPH_WIDTH = GRAPH_RIGHT - GRAPH_LEFT;
+
+  // const arrayLen = dataArr.length;
+  // const largest = 0;
+  const largest = totalPopulation;
+
+  const arrayLen = SIMULATION_TIME + 1;
+  function drawGraph() {
+    const context = canvas.getContext('2d');
+    context.font = '16px Arial';
+
+    // draw X and Y axis
+    context.beginPath();
+    context.moveTo(GRAPH_LEFT, GRAPH_BOTTOM);
+    context.lineTo(GRAPH_RIGHT, GRAPH_BOTTOM);
+
+    context.moveTo(GRAPH_LEFT, GRAPH_BOTTOM);
+
+    context.lineTo(GRAPH_LEFT, GRAPH_TOP);
+    context.stroke();
+
+    // draw reference line
+    context.beginPath();
+    context.strokeStyle = '#BBB';
+    context.moveTo(GRAPH_LEFT, GRAPH_TOP);
+    context.lineTo(GRAPH_RIGHT, GRAPH_TOP);
+    // draw reference value for hours
+    context.fillText(largest, GRAPH_RIGHT + 15, GRAPH_TOP);
+    context.stroke();
+
+    // draw reference line
+    context.beginPath();
+    context.moveTo(GRAPH_LEFT, (GRAPH_HEIGHT / 4) * 3 + GRAPH_TOP);
+    context.lineTo(GRAPH_RIGHT, (GRAPH_HEIGHT / 4) * 3 + GRAPH_TOP);
+    // draw reference value for hours
+    context.fillText(
+      largest / 4,
+      GRAPH_RIGHT + 15,
+      (GRAPH_HEIGHT / 4) * 3 + GRAPH_TOP
+    );
+    context.stroke();
+
+    // draw reference line
+    context.beginPath();
+    context.moveTo(GRAPH_LEFT, GRAPH_HEIGHT / 2 + GRAPH_TOP);
+    context.lineTo(GRAPH_RIGHT, GRAPH_HEIGHT / 2 + GRAPH_TOP);
+    // draw reference value for hours
+    context.fillText(
+      largest / 2,
+      GRAPH_RIGHT + 15,
+      GRAPH_HEIGHT / 2 + GRAPH_TOP
+    );
+    context.stroke();
+
+    // draw reference line
+    context.beginPath();
+    context.moveTo(GRAPH_LEFT, GRAPH_HEIGHT / 4 + GRAPH_TOP);
+    context.lineTo(GRAPH_RIGHT, GRAPH_HEIGHT / 4 + GRAPH_TOP);
+    // draw reference value for hours
+    context.fillText(
+      (largest / 4) * 3,
+      GRAPH_RIGHT + 15,
+      GRAPH_HEIGHT / 4 + GRAPH_TOP
+    );
+    context.stroke();
+
+    // draw titles
+    context.fillText('Days', (GRAPH_RIGHT - GRAPH_LEFT) / 2, GRAPH_BOTTOM + 50);
+    context.fillText('Population', GRAPH_RIGHT + 50, GRAPH_HEIGHT / 2);
+
+    context.beginPath();
+    context.lineJoin = 'round';
+    context.strokeStyle = 'black';
+
+    context.fillText('0', 15, GRAPH_BOTTOM + 25);
+    for (let i = 1; i < arrayLen; i++) {
+      context.fillText(i, (GRAPH_RIGHT / arrayLen) * i, GRAPH_BOTTOM + 25);
+    }
+    context.stroke();
+  }
+  drawGraph();
+
+  let canvasLine = [];
+  for (let i = 0; i < 5; i++) {
+    canvasLine[i] = document.getElementById(`graph${i + 1}`);
+  }
+
+  let context = [];
+  function initialGraphPosition(personState, personStateCount) {
+    context[personState] = canvasLine[personState].getContext('2d');
+    context[personState].font = '16px Arial';
+    context[personState].beginPath();
+    context[personState].moveTo(
+      GRAPH_LEFT,
+      GRAPH_HEIGHT -
+        (personStateCount / totalPopulation) * GRAPH_HEIGHT +
+        GRAPH_TOP
+    );
+  }
+
+  for (let i = 0; i < 5; i++) {
+    initialGraphPosition(i, personStateCount[i]);
+  }
+
+  console.log(canvasLine);
+  console.log(context);
+
+  /**
    * Runs every second until a condition is met.
    */
   let timeInterval = setInterval(() => {
@@ -104,35 +251,21 @@ function startSimulation() {
       simulationTimeline.value = time;
       dayCount.innerText = 'Day ' + time;
       recordPeopleHistory(time);
+      for (let i = 0; i < 5; i++) {
+        context[i].lineTo(
+          (GRAPH_RIGHT / arrayLen) * time + GRAPH_LEFT,
+          GRAPH_HEIGHT -
+            (personStateCount[i] / totalPopulation) * GRAPH_HEIGHT +
+            GRAPH_TOP
+        );
+        context[i].strokeStyle = `${stateColorMap[i]}`;
+        context[i].stroke();
+      }
     }
   }, 1000);
 
-  /**
-   * Creates an object to map person state with their respective color.
-   */
-  const stateColorMap = {
-    0: 'skyblue', // Healthy
-    1: 'red', // Infected
-    2: 'yellow', // Recovered
-    3: 'hotpink', // Deceased
-    4: 'green', // Vaccinated
-  };
-
   let personID = 0;
   let fpsCount = 0;
-
-  /**
-   * Converts percentage to positive integer by rounding it off.
-   */
-  const sickPopulation = Math.round(
-    (sickPopulationPercentage * totalPopulation) / 100
-  );
-  const vaccinatedPopulation = Math.round(
-    (vaccinatedPopulationPercentage * totalPopulation) / 100
-  );
-  const socialDistancingPopulation = Math.round(
-    (socialDistancingPercentage * totalPopulation) / 100
-  );
 
   let transmissionTime = {};
 
@@ -199,7 +332,7 @@ function startSimulation() {
       this.socialDistancingFlag = this.getSocialDistancing();
 
       // Updates the count of person's state.
-      personStateCount[this.personState]++;
+      // personStateCount[this.personState]++;
 
       // Updates the statistics.
       updateStats();
@@ -470,6 +603,7 @@ function startSimulation() {
   }
 }
 
+// startSimulation();
 // setInterval(() => {
 //   console.log(fpsCount / totalPopulation);
 //   fpsCount = 0;

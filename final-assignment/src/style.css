@@ -145,3 +145,39 @@ body {
   color: darkorange;
   margin: 10px;
 }
+
+#canvas-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+canvas {
+  display: block;
+  background-color: grey;
+  margin: 10px 50px;
+  position: absolute;
+}
+
+#graph {
+  z-index: 0;
+}
+
+#graph1 {
+  background-color: transparent;
+}
+
+#graph2 {
+  background-color: transparent;
+}
+
+#graph3 {
+  background-color: transparent;
+}
+
+#graph4 {
+  background-color: transparent;
+}
+
+#graph5 {
+  background-color: transparent;
+}
