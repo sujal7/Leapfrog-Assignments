@@ -21,6 +21,7 @@ body {
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
+  border-radius: 50%;
 }
 
 .skyblue {
@@ -130,6 +131,11 @@ body {
   color: #0e1217;
 }
 
+#start-simulation:hover,
+#restart-simulation:hover {
+  background-color: grey;
+}
+
 #restart-simulation {
   margin-top: 20px;
 }
@@ -198,6 +204,14 @@ canvas {
 
 .simulation label {
   font-size: 2rem;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.buttons {
+  width: 100%;
+  text-align: center;
 }
 
 #slower-speed,
@@ -206,6 +220,11 @@ canvas {
   padding-bottom: 5px;
   margin-top: 5px;
   cursor: pointer;
+}
+
+#slower-speed:hover,
+#faster-speed:hover {
+  background-color: grey;
 }
 
 .change-speed-icon {

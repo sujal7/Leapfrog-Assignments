@@ -516,7 +516,7 @@ function startSimulation() {
         // recovery duration multiplied by FPS.
         if (
           recoveryTime[this.personID] >=
-          recoveryDuration[this.personID] * FPS
+          (recoveryDuration[this.personID] / changeSpeedValue) * FPS
         ) {
           // Checks whether a person is gonna be deceased depending on death rate,
           // else the person will recover.
@@ -571,7 +571,6 @@ function startSimulation() {
   }
 
   function changeSimulationSpeed() {
-    const changeSpeed = document.getElementById('change-speed');
     const changeSpeedInput = document.getElementById('change-speed-input');
     const slowerSpeed = document.getElementById('slower-speed');
     const fasterSpeed = document.getElementById('faster-speed');
@@ -592,12 +591,6 @@ function startSimulation() {
         startInterval();
       }
     });
-    // changeSpeed.addEventListener('input', () => {
-    //   changeSpeedInput.innerText = changeSpeed.value;
-    //   changeSpeedValue = changeSpeed.value;
-    //   clearInterval(timeInterval);
-    //   startInterval();
-    // });
   }
 
   changeSimulationSpeed();
