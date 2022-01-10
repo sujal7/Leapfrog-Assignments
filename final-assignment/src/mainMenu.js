@@ -20,6 +20,9 @@ startButton.addEventListener('click', () => {
   mainMenu.style.display = 'none';
   simulationContainer.style.display = 'block';
   startSimulation();
+
+  // The web page automatically scrolls to the animation frame, so I used the following to prevent it.
+  window.scrollTo(0, 0);
 });
 
 mainMenuTitle.addEventListener('click', () => {

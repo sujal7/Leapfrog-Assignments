@@ -12,18 +12,17 @@ body {
 }
 
 .stats {
-  /* margin: 3rem 5rem; */
   width: 30%;
-  float: left;
   margin-left: 10%;
   margin-right: 0;
 }
 
 .index-color {
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
+  margin-right: 10px;
 }
 
 .skyblue {
@@ -47,22 +46,23 @@ body {
 }
 
 .simulation {
-  float: left;
   width: 40%;
   margin-right: 7%;
 }
 
 .stats-title {
-  margin: 2rem 5rem;
+  margin: 32px 80px;
+  margin-right: 0;
   display: block;
-  font-size: 2rem;
+  font-size: 32px;
   color: #cfcfcf;
 }
 
 .day-count {
   text-align: center;
-  font-size: 2rem;
-  margin: 2rem 5rem;
+  font-size: 32px;
+  margin: 48px 80px;
+  margin-top: 10px;
   width: 50%;
 }
 
@@ -91,19 +91,16 @@ body {
 }
 
 .main-menu-title {
-  font-size: 3rem;
+  text-align: center;
+  font-size: 48px;
   padding: 10px 0;
-  display: inline-block;
   margin: 5px auto;
+  margin-bottom: 20px;
   cursor: pointer;
-  /* background-color: #f0f0f0;
-  color: #0e1217;
-  border-radius: 40px;
-  cursor: pointer; */
 }
 
 .main-menu label {
-  font-size: 2rem;
+  font-size: 32px;
 }
 
 .main-menu input {
@@ -120,7 +117,7 @@ body {
 }
 
 .note {
-  font-size: 1rem;
+  font-size: 16px;
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 30px;
@@ -137,7 +134,7 @@ body {
   margin: 0 auto;
   margin-bottom: 50px;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 16px;
   font-family: 'Franklin Gothic Medium';
   font-weight: bold;
   color: #0e1217;
@@ -145,7 +142,7 @@ body {
 
 #start-simulation:hover,
 #restart-simulation:hover {
-  background-color: grey;
+  background-color: #cfcfcf;
 }
 
 #restart-simulation {
@@ -162,8 +159,7 @@ body {
 
 .help {
   text-align: center;
-  margin-bottom: 5px;
-  position: relative;
+  margin-bottom: 20px;
 }
 
 .help-image {
@@ -173,8 +169,7 @@ body {
 }
 
 .help-text {
-  position: absolute;
-  font-size: 1rem;
+  font-size: 16px;
   display: none;
   background-color: #cfcfcf;
   color: #0e1217;
@@ -184,21 +179,22 @@ body {
 }
 
 .extra-features {
-  font-size: 2.5rem;
+  font-size: 40px;
   color: darkorange;
-  margin: 10px;
+  padding: 10px 0;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  cursor: pointer;
 }
 
 #canvas-container {
-  position: relative;
   height: 300px;
   width: 100%;
 }
+
 canvas {
   display: block;
-  /* background-color: grey; */
-  margin: 10px 50px;
-  position: absolute;
+  margin: 0 50px;
 }
 
 #graph {
@@ -206,7 +202,7 @@ canvas {
 }
 
 .simulation label {
-  font-size: 2rem;
+  font-size: 32px;
   display: inline-block;
   width: 100%;
   text-align: center;
@@ -227,7 +223,7 @@ canvas {
 
 #slower-speed:hover,
 #faster-speed:hover {
-  background-color: grey;
+  background-color: #cfcfcf;
 }
 
 .change-speed-icon {

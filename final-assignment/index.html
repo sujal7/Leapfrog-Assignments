@@ -44,7 +44,7 @@
       <br />
       <label for="sick-population">
         Sick Population:
-        <span id="total-population-input" class="input-values"></span>%</label
+        <span id="sick-population-input" class="input-values"></span>%</label
       ><br />
       <input
         type="range"
@@ -110,7 +110,7 @@
       <h2 class="extra-features">Extra Features</h2>
       <label for="social-distancing">
         Social Distancing Obeyed by:
-        <span id="death-rate-input" class="input-values"></span>%</label
+        <span id="social-distancing-input" class="input-values"></span>%</label
       ><br />
       <input
         type="range"
@@ -162,6 +162,10 @@
       <button id="start-simulation">Start Simulation</button>
     </div>
     <div class="simulation-container" id="simulation-container">
+      <h1 class="main-menu-title" id="main-menu-title">
+        Coronavirus Simulation
+      </h1>
+      <br />
       <div class="canvas-container" id="canvas-container">
         <canvas id="graph" width="1260" height="260"></canvas>
         <canvas id="line1" width="1260" height="260"></canvas>
@@ -173,23 +177,23 @@
       <div class="stats" id="stats">
         <div class="day-count" id="day-count"></div>
         <h3 class="stats-title">
-          <div class="index-color skyblue"></div>
+          <span class="index-color skyblue"></span>
           Healthy: <span id="healthy-population"></span>
         </h3>
         <h3 class="stats-title">
-          <div class="index-color green"></div>
+          <span class="index-color green"></span>
           Vaccinated: <span id="vaccinated-population"></span>
         </h3>
         <h3 class="stats-title">
-          <div class="index-color red"></div>
+          <span class="index-color red"></span>
           Infected: <span id="infected-population"></span>
         </h3>
         <h3 class="stats-title">
-          <div class="index-color yellow"></div>
+          <span class="index-color yellow"></span>
           Recovered: <span id="recovered-population"></span>
         </h3>
         <h3 class="stats-title">
-          <div class="index-color hotpink"></div>
+          <span class="index-color hotpink"></span>
           Deceased: <span id="deceased-population"></span>
         </h3>
       </div>
@@ -217,9 +221,7 @@
             </p>
           </div>
         </div>
-        <label for="change-speed">
-          Speed: x<span id="change-speed-input"></span></label
-        ><br />
+        <label> Speed: x<span id="change-speed-input"></span></label><br />
         <div class="buttons">
           <button id="slower-speed">
             <img
@@ -239,9 +241,9 @@
         <button id="restart-simulation">Restart Simulation</button>
       </div>
     </div>
+    <script src="src/utils.js"></script>
+    <script src="src/mainMenu.js"></script>
+    <script src="src/statisticsUpdate.js"></script>
+    <script src="src/script.js"></script>
   </body>
-  <script src="src/utils.js"></script>
-  <script src="src/mainMenu.js"></script>
-  <script src="src/statisticsUpdate.js"></script>
-  <script src="src/script.js"></script>
 </html>

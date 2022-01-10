@@ -2,12 +2,26 @@
   position: relative;
 }
 
-.timeline-container {
+.help {
   position: relative;
 }
 
-/* .help {
+.help-text {
   position: absolute;
-  left: 105%;
-  top: 0px;
-} */
+}
+
+#canvas-container {
+  position: relative;
+}
+
+canvas {
+  position: absolute;
+}
+
+.stats {
+  float: left;
+}
+
+.simulation {
+  float: left;
+}
