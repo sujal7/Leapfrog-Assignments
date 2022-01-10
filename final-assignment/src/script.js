@@ -244,10 +244,6 @@ function startSimulation() {
     initialGraphPosition(i, personStateCount[i]);
   }
 
-  function getChangeSpeedValue() {
-    return changeSpeedValue;
-  }
-
   let timeInterval;
   /**
    * Runs every second until a condition is met.
@@ -283,6 +279,7 @@ function startSimulation() {
   }
 
   startInterval();
+
   let personID = 0;
   let fpsCount = 0;
 
@@ -545,6 +542,7 @@ function startSimulation() {
 
     getSocialDistancing() {
       if (socialDistancingPeople.indexOf(this.personID) === -1) return false;
+
       return true;
     }
   }
@@ -575,13 +573,31 @@ function startSimulation() {
   function changeSimulationSpeed() {
     const changeSpeed = document.getElementById('change-speed');
     const changeSpeedInput = document.getElementById('change-speed-input');
-    changeSpeedInput.innerText = changeSpeed.value;
-    changeSpeed.addEventListener('input', () => {
-      changeSpeedInput.innerText = changeSpeed.value;
-      changeSpeedValue = changeSpeed.value;
-      clearInterval(timeInterval);
-      startInterval();
+    const slowerSpeed = document.getElementById('slower-speed');
+    const fasterSpeed = document.getElementById('faster-speed');
+    changeSpeedInput.innerText = changeSpeedValue;
+    slowerSpeed.addEventListener('click', () => {
+      if (changeSpeedValue > 0.25) {
+        changeSpeedValue -= 0.25;
+        changeSpeedInput.innerText = changeSpeedValue;
+        clearInterval(timeInterval);
+        startInterval();
+      }
     });
+    fasterSpeed.addEventListener('click', () => {
+      if (changeSpeedValue < 4) {
+        changeSpeedValue += 0.25;
+        changeSpeedInput.innerText = changeSpeedValue;
+        clearInterval(timeInterval);
+        startInterval();
+      }
+    });
+    // changeSpeed.addEventListener('input', () => {
+    //   changeSpeedInput.innerText = changeSpeed.value;
+    //   changeSpeedValue = changeSpeed.value;
+    //   clearInterval(timeInterval);
+    //   startInterval();
+    // });
   }
 
   changeSimulationSpeed();

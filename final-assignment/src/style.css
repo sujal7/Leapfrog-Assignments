@@ -130,6 +130,10 @@ body {
   color: #0e1217;
 }
 
+#restart-simulation {
+  margin-top: 20px;
+}
+
 #simulation-timeline {
   display: block;
   margin: 10px auto;
@@ -196,8 +200,15 @@ canvas {
   font-size: 2rem;
 }
 
-#change-speed {
-  width: 200px;
+#slower-speed,
+#faster-speed {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
   cursor: pointer;
-  margin: 10px 0;
+}
+
+.change-speed-icon {
+  width: 30px;
+  height: 23px;
 }
