@@ -38,22 +38,22 @@ function startSimulation() {
     window.location.reload();
   });
 
-  const helpImage = document.getElementById('help-image');
-  const helpText = document.getElementById('help-text');
+  // const helpImage = document.getElementById('help-image');
+  // const helpText = document.getElementById('help-text');
 
-  // /**
-  //  * Displays help text when mouse is hovered.
-  //  */
-  // helpImage.addEventListener('mouseover', () => {
-  //   helpText.style.display = 'inline';
-  // });
+  // // /**
+  // //  * Displays help text when mouse is hovered.
+  // //  */
+  // // helpImage.addEventListener('mouseover', () => {
+  // //   helpText.style.display = 'inline';
+  // // });
 
-  // /**
-  //  * Hides the help text when mouse is out.
-  //  */
-  // helpImage.addEventListener('mouseout', () => {
-  //   helpText.style.display = 'none';
-  // });
+  // // /**
+  // //  * Hides the help text when mouse is out.
+  // //  */
+  // // helpImage.addEventListener('mouseout', () => {
+  // //   helpText.style.display = 'none';
+  // // });
 
   /**
    * Gets the input parameters entered by the user.
