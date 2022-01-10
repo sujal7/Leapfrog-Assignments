@@ -163,55 +163,62 @@
     </div>
     <div class="simulation-container" id="simulation-container">
       <div class="canvas-container" id="canvas-container">
-        <canvas id="graph" width="1200" height="300"></canvas>
-        <canvas id="graph1" width="1200" height="300"></canvas>
-        <canvas id="graph2" width="1200" height="300"></canvas>
-        <canvas id="graph3" width="1200" height="300"></canvas>
-        <canvas id="graph4" width="1200" height="300"></canvas>
-        <canvas id="graph5" width="1200" height="300"></canvas>
+        <canvas id="graph" width="1260" height="260"></canvas>
+        <canvas id="line1" width="1260" height="260"></canvas>
+        <canvas id="line2" width="1260" height="260"></canvas>
+        <canvas id="line3" width="1260" height="260"></canvas>
+        <canvas id="line4" width="1260" height="260"></canvas>
+        <canvas id="line5" width="1260" height="260"></canvas>
       </div>
       <div class="stats" id="stats">
+        <div class="day-count" id="day-count"></div>
         <h3 class="stats-title">
+          <div class="index-color skyblue"></div>
           Healthy: <span id="healthy-population"></span>
         </h3>
         <h3 class="stats-title">
+          <div class="index-color green"></div>
           Vaccinated: <span id="vaccinated-population"></span>
         </h3>
         <h3 class="stats-title">
+          <div class="index-color red"></div>
           Infected: <span id="infected-population"></span>
         </h3>
         <h3 class="stats-title">
+          <div class="index-color yellow"></div>
           Recovered: <span id="recovered-population"></span>
         </h3>
         <h3 class="stats-title">
+          <div class="index-color hotpink"></div>
           Deceased: <span id="deceased-population"></span>
         </h3>
       </div>
-      <div class="day-count" id="day-count"></div>
-      <div class="simulation-area" id="simulation-area"></div>
-      <div class="timeline-container">
-        <input
-          type="range"
-          name="simulation-timeline"
-          id="simulation-timeline"
-          min="0"
-          max="30"
-          value="0"
-        />
-        <div class="help">
-          <img
-            class="help-image"
-            id="help-image"
-            src="src/images/help.png"
-            alt="Help Image"
+      <div class="simulation">
+        <div class="simulation-area" id="simulation-area"></div>
+        <div class="timeline-container">
+          <input
+            type="range"
+            name="simulation-timeline"
+            id="simulation-timeline"
+            min="0"
+            max="30"
+            value="0"
           />
-          <p class="help-text" id="help-text">
-            View the history of simulation using the slider after its
-            completion.
-          </p>
+          <!-- <div class="help">
+            <img
+              class="help-image"
+              id="help-image"
+              src="src/images/help.png"
+              alt="Help Image"
+            />
+            <p class="help-text" id="help-text">
+              View the history of simulation using the slider after its
+              completion.
+            </p>
+          </div> -->
         </div>
+        <button id="restart-simulation">Restart Simulation</button>
       </div>
-      <button id="restart-simulation">Restart Simulation</button>
     </div>
   </body>
   <script src="src/utils.js"></script>

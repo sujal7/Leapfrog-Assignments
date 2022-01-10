@@ -41,19 +41,19 @@ function startSimulation() {
   const helpImage = document.getElementById('help-image');
   const helpText = document.getElementById('help-text');
 
-  /**
-   * Displays help text when mouse is hovered.
-   */
-  helpImage.addEventListener('mouseover', () => {
-    helpText.style.display = 'inline';
-  });
+  // /**
+  //  * Displays help text when mouse is hovered.
+  //  */
+  // helpImage.addEventListener('mouseover', () => {
+  //   helpText.style.display = 'inline';
+  // });
 
-  /**
-   * Hides the help text when mouse is out.
-   */
-  helpImage.addEventListener('mouseout', () => {
-    helpText.style.display = 'none';
-  });
+  // /**
+  //  * Hides the help text when mouse is out.
+  //  */
+  // helpImage.addEventListener('mouseout', () => {
+  //   helpText.style.display = 'none';
+  // });
 
   /**
    * Gets the input parameters entered by the user.
@@ -117,28 +117,29 @@ function startSimulation() {
   personStateCount[1] = sickPopulation;
   personStateCount[4] = vaccinatedPopulation;
 
+  /**
+   * Constants for Canvas.
+   */
   const canvas = document.getElementById('graph');
   const GRAPH_TOP = 25;
   const GRAPH_BOTTOM = 200;
-
   const GRAPH_LEFT = 25;
-  const GRAPH_RIGHT = 1000;
-  // const GRAPH_LEFT = 65;
-  // const GRAPH_RIGHT = 515;
-
+  const GRAPH_RIGHT = 1100;
   const GRAPH_HEIGHT = GRAPH_BOTTOM - GRAPH_TOP;
   const GRAPH_WIDTH = GRAPH_RIGHT - GRAPH_LEFT;
+  const totalPoints = SIMULATION_TIME + 1;
 
-  // const arrayLen = dataArr.length;
-  // const largest = 0;
-  const largest = totalPopulation;
-
-  const arrayLen = SIMULATION_TIME + 1;
+  /**
+   * Draws the X and Y axis of the graph with its references values and reference lines.
+   */
   function drawGraph() {
     const context = canvas.getContext('2d');
-    context.font = '16px Arial';
+    context.font = 'bold 16px Arial';
+    context.strokeStyle = '#cfcfcf';
 
-    // draw X and Y axis
+    context.fillStyle = '#cfcfcf';
+
+    // Draw X and Y axis
     context.beginPath();
     context.moveTo(GRAPH_LEFT, GRAPH_BOTTOM);
     context.lineTo(GRAPH_RIGHT, GRAPH_BOTTOM);
@@ -148,62 +149,71 @@ function startSimulation() {
     context.lineTo(GRAPH_LEFT, GRAPH_TOP);
     context.stroke();
 
-    // draw reference line
+    // Draw reference line
     context.beginPath();
-    context.strokeStyle = '#BBB';
+    // context.strokeStyle = '#BBB';
     context.moveTo(GRAPH_LEFT, GRAPH_TOP);
     context.lineTo(GRAPH_RIGHT, GRAPH_TOP);
-    // draw reference value for hours
-    context.fillText(largest, GRAPH_RIGHT + 15, GRAPH_TOP);
+
+    // Draw reference value for population
+    context.fillText(totalPopulation, GRAPH_RIGHT + 15, GRAPH_TOP);
+
+    context.strokeStyle = '#cfcfcf';
     context.stroke();
 
-    // draw reference line
+    // Draw reference line
     context.beginPath();
     context.moveTo(GRAPH_LEFT, (GRAPH_HEIGHT / 4) * 3 + GRAPH_TOP);
     context.lineTo(GRAPH_RIGHT, (GRAPH_HEIGHT / 4) * 3 + GRAPH_TOP);
-    // draw reference value for hours
+
+    // Draw reference value for population
     context.fillText(
-      largest / 4,
+      totalPopulation / 4,
       GRAPH_RIGHT + 15,
       (GRAPH_HEIGHT / 4) * 3 + GRAPH_TOP
     );
     context.stroke();
 
-    // draw reference line
+    // Draw reference line
     context.beginPath();
     context.moveTo(GRAPH_LEFT, GRAPH_HEIGHT / 2 + GRAPH_TOP);
     context.lineTo(GRAPH_RIGHT, GRAPH_HEIGHT / 2 + GRAPH_TOP);
-    // draw reference value for hours
+
+    // Draw reference value for population
     context.fillText(
-      largest / 2,
+      totalPopulation / 2,
       GRAPH_RIGHT + 15,
       GRAPH_HEIGHT / 2 + GRAPH_TOP
     );
     context.stroke();
 
-    // draw reference line
+    // Draw reference line
     context.beginPath();
     context.moveTo(GRAPH_LEFT, GRAPH_HEIGHT / 4 + GRAPH_TOP);
     context.lineTo(GRAPH_RIGHT, GRAPH_HEIGHT / 4 + GRAPH_TOP);
-    // draw reference value for hours
+
+    // Draw reference value for population
     context.fillText(
-      (largest / 4) * 3,
+      (totalPopulation / 4) * 3,
       GRAPH_RIGHT + 15,
       GRAPH_HEIGHT / 4 + GRAPH_TOP
     );
     context.stroke();
 
-    // draw titles
+    // Draw X and Y axis title
+
+    context.font = 'bold 20px Arial';
     context.fillText('Days', (GRAPH_RIGHT - GRAPH_LEFT) / 2, GRAPH_BOTTOM + 50);
     context.fillText('Population', GRAPH_RIGHT + 50, GRAPH_HEIGHT / 2);
 
     context.beginPath();
     context.lineJoin = 'round';
-    context.strokeStyle = 'black';
 
+    // Draw reference value for days
+    context.font = 'bold 16px Arial';
     context.fillText('0', 15, GRAPH_BOTTOM + 25);
-    for (let i = 1; i < arrayLen; i++) {
-      context.fillText(i, (GRAPH_RIGHT / arrayLen) * i, GRAPH_BOTTOM + 25);
+    for (let i = 1; i < totalPoints; i++) {
+      context.fillText(i, (GRAPH_RIGHT / totalPoints) * i, GRAPH_BOTTOM + 25);
     }
     context.stroke();
   }
@@ -211,7 +221,7 @@ function startSimulation() {
 
   let canvasLine = [];
   for (let i = 0; i < 5; i++) {
-    canvasLine[i] = document.getElementById(`graph${i + 1}`);
+    canvasLine[i] = document.getElementById(`line${i + 1}`);
   }
 
   let context = [];
@@ -230,9 +240,6 @@ function startSimulation() {
   for (let i = 0; i < 5; i++) {
     initialGraphPosition(i, personStateCount[i]);
   }
-
-  console.log(canvasLine);
-  console.log(context);
 
   /**
    * Runs every second until a condition is met.
@@ -253,12 +260,13 @@ function startSimulation() {
       recordPeopleHistory(time);
       for (let i = 0; i < 5; i++) {
         context[i].lineTo(
-          (GRAPH_RIGHT / arrayLen) * time + GRAPH_LEFT,
+          (GRAPH_RIGHT / totalPoints) * time + GRAPH_LEFT,
           GRAPH_HEIGHT -
             (personStateCount[i] / totalPopulation) * GRAPH_HEIGHT +
             GRAPH_TOP
         );
         context[i].strokeStyle = `${stateColorMap[i]}`;
+        context[i].lineWidth = 3;
         context[i].stroke();
       }
     }
