@@ -41,22 +41,22 @@ function startSimulation() {
     window.location.reload();
   });
 
-  // const helpImage = document.getElementById('help-image');
-  // const helpText = document.getElementById('help-text');
+  const helpImage = document.getElementById('help-image');
+  const helpText = document.getElementById('help-text');
 
-  // // /**
-  // //  * Displays help text when mouse is hovered.
-  // //  */
-  // // helpImage.addEventListener('mouseover', () => {
-  // //   helpText.style.display = 'inline';
-  // // });
+  /**
+   * Displays help text when mouse is hovered.
+   */
+  helpImage.addEventListener('mouseover', () => {
+    helpText.style.display = 'inline';
+  });
 
-  // // /**
-  // //  * Hides the help text when mouse is out.
-  // //  */
-  // // helpImage.addEventListener('mouseout', () => {
-  // //   helpText.style.display = 'none';
-  // // });
+  /**
+   * Hides the help text when mouse is out.
+   */
+  helpImage.addEventListener('mouseout', () => {
+    helpText.style.display = 'none';
+  });
 
   /**
    * Gets the input parameters entered by the user.
@@ -104,21 +104,21 @@ function startSimulation() {
   /**
    * Converts percentage to positive integer by rounding it off.
    */
-  const sickPopulation = Math.round(
+  const infectedPopulationNumber = Math.round(
     (sickPopulationPercentage * totalPopulation) / 100
   );
-  const vaccinatedPopulation = Math.round(
+  const vaccinatedPopulationNumber = Math.round(
     (vaccinatedPopulationPercentage * totalPopulation) / 100
   );
   const socialDistancingPopulation = Math.round(
     (socialDistancingPercentage * totalPopulation) / 100
   );
   const healthyPopulationNumber =
-    totalPopulation - sickPopulation - vaccinatedPopulation;
+    totalPopulation - infectedPopulationNumber - vaccinatedPopulationNumber;
 
   personStateCount[0] = healthyPopulationNumber;
-  personStateCount[1] = sickPopulation;
-  personStateCount[4] = vaccinatedPopulation;
+  personStateCount[1] = infectedPopulationNumber;
+  personStateCount[4] = vaccinatedPopulationNumber;
 
   /**
    * Constants for Canvas.
@@ -141,6 +141,7 @@ function startSimulation() {
     context.strokeStyle = '#cfcfcf';
 
     context.fillStyle = '#cfcfcf';
+    context.lineWidth = 3;
 
     // Draw X and Y axis
     context.beginPath();
@@ -244,6 +245,20 @@ function startSimulation() {
     initialGraphPosition(i, personStateCount[i]);
   }
 
+  function plotLineGraph() {
+    for (let i = 0; i < 5; i++) {
+      context[i].lineTo(
+        (GRAPH_RIGHT / totalPoints) * time + GRAPH_LEFT,
+        GRAPH_HEIGHT -
+          (personStateCount[i] / totalPopulation) * GRAPH_HEIGHT +
+          GRAPH_TOP
+      );
+      context[i].strokeStyle = `${stateColorMap[i]}`;
+      context[i].lineWidth = 3;
+      context[i].stroke();
+    }
+  }
+
   let timeInterval;
   /**
    * Runs every second until a condition is met.
@@ -263,17 +278,7 @@ function startSimulation() {
         simulationTimeline.value = time;
         dayCount.innerText = 'Day ' + time;
         recordPeopleHistory(time);
-        for (let i = 0; i < 5; i++) {
-          context[i].lineTo(
-            (GRAPH_RIGHT / totalPoints) * time + GRAPH_LEFT,
-            GRAPH_HEIGHT -
-              (personStateCount[i] / totalPopulation) * GRAPH_HEIGHT +
-              GRAPH_TOP
-          );
-          context[i].strokeStyle = `${stateColorMap[i]}`;
-          context[i].lineWidth = 3;
-          context[i].stroke();
-        }
+        plotLineGraph();
       }
     }, 1000 / changeSpeedValue);
   }
@@ -281,7 +286,6 @@ function startSimulation() {
   startInterval();
 
   let personID = 0;
-  let fpsCount = 0;
 
   let transmissionTime = {};
 
@@ -339,8 +343,8 @@ function startSimulation() {
       // Gets the state of a person i.e. either healthy, vaccinated or sick.
       this.personState = getPersonState(
         this.personID,
-        sickPopulation,
-        vaccinatedPopulation
+        infectedPopulationNumber,
+        vaccinatedPopulationNumber
       );
       if (this.personState === 1 && waveEffect)
         this.people.setAttribute('id', `p${this.personState}`);
@@ -396,7 +400,6 @@ function startSimulation() {
       this.checkBoundaryCollision();
       this.checkTransmission();
       this.checkRecovery();
-      fpsCount += 1;
     }
 
     /**
@@ -646,9 +649,3 @@ function startSimulation() {
     });
   }
 }
-
-// startSimulation();
-// setInterval(() => {
-//   console.log(fpsCount / totalPopulation);
-//   fpsCount = 0;
-// }, 1000);
