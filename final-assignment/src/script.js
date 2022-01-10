@@ -10,6 +10,8 @@ const personStateCount = {
  * Runs the simulation when the user presses the start simulation button.
  */
 function startSimulation() {
+  let changeSpeedValue = 1;
+  // let changeSecond = 0.5;
   /**
    * GLOBAL CONSTANTS FOR SIMULATION.
    */
@@ -21,6 +23,7 @@ function startSimulation() {
   const MIN_INFECTION_TRANSMISSION_TIME = inputParameters[9];
   const PERSON_WIDTH = PERSON_RADIUS * 2;
   const PERSON_HEIGHT = PERSON_RADIUS * 2;
+
   const SPEED = 1;
   const MIN_ANGLE = 0.1;
   const MAX_ANGLE = 1;
@@ -241,37 +244,45 @@ function startSimulation() {
     initialGraphPosition(i, personStateCount[i]);
   }
 
+  function getChangeSpeedValue() {
+    return changeSpeedValue;
+  }
+
+  let timeInterval;
   /**
    * Runs every second until a condition is met.
    */
-  let timeInterval = setInterval(() => {
-    time++;
+  function startInterval() {
+    timeInterval = setInterval(() => {
+      time++;
 
-    if (time >= SIMULATION_TIME + 1) {
-      clearInterval(timeInterval);
-      const people = document.getElementsByClassName('people');
-      for (let person of people) {
-        person.removeAttribute('id');
+      if (time >= SIMULATION_TIME + 1) {
+        clearInterval(timeInterval);
+        const people = document.getElementsByClassName('people');
+        for (let person of people) {
+          person.removeAttribute('id');
+        }
+        viewHistory();
+      } else {
+        simulationTimeline.value = time;
+        dayCount.innerText = 'Day ' + time;
+        recordPeopleHistory(time);
+        for (let i = 0; i < 5; i++) {
+          context[i].lineTo(
+            (GRAPH_RIGHT / totalPoints) * time + GRAPH_LEFT,
+            GRAPH_HEIGHT -
+              (personStateCount[i] / totalPopulation) * GRAPH_HEIGHT +
+              GRAPH_TOP
+          );
+          context[i].strokeStyle = `${stateColorMap[i]}`;
+          context[i].lineWidth = 3;
+          context[i].stroke();
+        }
       }
-      viewHistory();
-    } else {
-      simulationTimeline.value = time;
-      dayCount.innerText = 'Day ' + time;
-      recordPeopleHistory(time);
-      for (let i = 0; i < 5; i++) {
-        context[i].lineTo(
-          (GRAPH_RIGHT / totalPoints) * time + GRAPH_LEFT,
-          GRAPH_HEIGHT -
-            (personStateCount[i] / totalPopulation) * GRAPH_HEIGHT +
-            GRAPH_TOP
-        );
-        context[i].strokeStyle = `${stateColorMap[i]}`;
-        context[i].lineWidth = 3;
-        context[i].stroke();
-      }
-    }
-  }, 1000);
+    }, 1000 / changeSpeedValue);
+  }
 
+  startInterval();
   let personID = 0;
   let fpsCount = 0;
 
@@ -304,8 +315,8 @@ function startSimulation() {
    */
   for (let i = 0; i < totalPopulation; i++) {
     recoveryDuration[i] = getRandomInt(
-      MIN_RECOVERY_DAYS,
-      MAX_RECOVERY_DAYS + 1
+      MIN_RECOVERY_DAYS / changeSpeedValue,
+      MAX_RECOVERY_DAYS / changeSpeedValue + 1
     );
   }
 
@@ -413,8 +424,10 @@ function startSimulation() {
      */
     changeAngle() {
       let speedInterval = setInterval(() => {
-        this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
-        this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
+        this.speedX =
+          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+        this.speedY =
+          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
 
         if (time >= SIMULATION_TIME) {
           clearInterval(speedInterval);
@@ -457,7 +470,7 @@ function startSimulation() {
             // for minimum infection time multiplied by FPS.
             if (
               transmissionTime[this.personID][people.personID] >=
-              MIN_INFECTION_TRANSMISSION_TIME * FPS
+              (MIN_INFECTION_TRANSMISSION_TIME / changeSpeedValue) * FPS
             ) {
               transmissionTime[this.personID][people.personID] = 0;
 
@@ -558,6 +571,20 @@ function startSimulation() {
     people.changeAngle();
     run();
   }
+
+  function changeSimulationSpeed() {
+    const changeSpeed = document.getElementById('change-speed');
+    const changeSpeedInput = document.getElementById('change-speed-input');
+    changeSpeedInput.innerText = changeSpeed.value;
+    changeSpeed.addEventListener('input', () => {
+      changeSpeedInput.innerText = changeSpeed.value;
+      changeSpeedValue = changeSpeed.value;
+      clearInterval(timeInterval);
+      startInterval();
+    });
+  }
+
+  changeSimulationSpeed();
 
   /**
    * Records the history of people on each second.

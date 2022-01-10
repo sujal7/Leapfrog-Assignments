@@ -191,3 +191,13 @@ canvas {
 #line5 {
   background-color: transparent;
 }
+
+.simulation label {
+  font-size: 2rem;
+}
+
+#change-speed {
+  width: 200px;
+  cursor: pointer;
+  margin: 10px 0;
+}
