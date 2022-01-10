@@ -13,8 +13,10 @@ body {
 
 .stats {
   /* margin: 3rem 5rem; */
-  width: 50%;
+  width: 30%;
   float: left;
+  margin-left: 10%;
+  margin-right: 0;
 }
 
 .index-color {
@@ -46,6 +48,8 @@ body {
 
 .simulation {
   float: left;
+  width: 40%;
+  margin-right: 7%;
 }
 
 .stats-title {
@@ -58,7 +62,7 @@ body {
 .day-count {
   text-align: center;
   font-size: 2rem;
-  margin: 1rem 0;
+  margin: 2rem 5rem;
   width: 50%;
 }
 
@@ -88,7 +92,14 @@ body {
 
 .main-menu-title {
   font-size: 3rem;
-  margin: 10px 0;
+  padding: 10px 0;
+  display: inline-block;
+  margin: 5px auto;
+  cursor: pointer;
+  /* background-color: #f0f0f0;
+  color: #0e1217;
+  border-radius: 40px;
+  cursor: pointer; */
 }
 
 .main-menu label {

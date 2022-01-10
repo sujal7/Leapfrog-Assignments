@@ -1,6 +1,7 @@
 const inputParameters = {};
 
 const mainMenu = document.getElementById('main-menu');
+const mainMenuTitle = document.getElementById('main-menu-title');
 const simulationContainer = document.getElementById('simulation-container');
 const inputSliders = document.querySelectorAll('.main-menu input');
 const inputValues = document.getElementsByClassName('input-values');
@@ -19,4 +20,8 @@ startButton.addEventListener('click', () => {
   mainMenu.style.display = 'none';
   simulationContainer.style.display = 'block';
   startSimulation();
+});
+
+mainMenuTitle.addEventListener('click', () => {
+  window.location.reload();
 });
