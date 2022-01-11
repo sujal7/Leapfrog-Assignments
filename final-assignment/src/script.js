@@ -1,3 +1,6 @@
+/**
+ * Creates an object to count number of people in different states.
+ */
 const personStateCount = {
   0: 0, // Healthy
   1: 0, // Infected
@@ -22,7 +25,6 @@ const stateColorMap = {
  */
 function startSimulation() {
   let changeSpeedValue = 1;
-  // let changeSecond = 0.5;
   /**
    * GLOBAL CONSTANTS FOR SIMULATION.
    */
@@ -34,7 +36,6 @@ function startSimulation() {
   const MIN_INFECTION_TRANSMISSION_TIME = inputParameters[9];
   const PERSON_WIDTH = PERSON_RADIUS * 2;
   const PERSON_HEIGHT = PERSON_RADIUS * 2;
-
   const SPEED = 1;
   const MIN_ANGLE = 0.1;
   const MAX_ANGLE = 1;
@@ -82,6 +83,8 @@ function startSimulation() {
   const waveEffect = document.getElementById('wave-effect').checked;
 
   const simulationTimeline = document.getElementById('simulation-timeline');
+
+  // Adjusts max value of the simulation slider.
   simulationTimeline.max = SIMULATION_TIME;
 
   const personHistory = {};
@@ -101,17 +104,6 @@ function startSimulation() {
   let time = 0;
   dayCount.innerText = 'Day ' + time;
 
-  // /**
-  //  * Creates an object to map person state with their respective color.
-  //  */
-  // const stateColorMap = {
-  //   0: 'skyblue', // Healthy
-  //   1: 'red', // Infected
-  //   2: 'yellow', // Recovered
-  //   3: 'hotpink', // Deceased
-  //   4: 'green', // Vaccinated
-  // };
-
   /**
    * Converts percentage to positive integer by rounding it off.
    */
@@ -127,6 +119,7 @@ function startSimulation() {
   const healthyPopulationNumber =
     totalPopulation - infectedPopulationNumber - vaccinatedPopulationNumber;
 
+  // Initializes the count of people in different state.
   personStateCount[0] = healthyPopulationNumber;
   personStateCount[1] = infectedPopulationNumber;
   personStateCount[4] = vaccinatedPopulationNumber;
@@ -167,8 +160,6 @@ function startSimulation() {
   }
 
   startTime();
-
-  let personID = 0;
 
   let transmissionTime = {};
 
@@ -217,6 +208,7 @@ function startSimulation() {
       socialDistancingPeople.push(randomPerson);
   }
 
+  let personID = 0;
   /**
    * Represents a Person.
    */
@@ -322,22 +314,6 @@ function startSimulation() {
         this.yDirection = 1;
       }
     }
-
-    // /**
-    //  * Moves people randomly by changing their angle each 1000/changeSpeedValue millisecond.
-    //  */
-    // changeAngle() {
-    //   let angleInterval = setInterval(() => {
-    //     this.speedX =
-    //       getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
-    //     this.speedY =
-    //       getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
-    //     // console.log('running');
-    //     if (time >= SIMULATION_TIME) {
-    //       clearInterval(angleInterval);
-    //     }
-    //   }, 1000 / changeSpeedValue);
-    // }
 
     /**
      * Checks for transmission of virus between infected and healthy or vaccinated person.
@@ -484,8 +460,6 @@ function startSimulation() {
         cancelAnimationFrame(requestID);
       }
     }
-
-    // people.changeAngle();
     run();
   }
 
@@ -580,11 +554,12 @@ function startSimulation() {
   recordPeopleHistory(0);
 
   /**
-   * Generates history of people depending on the input in the slider.
+   * Adds event listener to the simulation slider to view history of simulation by moving the slider.
    */
   function viewHistory() {
     const peopleObjects = document.getElementsByClassName('people');
     simulationTimeline.addEventListener('input', () => {
+      // Styles the people with their respective position and backgroundColor.
       for (let i = 0; i < totalPopulation; i++) {
         peopleObjects[i].style.left =
           personHistory[simulationTimeline.value][i].xPosition + 'px';
@@ -596,6 +571,7 @@ function startSimulation() {
           stateColorMap[peopleObjects[i].personState];
       }
 
+      // Generates of count of people in different states.
       healthyPopulation.innerHTML =
         personHistory[simulationTimeline.value].healthyCount;
       infectedPopulation.innerHTML =
