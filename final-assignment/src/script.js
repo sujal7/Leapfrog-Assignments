@@ -73,7 +73,7 @@ function startSimulation() {
    * Gets the input parameters entered by the user.
    */
   const totalPopulation = inputParameters[1];
-  const sickPopulationPercentage = inputParameters[2];
+  const infectedPopulationPercentage = inputParameters[2];
   const vaccinatedPopulationPercentage = inputParameters[3];
   const vaccineEfficiency = inputParameters[4];
   const infectionRate = inputParameters[5];
@@ -116,7 +116,7 @@ function startSimulation() {
    * Converts percentage to positive integer by rounding it off.
    */
   const infectedPopulationNumber = Math.round(
-    (sickPopulationPercentage * totalPopulation) / 100
+    (infectedPopulationPercentage * totalPopulation) / 100
   );
   const vaccinatedPopulationNumber = Math.round(
     (vaccinatedPopulationPercentage * totalPopulation) / 100
@@ -141,18 +141,21 @@ function startSimulation() {
 
   let timeInterval;
   /**
-   * Runs every second until a condition is met.
+   * Runs every 1000/changeSpeedValue millisecond until the time is greater than SIMULATION_TIME.
    */
-  function startInterval() {
+  function startTime() {
     timeInterval = setInterval(() => {
       time++;
 
       if (time >= SIMULATION_TIME + 1) {
         clearInterval(timeInterval);
         const people = document.getElementsByClassName('people');
+
+        // Removes the attribute id after the simulation ends to remove wave effect(if enabled by user).
         for (let person of people) {
           person.removeAttribute('id');
         }
+
         viewHistory();
       } else {
         simulationTimeline.value = time;
@@ -163,14 +166,14 @@ function startSimulation() {
     }, 1000 / changeSpeedValue);
   }
 
-  startInterval();
+  startTime();
 
   let personID = 0;
 
   let transmissionTime = {};
 
   /**
-   * Records the time when infected and healthy person are within infection radius.
+   * Initializes transmission time between each and every person to 0.
    */
   for (let i = 0; i < totalPopulation; i++) {
     transmissionTime[i] = {};
@@ -182,7 +185,7 @@ function startSimulation() {
   let recoveryTime = {};
 
   /**
-   * Records the time elapsed for an infected person.
+   * Initializes the recovery time for each and every person to 0.
    */
   for (let i = 0; i < totalPopulation; i++) {
     recoveryTime[i] = 0;
@@ -192,7 +195,7 @@ function startSimulation() {
 
   /**
    * It takes 7 to 14 days to recover from coronavirus.
-   * This generates recovery time for all persons randomly in that range.
+   * Hence, this generates recovery time for each person randomly in that range.
    */
   for (let i = 0; i < totalPopulation; i++) {
     recoveryDuration[i] = getRandomInt(
@@ -202,14 +205,20 @@ function startSimulation() {
   }
 
   let socialDistancingPeople = [];
+
+  /**
+   * Appends unique random number to the socialDistancingPeople array.
+   */
   while (socialDistancingPeople.length < socialDistancingPopulation) {
-    let r = Math.floor(Math.random() * (totalPopulation - 0) + 0);
-    if (socialDistancingPeople.indexOf(r) === -1)
-      socialDistancingPeople.push(r);
+    let randomPerson = getRandomInt(0, totalPopulation);
+
+    // If the generated number does not exist, then the number is pushed to the array.
+    if (socialDistancingPeople.indexOf(randomPerson) === -1)
+      socialDistancingPeople.push(randomPerson);
   }
 
   /**
-   * Represents a person.
+   * Represents a Person.
    */
   class People {
     constructor() {
@@ -220,17 +229,16 @@ function startSimulation() {
       this.people.style.height = PERSON_HEIGHT + 'px';
       this.people.style.position = 'absolute';
 
-      // Gets the state of a person i.e. either healthy, vaccinated or sick.
+      // Gets the state of a person i.e. either healthy, vaccinated or infected.
       this.personState = this.getPersonState();
+
+      // Sets id to the infected person to display wave effect (if enabled by user).
       if (this.personState === 1 && waveEffect)
         this.people.setAttribute('id', `p${this.personState}`);
 
+      // Gets whether the particular person follows social distancing or not.
       this.socialDistancingFlag = this.getSocialDistancing();
 
-      // Updates the count of person's state.
-      // personStateCount[this.personState]++;
-
-      // Updates the statistics.
       updateStats();
 
       // Gets random positions within the simulation container.
@@ -243,10 +251,11 @@ function startSimulation() {
         SIMULATION_AREA_HEIGHT + 1 - 2 * PERSON_HEIGHT
       );
 
-      // Gets random initial direction.
+      // Gets random initial direction for people to move.
       this.xDirection = getRandomDirection();
       this.yDirection = getRandomDirection();
 
+      // If the person follows social distancing, then it makes them stationary.
       if (this.socialDistancingFlag) {
         this.xDirection = 0;
         this.yDirection = 0;
@@ -260,11 +269,13 @@ function startSimulation() {
       // Moves the person at random angles by assigning random speed in x and y axis.
       this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
       this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
+
+      // Appends the people element to the simulationArea.
       simulationArea.appendChild(this.people);
     }
 
     /**
-     * Generates state of each person.
+     * Generates state of each person at the start of simulation.
      * @returns - The state of the person.
      */
     getPersonState() {
@@ -287,7 +298,7 @@ function startSimulation() {
       this.yPosition += this.speedY * this.yDirection;
       this.people.style.left = this.xPosition + 'px';
       this.people.style.top = this.yPosition + 'px';
-      // if (!this.socialDistancingFlag)
+
       this.checkBoundaryCollision();
       this.checkTransmission();
       this.checkRecovery();
@@ -297,12 +308,14 @@ function startSimulation() {
      * Checks and redirects people back if they reach the boundary of simulation container.
      */
     checkBoundaryCollision() {
+      // Checks for horizontal collison.
       if (this.xPosition > SIMULATION_AREA_WIDTH - 2 * PERSON_WIDTH) {
         this.xDirection = -1;
       } else if (this.xPosition < PERSON_WIDTH) {
         this.xDirection = 1;
       }
 
+      // Checks for vertical collison.
       if (this.yPosition > SIMULATION_AREA_HEIGHT - 2 * PERSON_HEIGHT) {
         this.yDirection = -1;
       } else if (this.yPosition < PERSON_HEIGHT) {
@@ -310,21 +323,21 @@ function startSimulation() {
       }
     }
 
-    /**
-     * Changes movement of people by changing their angle each second.
-     */
-    changeAngle() {
-      let speedInterval = setInterval(() => {
-        this.speedX =
-          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
-        this.speedY =
-          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
-
-        if (time >= SIMULATION_TIME) {
-          clearInterval(speedInterval);
-        }
-      }, 1000);
-    }
+    // /**
+    //  * Moves people randomly by changing their angle each 1000/changeSpeedValue millisecond.
+    //  */
+    // changeAngle() {
+    //   let angleInterval = setInterval(() => {
+    //     this.speedX =
+    //       getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+    //     this.speedY =
+    //       getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+    //     // console.log('running');
+    //     if (time >= SIMULATION_TIME) {
+    //       clearInterval(angleInterval);
+    //     }
+    //   }, 1000 / changeSpeedValue);
+    // }
 
     /**
      * Checks for transmission of virus between infected and healthy or vaccinated person.
@@ -434,6 +447,11 @@ function startSimulation() {
       }
     }
 
+    /**
+     * Checks whether the personID exists in the socialDistancingPeople array.
+     * @returns False if personID does not exist.
+     *          True if personId exists.
+     */
     getSocialDistancing() {
       if (socialDistancingPeople.indexOf(this.personID) === -1) return false;
 
@@ -444,10 +462,16 @@ function startSimulation() {
   let requestID;
   const peopleArray = [];
 
+  // Creates 'totalPopulation' instances of class People.
   for (let i = 0; i < totalPopulation; i++) {
     let people = new People();
+
+    // Stores all the object of people in an array.
     peopleArray.push(people);
 
+    /**
+     * Runs the simulation by recursively calling the function with the help of requestAnimationFrame.
+     */
     function run() {
       people.runSimulation();
 
@@ -460,29 +484,75 @@ function startSimulation() {
         cancelAnimationFrame(requestID);
       }
     }
-    people.changeAngle();
+
+    // people.changeAngle();
     run();
   }
 
+  /**
+   * Moves people randomly by changing their angle each 1000/changeSpeedValue millisecond.
+   */
+  function changeAngle() {
+    let angleInterval = setInterval(() => {
+      peopleArray.forEach((people) => {
+        people.speedX =
+          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+        people.speedY =
+          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+      });
+
+      if (time >= SIMULATION_TIME) {
+        clearInterval(angleInterval);
+      }
+    }, 1000 / changeSpeedValue);
+  }
+
+  changeAngle();
+
+  /**
+   * Adds event listener to change the speed of simulation by slowing or speeding.
+   */
   function changeSimulationSpeed() {
     const changeSpeedInput = document.getElementById('change-speed-input');
     const slowerSpeed = document.getElementById('slower-speed');
     const fasterSpeed = document.getElementById('faster-speed');
     changeSpeedInput.innerText = changeSpeedValue;
+
+    /**
+     * When user clicks the slow button.
+     */
     slowerSpeed.addEventListener('click', () => {
       if (changeSpeedValue > 0.25) {
         changeSpeedValue -= 0.25;
         changeSpeedInput.innerText = changeSpeedValue;
+
+        // We have to clear the interval and run it again so that the interval time is changed
+        // to slow down the simulation.
+        // i.e. setInterval({}, 1000/changeSpeedValue)
         clearInterval(timeInterval);
-        startInterval();
+        startTime();
+
+        clearInterval(angleInterval);
+        changeAngle();
       }
     });
+
+    /**
+     * When user clicks the fast button.
+     */
     fasterSpeed.addEventListener('click', () => {
       if (changeSpeedValue < 4) {
         changeSpeedValue += 0.25;
         changeSpeedInput.innerText = changeSpeedValue;
+
+        // We have to clear the interval and run it again so that the interval time is changed
+        // to speed up the simulation.
+        // i.e. setInterval({}, 1000/changeSpeedValue)
         clearInterval(timeInterval);
-        startInterval();
+        startTime();
+
+        clearInterval(angleInterval);
+        changeAngle();
       }
     });
   }

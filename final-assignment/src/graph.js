@@ -122,9 +122,9 @@ for (let i = 0; i < 5; i++) {
 
 let context = [];
 /**
- * Moves to the first point of each state on the graph at 0(origin).
+ * Moves to the first point of given state on the graph at 0(origin).
  * @param {number} personState - The state of person that is uniquely represented.
- * @param {number} personStateCount - The count of people in the particular state.
+ * @param {number} personStateCount - The count of people in the given state.
  */
 function initialGraphPosition(personState, personStateCount) {
   context[personState] = canvasLine[personState].getContext('2d');
