@@ -132,6 +132,7 @@ function startSimulation() {
     initialGraphPosition(i, personStateCount[i]);
   }
 
+  let angleInterval;
   let timeInterval;
   /**
    * Runs every 1000/changeSpeedValue millisecond until the time is greater than SIMULATION_TIME.
@@ -467,7 +468,7 @@ function startSimulation() {
    * Moves people randomly by changing their angle each 1000/changeSpeedValue millisecond.
    */
   function changeAngle() {
-    let angleInterval = setInterval(() => {
+    angleInterval = setInterval(() => {
       peopleArray.forEach((people) => {
         people.speedX =
           getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
