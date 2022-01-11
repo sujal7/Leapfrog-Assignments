@@ -344,11 +344,7 @@ function startSimulation() {
       this.people.style.position = 'absolute';
 
       // Gets the state of a person i.e. either healthy, vaccinated or sick.
-      this.personState = getPersonState(
-        this.personID,
-        infectedPopulationNumber,
-        vaccinatedPopulationNumber
-      );
+      this.personState = this.getPersonState();
       if (this.personState === 1 && waveEffect)
         this.people.setAttribute('id', `p${this.personState}`);
 
@@ -388,6 +384,21 @@ function startSimulation() {
       this.speedX = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
       this.speedY = getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED;
       simulationArea.appendChild(this.people);
+    }
+
+    /**
+     * Generates state of each person.
+     * @returns - The state of the person.
+     */
+    getPersonState() {
+      if (this.personID < infectedPopulationNumber) return 1;
+      if (
+        this.personID >= infectedPopulationNumber &&
+        this.personID < infectedPopulationNumber + vaccinatedPopulationNumber
+      )
+        return 4;
+
+      return 0;
     }
 
     /**

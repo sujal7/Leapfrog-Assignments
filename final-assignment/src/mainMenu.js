@@ -16,6 +16,14 @@ for (let i = 0; i < inputSliders.length - 1; i++) {
   });
 }
 
+inputSliders[2].addEventListener('input', () => {
+  inputSliders[3].max = 100 - inputSliders[2].value;
+});
+
+inputSliders[3].addEventListener('input', () => {
+  inputSliders[2].max = 100 - inputSliders[3].value;
+});
+
 startButton.addEventListener('click', () => {
   mainMenu.style.display = 'none';
   simulationContainer.style.display = 'block';

@@ -27,24 +27,6 @@ function getRandomFloat(min, max) {
 }
 
 /**
- * Generates state of each person.
- * @param {number} personID - Unique id of each person.
- * @param {number} sickPopulation - Total sick population.
- * @param {number} vaccinatedPopulation - Total vaccinated population.
- * @returns - The state of the person.
- */
-function getPersonState(personID, sickPopulation, vaccinatedPopulation) {
-  if (personID < sickPopulation) return 1;
-  if (
-    personID >= sickPopulation &&
-    personID < sickPopulation + vaccinatedPopulation
-  )
-    return 4;
-
-  return 0;
-}
-
-/**
  * Calculates probability.
  * @param {number} n - The percentage of likelihood of any event.
  * @returns - Boolean value (true or false) depending on the probability of the event occuring.
