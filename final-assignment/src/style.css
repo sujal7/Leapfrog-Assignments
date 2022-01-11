@@ -78,7 +78,7 @@ body {
   width: 100%;
 }
 
-/* Canvas container */
+/* The container of all the graph and canvas. */
 #canvas-container {
   width: 100%;
   height: 300px;
