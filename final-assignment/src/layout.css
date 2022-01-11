@@ -1,27 +1,34 @@
-.simulation-area {
-  position: relative;
-}
-
-.help {
-  position: relative;
-}
-
-.help-text {
-  position: absolute;
-}
-
+/* The container of all the graph and canvas. */
 #canvas-container {
   position: relative;
 }
 
+/* All the canvas present in the HTML */
 canvas {
   position: absolute;
 }
 
+/* Container of stats displayed */
 .stats {
   float: left;
 }
 
+/* The right side container of simulation. */
 .simulation {
   float: left;
+}
+
+/* The square boundary inside which simulation occurs. */
+.simulation-area {
+  position: relative;
+}
+
+/* Container of help image. */
+.help {
+  position: relative;
+}
+
+/* The help paragraph displayed when mouse hovered. */
+.help-text {
+  position: absolute;
 }

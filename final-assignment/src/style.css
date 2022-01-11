@@ -1,30 +1,124 @@
+/* Styles the whole webpage */
 body {
   background-color: #0e1217;
   font-family: 'Franklin Gothic Medium';
   color: #cfcfcf;
 }
 
-.simulation-area {
-  width: 400px;
-  height: 400px;
-  margin: 10px auto;
-  border: 2px solid #cfcfcf;
+/* Main Menu Page */
+.main-menu {
+  text-align: center;
 }
 
+/* Title of Page */
+.main-menu-title {
+  margin: 5px auto 20px;
+  padding: 10px 0;
+  font-size: 48px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Labels in Main Menu */
+.main-menu label {
+  font-size: 32px;
+}
+
+/* Input Sliders in Main Menu */
+.main-menu input {
+  width: 30%;
+  margin: 10px 0 30px;
+  cursor: pointer;
+}
+
+/* Extra Features heading */
+.extra-features {
+  margin: 20px 0 15px;
+  padding: 10px 0;
+  font-size: 40px;
+  color: darkorange;
+  cursor: pointer;
+}
+
+/* Wave effect checkbox */
+#wave-effect {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+/* Note below wave effect */
+.note {
+  display: inline-block;
+  margin: 5px 0 30px;
+  font-size: 16px;
+}
+
+/* Main buttons (Start, Restart) to navigate the webpage */
+#start-simulation,
+#restart-simulation {
+  display: block;
+  margin: 0 auto 50px;
+  padding: 10px;
+  font-size: 16px;
+  font-family: 'Franklin Gothic Medium';
+  font-weight: bold;
+  color: #0e1217;
+  cursor: pointer;
+}
+
+#start-simulation:hover,
+#restart-simulation:hover {
+  background-color: #cfcfcf;
+}
+
+/* Simulation Page */
+.simulation-container {
+  display: none;
+  width: 100%;
+}
+
+/* Canvas container */
+#canvas-container {
+  width: 100%;
+  height: 300px;
+}
+
+/* All the canvas present in the HTML */
+canvas {
+  display: block;
+  margin: 0 50px;
+}
+
+/* Graph outline that display X and Y axis */
+#graph {
+  z-index: 0;
+}
+
+/* Container of stats displayed */
 .stats {
   width: 30%;
   margin-left: 10%;
-  margin-right: 0;
 }
 
+/* The day count inside stats container */
+.day-count {
+  width: 50%;
+  margin: 10px 80px 48px 80px;
+  font-size: 32px;
+  text-align: center;
+}
+
+/* The colored circle representing the state. */
 .index-color {
   display: inline-block;
   width: 24px;
   height: 24px;
-  border-radius: 50%;
   margin-right: 10px;
+  border-radius: 50%;
 }
 
+/* Styles the classes used in circle. */
 .skyblue {
   background-color: skyblue;
 }
@@ -45,27 +139,15 @@ body {
   background-color: yellow;
 }
 
-.simulation {
-  width: 40%;
-  margin-right: 7%;
-}
-
+/* Text that display person's state (Healthy, Infected, etc). */
 .stats-title {
-  margin: 32px 80px;
-  margin-right: 0;
   display: block;
+  margin: 32px 0 32px 80px;
   font-size: 32px;
   color: #cfcfcf;
 }
 
-.day-count {
-  text-align: center;
-  font-size: 32px;
-  margin: 48px 80px;
-  margin-top: 10px;
-  width: 50%;
-}
-
+/* Styles the number of people displayed in different states. */
 #healthy-population {
   color: skyblue;
 }
@@ -86,138 +168,71 @@ body {
   color: hotpink;
 }
 
-.main-menu {
-  text-align: center;
+/* The right side container of simulation. */
+.simulation {
+  width: 40%;
+  margin-right: 7%;
 }
 
-.main-menu-title {
-  text-align: center;
-  font-size: 48px;
-  padding: 10px 0;
-  margin: 5px auto;
-  margin-bottom: 20px;
-  cursor: pointer;
+/* The square boundary inside which simulation occurs. */
+.simulation-area {
+  width: 400px;
+  height: 400px;
+  margin: 10px auto;
+  border: 2px solid #cfcfcf;
 }
 
-.main-menu label {
-  font-size: 32px;
-}
-
-.main-menu input {
-  width: 30%;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  cursor: pointer;
-}
-
-#wave-effect {
-  width: 20px;
-  height: 20px;
-  margin: 0;
-}
-
-.note {
-  font-size: 16px;
-  display: inline-block;
-  margin-top: 5px;
-  margin-bottom: 30px;
-}
-
-.simulation-container {
-  display: none;
-}
-
-#start-simulation,
-#restart-simulation {
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 50px;
-  padding: 10px;
-  font-size: 16px;
-  font-family: 'Franklin Gothic Medium';
-  font-weight: bold;
-  color: #0e1217;
-}
-
-#start-simulation:hover,
-#restart-simulation:hover {
-  background-color: #cfcfcf;
-}
-
-#restart-simulation {
-  margin-top: 20px;
-}
-
+/* The slider below simulation area. */
 #simulation-timeline {
   display: block;
-  margin: 10px auto;
-  margin-bottom: 5px;
   width: 400px;
+  margin: 10px auto 5px;
   cursor: pointer;
 }
 
+/* Container of help image. */
 .help {
-  text-align: center;
   margin-bottom: 20px;
+  text-align: center;
 }
 
+/* The help image below slider. */
 .help-image {
   width: 25px;
   height: 25px;
   cursor: pointer;
 }
 
+/* The help paragraph displayed when mouse hovered. */
 .help-text {
-  font-size: 16px;
   display: none;
+  width: 400px;
+  font-size: 16px;
+  padding: 5px;
   background-color: #cfcfcf;
   color: #0e1217;
-  padding: 5px;
   text-align: start;
-  width: 400px;
 }
 
-.extra-features {
-  font-size: 40px;
-  color: darkorange;
-  padding: 10px 0;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-#canvas-container {
-  height: 300px;
-  width: 100%;
-}
-
-canvas {
-  display: block;
-  margin: 0 50px;
-}
-
-#graph {
-  z-index: 0;
-}
-
+/* The label that displays current speed of simulation. */
 .simulation label {
-  font-size: 32px;
   display: inline-block;
   width: 100%;
+  font-size: 32px;
   text-align: center;
 }
 
-.buttons {
+/* The container of buttons (slow, fast). */
+.change-speed-buttons {
   width: 100%;
   text-align: center;
 }
 
+/* The buttons to slow and speed the simulation. */
 #slower-speed,
 #faster-speed {
-  padding-top: 5px;
-  padding-bottom: 5px;
   margin-top: 5px;
+  padding: 5px auto;
   cursor: pointer;
 }
 
@@ -226,7 +241,13 @@ canvas {
   background-color: #cfcfcf;
 }
 
+/* The image placed inside the buttons. */
 .change-speed-icon {
   width: 30px;
   height: 23px;
+}
+
+/* The button to restart simulation. */
+#restart-simulation {
+  margin-top: 20px;
 }

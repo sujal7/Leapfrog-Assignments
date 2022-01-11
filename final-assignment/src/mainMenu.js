@@ -31,7 +31,7 @@ inputSliders[3].addEventListener('input', () => {
 // Displays the simulation area and runs the simulation when the user clicks the start button.
 startButton.addEventListener('click', () => {
   mainMenu.style.display = 'none';
-  simulationContainer.style.display = 'block';
+  simulationContainer.style.display = 'inline-block';
   startSimulation();
 
   // The web page automatically scrolls to the animation frame, so I used the following to prevent it.

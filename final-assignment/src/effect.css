@@ -1,12 +1,12 @@
 #p1:before {
   content: '';
   position: absolute;
+  z-index: -1;
+  animation: ripple 1.5s ease-out infinite;
   width: 100%;
   height: 100%;
   background-color: inherit;
   border-radius: 50%;
-  z-index: -1;
-  animation: ripple 1.5s ease-out infinite;
 }
 
 @keyframes ripple {
