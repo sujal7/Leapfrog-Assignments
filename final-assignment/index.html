@@ -5,17 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coronavirus Simulation</title>
+
+    <!-- CSS Files Used -->
     <link rel="stylesheet" href="src/reset.css" />
     <link rel="stylesheet" href="src/layout.css" />
     <link rel="stylesheet" href="src/style.css" />
     <link rel="stylesheet" href="src/effect.css" />
   </head>
+
   <body>
+    <!-- The main menu page where user enters parameters. -->
     <div class="main-menu" id="main-menu">
+      <!-- The main menu title -->
       <h1 class="main-menu-title" id="main-menu-title">
         Coronavirus Simulation
       </h1>
       <br />
+
+      <!-- Input Parameters to be entered by the user. -->
       <label for="total-days">
         Days to be Simulated:
         <span id="total-days-input" class="input-values"></span> </label
@@ -29,6 +36,7 @@
         value="30"
       />
       <br />
+
       <label for="total-population">
         Total Population:
         <span id="total-population-input" class="input-values"></span> </label
@@ -42,6 +50,7 @@
         value="200"
       />
       <br />
+
       <label for="infected-percentage">
         Infected Population:
         <span id="infected-percentage-input" class="input-values"></span
@@ -56,6 +65,7 @@
         value="20"
       />
       <br />
+
       <label for="vaccinated-percentage">
         Vaccinated Population:
         <span id="vaccinated-percentage-input" class="input-values"></span
@@ -70,6 +80,7 @@
         value="5"
       />
       <br />
+
       <label for="vaccine-efficiency">
         Vaccine Efficiency:
         <span id="vaccine-efficiency-input" class="input-values"></span>%</label
@@ -83,6 +94,7 @@
         value="90"
       />
       <br />
+
       <label for="infection-rate">
         Infection Rate:
         <span id="infection-rate-input" class="input-values"></span>%</label
@@ -96,6 +108,7 @@
         value="100"
       />
       <br />
+
       <label for="death-rate">
         Death Rate:
         <span id="death-rate-input" class="input-values"></span>%</label
@@ -108,7 +121,9 @@
         max="100"
         value="10"
       /><br />
+
       <h2 class="extra-features">Extra Features</h2>
+
       <label for="social-distancing">
         Social Distancing Obeyed by:
         <span id="social-distancing-input" class="input-values"></span>%</label
@@ -121,6 +136,7 @@
         max="100"
         value="0"
       /><br />
+
       <label for="infection-radius">
         Infection Radius:
         <span id="infection-radius-input" class="input-values"></span></label
@@ -134,6 +150,7 @@
         step="0.1"
         value="2"
       /><br />
+
       <label for="infection-transmission-time">
         Minimum Infection Transmission Time:
         <span
@@ -151,6 +168,7 @@
         step="0.5"
         value="1"
       /><br />
+
       <label for="wave-effect"> Enable Wave Effect: </label>
       <input
         type="checkbox"
@@ -161,47 +179,72 @@
       <span class="note"
         >(NOTE: Enabling wave effect might affect the performance.)</span
       ><br />
+
+      <!-- Button to start the simulation. -->
       <button id="start-simulation">Start Simulation</button>
     </div>
+
+    <!-- The simulation page where the simulation begins. -->
     <div class="simulation-container" id="simulation-container">
+      <!-- The title of the simulation page(same as main menu). -->
       <h1 class="main-menu-title" id="main-menu-title">
         Coronavirus Simulation
       </h1>
       <br />
+
+      <!-- The container of all the canvas used. -->
       <div class="canvas-container" id="canvas-container">
+        <!-- The main graph that displays X & Y Axis, reference values and reference lines. -->
         <canvas id="graph" width="1260" height="260"></canvas>
+
+        <!-- The lines to display line graph of different states. -->
         <canvas id="line1" width="1260" height="260"></canvas>
         <canvas id="line2" width="1260" height="260"></canvas>
         <canvas id="line3" width="1260" height="260"></canvas>
         <canvas id="line4" width="1260" height="260"></canvas>
         <canvas id="line5" width="1260" height="260"></canvas>
       </div>
+
+      <!-- The container of stats displayed while running the simulation. -->
       <div class="stats" id="stats">
+        <!-- The day count being displayed. -->
         <div class="day-count" id="day-count"></div>
+
+        <!-- Stats of people in different state being displayed. -->
         <h3 class="stats-title">
           <span class="index-color skyblue"></span>
           Healthy: <span id="healthy-population"></span>
         </h3>
+
         <h3 class="stats-title">
           <span class="index-color green"></span>
           Vaccinated: <span id="vaccinated-population"></span>
         </h3>
+
         <h3 class="stats-title">
           <span class="index-color red"></span>
           Infected: <span id="infected-population"></span>
         </h3>
+
         <h3 class="stats-title">
           <span class="index-color yellow"></span>
           Recovered: <span id="recovered-population"></span>
         </h3>
+
         <h3 class="stats-title">
           <span class="index-color hotpink"></span>
           Deceased: <span id="deceased-population"></span>
         </h3>
       </div>
+
+      <!-- The container where the simulation occurs. -->
       <div class="simulation">
+        <!-- The main boundary where the simulation occurs. -->
         <div class="simulation-area" id="simulation-area"></div>
+
+        <!-- The container of simulation-timeline slider. -->
         <div class="timeline-container">
+          <!-- The slider to view history of simulation. -->
           <input
             type="range"
             name="simulation-timeline"
@@ -210,21 +253,30 @@
             max="30"
             value="0"
           />
+
+          <!-- The help container.  -->
           <div class="help">
+            <!-- The help icon to inform user about the slider feature. -->
             <img
               class="help-image"
               id="help-image"
               src="src/images/help.png"
               alt="Help Image"
             />
+            <!-- The help text that is displayed when user hovers on the icon. -->
             <p class="help-text" id="help-text">
               View the history of simulation using the slider after its
               completion.
             </p>
           </div>
         </div>
+
+        <!-- The current speed of simulation. -->
         <label> Speed: x<span id="change-speed-input"></span></label><br />
+
+        <!-- Container of two buttons to change speed of simulation. -->
         <div class="change-speed-buttons">
+          <!-- Button to slow down the speed of simulation. -->
           <button id="slower-speed">
             <img
               src="src/images/slow.png"
@@ -232,6 +284,8 @@
               alt="Slow Down Image"
             />
           </button>
+
+          <!-- Button to speed up the speed of simulation. -->
           <button id="faster-speed">
             <img
               src="src/images/fast.png"
@@ -240,9 +294,13 @@
             />
           </button>
         </div>
+
+        <!-- The button to restart the simulation. -->
         <button id="restart-simulation">Restart Simulation</button>
       </div>
     </div>
+
+    <!-- JavaScript Files Used -->
     <script src="src/utils.js"></script>
     <script src="src/mainMenu.js"></script>
     <script src="src/statisticsUpdate.js"></script>
