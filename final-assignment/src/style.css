@@ -54,6 +54,30 @@ body {
   font-size: 16px;
 }
 
+/* Container of help image. */
+.main-menu-help {
+  margin: -20px 0 20px;
+  text-align: center;
+}
+
+/* The help image below slider. */
+.main-menu-help-image {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+/* The help paragraph displayed when mouse hovered. */
+.main-menu-help-text {
+  display: none;
+  width: auto;
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #cfcfcf;
+  color: #0e1217;
+  text-align: start;
+}
+
 /* Main buttons (Start, Restart) to navigate the webpage */
 #start-simulation,
 #restart-simulation {
@@ -208,7 +232,7 @@ canvas {
   display: none;
   width: 400px;
   font-size: 16px;
-  padding: 5px;
+  padding: 5px 10px;
   background-color: #cfcfcf;
   color: #0e1217;
   text-align: start;

@@ -1,3 +1,13 @@
+/* Container of help image. */
+.main-menu-help {
+  position: relative;
+}
+
+/* The help paragraph displayed when mouse hovered. */
+.main-menu-help-text {
+  position: absolute;
+}
+
 /* The container of all the graph and canvas. */
 #canvas-container {
   position: relative;
