@@ -24,7 +24,9 @@ const stateColorMap = {
  * Runs the simulation when the user presses the start simulation button.
  */
 function startSimulation() {
+  // The speed of simulation. Initially, the speed is normal i.e. 1.
   let changeSpeedValue = 1;
+
   /**
    * GLOBAL CONSTANTS FOR SIMULATION.
    */
@@ -124,7 +126,7 @@ function startSimulation() {
   personStateCount[1] = infectedPopulationNumber;
   personStateCount[4] = vaccinatedPopulationNumber;
 
-  initializeVariables(SIMULATION_TIME, totalPopulation);
+  initializeGraphVariables(SIMULATION_TIME, totalPopulation);
 
   drawGraph();
 
@@ -134,7 +136,8 @@ function startSimulation() {
 
   let timeInterval;
   /**
-   * Runs every 1000/changeSpeedValue millisecond until the time is greater than SIMULATION_TIME.
+   * Runs an interval that executes every 1000/changeSpeedValue millisecond until the time is greater    * than SIMULATION_TIME.
+   * changeSpeedValue is used to factor in change in simulation speed.
    */
   function startTime() {
     timeInterval = setInterval(() => {
@@ -348,6 +351,7 @@ function startSimulation() {
 
             // Checks if the uinfected person has been within the radius of infected person
             // for minimum infection time multiplied by FPS.
+            // changeSpeedValue is used to factor in change in simulation speed.
             if (
               transmissionTime[this.personID][people.personID] >=
               (MIN_INFECTION_TRANSMISSION_TIME / changeSpeedValue) * FPS
@@ -361,22 +365,26 @@ function startSimulation() {
               ) {
                 personStateCount[this.personState]--;
                 this.personState = 1;
-                if (waveEffect)
-                  this.people.setAttribute('id', `p${this.personState}`);
                 this.people.style.backgroundColor =
                   stateColorMap[this.personState];
                 personStateCount[this.personState]++;
                 updateStats();
+
+                // Sets p1 id for infected people element (if wave effect present).
+                if (waveEffect)
+                  this.people.setAttribute('id', `p${this.personState}`);
               } else if (this.personState === 0 && probability(infectionRate)) {
                 // Checks transmission to healthy people depending on infection rate.
                 personStateCount[this.personState]--;
                 this.personState = 1;
-                if (waveEffect)
-                  this.people.setAttribute('id', `p${this.personState}`);
                 this.people.style.backgroundColor =
                   stateColorMap[this.personState];
                 personStateCount[this.personState]++;
                 updateStats();
+
+                // Sets p1 id for infected people element (if wave effect present).
+                if (waveEffect)
+                  this.people.setAttribute('id', `p${this.personState}`);
               }
             }
           } else {
@@ -397,6 +405,7 @@ function startSimulation() {
 
         // Checks if the infected person has been infected for their
         // recovery duration multiplied by FPS.
+        // changeSpeedValue is used to factor in the change in simulation speed.
         if (
           recoveryTime[this.personID] >=
           (recoveryDuration[this.personID] / changeSpeedValue) * FPS
@@ -406,17 +415,21 @@ function startSimulation() {
           if (probability(deathRate)) {
             personStateCount[this.personState]--;
             this.personState = 3;
-            if (waveEffect) this.people.removeAttribute('id');
             this.people.style.backgroundColor = stateColorMap[this.personState];
             this.xDirection = 0;
             this.yDirection = 0;
             personStateCount[this.personState]++;
+
+            // Removes id attribute from infected person to remove wave effect (if present).
+            if (waveEffect) this.people.removeAttribute('id');
           } else {
             personStateCount[this.personState]--;
             this.personState = 2;
-            if (waveEffect) this.people.removeAttribute('id');
             this.people.style.backgroundColor = stateColorMap[this.personState];
             personStateCount[this.personState]++;
+
+            // Removes id attribute from infected person to remove wave effect (if present).
+            if (waveEffect) this.people.removeAttribute('id');
           }
           updateStats();
         }
@@ -501,6 +514,7 @@ function startSimulation() {
     personHistory[time]['vaccinatedCount'] = personStateCount[4];
   }
 
+  // Records people history in the beginning of simulation.
   recordPeopleHistory(0);
 
   /**
