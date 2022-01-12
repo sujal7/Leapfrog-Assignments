@@ -64,6 +64,7 @@ body {
 .main-menu-help-image {
   width: 25px;
   height: 25px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
@@ -224,6 +225,7 @@ canvas {
 .help-image {
   width: 25px;
   height: 25px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
