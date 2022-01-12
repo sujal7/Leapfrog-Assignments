@@ -132,7 +132,6 @@ function startSimulation() {
     initialGraphPosition(i, personStateCount[i]);
   }
 
-  let angleInterval;
   let timeInterval;
   /**
    * Runs every 1000/changeSpeedValue millisecond until the time is greater than SIMULATION_TIME.
@@ -434,16 +433,33 @@ function startSimulation() {
 
       return true;
     }
+
+    /**
+     * Moves people randomly by changing their angle each 1000/changeSpeedValue millisecond.
+     */
+    changeAngle() {
+      let angleInterval = setInterval(() => {
+        this.speedX =
+          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+        this.speedY =
+          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
+
+        if (time >= SIMULATION_TIME) {
+          clearInterval(angleInterval);
+        }
+      }, 1000 / changeSpeedValue);
+    }
   }
 
+  // The ID of request animation frame
   let requestID;
+
+  // To store all the object of people in an array.
   const peopleArray = [];
 
   // Creates 'totalPopulation' instances of class People.
   for (let i = 0; i < totalPopulation; i++) {
     let people = new People();
-
-    // Stores all the object of people in an array.
     peopleArray.push(people);
 
     /**
@@ -461,90 +477,23 @@ function startSimulation() {
         cancelAnimationFrame(requestID);
       }
     }
+    people.changeAngle();
     run();
   }
-
-  /**
-   * Moves people randomly by changing their angle each 1000/changeSpeedValue millisecond.
-   */
-  function changeAngle() {
-    angleInterval = setInterval(() => {
-      peopleArray.forEach((people) => {
-        people.speedX =
-          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
-        people.speedY =
-          getRandomFloat(MIN_ANGLE, MAX_ANGLE) * SPEED * changeSpeedValue;
-      });
-
-      if (time >= SIMULATION_TIME) {
-        clearInterval(angleInterval);
-      }
-    }, 1000 / changeSpeedValue);
-  }
-
-  changeAngle();
-
-  /**
-   * Adds event listener to change the speed of simulation by slowing or speeding.
-   */
-  function changeSimulationSpeed() {
-    const changeSpeedInput = document.getElementById('change-speed-input');
-    const slowerSpeed = document.getElementById('slower-speed');
-    const fasterSpeed = document.getElementById('faster-speed');
-    changeSpeedInput.innerText = changeSpeedValue;
-
-    /**
-     * When user clicks the slow button.
-     */
-    slowerSpeed.addEventListener('click', () => {
-      if (changeSpeedValue > 0.25) {
-        changeSpeedValue -= 0.25;
-        changeSpeedInput.innerText = changeSpeedValue;
-
-        // We have to clear the interval and run it again so that the interval time is changed
-        // to slow down the simulation.
-        // i.e. setInterval({}, 1000/changeSpeedValue)
-        clearInterval(timeInterval);
-        startTime();
-
-        clearInterval(angleInterval);
-        changeAngle();
-      }
-    });
-
-    /**
-     * When user clicks the fast button.
-     */
-    fasterSpeed.addEventListener('click', () => {
-      if (changeSpeedValue < 4) {
-        changeSpeedValue += 0.25;
-        changeSpeedInput.innerText = changeSpeedValue;
-
-        // We have to clear the interval and run it again so that the interval time is changed
-        // to speed up the simulation.
-        // i.e. setInterval({}, 1000/changeSpeedValue)
-        clearInterval(timeInterval);
-        startTime();
-
-        clearInterval(angleInterval);
-        changeAngle();
-      }
-    });
-  }
-
-  changeSimulationSpeed();
 
   /**
    * Records the history of people on each second.
    * @param {number} time - The time elapsed since the beginning of simulation.
    */
   function recordPeopleHistory(time) {
+    // Stores the respective position and state of people.
     peopleArray.forEach((people) => {
       personHistory[time][people.personID]['personState'] = people.personState;
       personHistory[time][people.personID]['xPosition'] = people.xPosition;
       personHistory[time][people.personID]['yPosition'] = people.yPosition;
     });
 
+    // Stores the count of people in different states.
     personHistory[time]['healthyCount'] = personStateCount[0];
     personHistory[time]['infectedCount'] = personStateCount[1];
     personHistory[time]['recoveredCount'] = personStateCount[2];
@@ -586,4 +535,48 @@ function startSimulation() {
       dayCount.innerText = 'Day ' + simulationTimeline.value;
     });
   }
+
+  /**
+   * Adds event listener to change the speed of simulation by slowing or speeding.
+   */
+  function changeSimulationSpeed() {
+    const changeSpeedInput = document.getElementById('change-speed-input');
+    const slowerSpeed = document.getElementById('slower-speed');
+    const fasterSpeed = document.getElementById('faster-speed');
+    changeSpeedInput.innerText = changeSpeedValue;
+
+    /**
+     * When user clicks the slow button.
+     */
+    slowerSpeed.addEventListener('click', () => {
+      if (changeSpeedValue > 0.25) {
+        changeSpeedValue -= 0.25;
+        changeSpeedInput.innerText = changeSpeedValue;
+
+        // We have to clear the interval and run it again so that the interval time is changed
+        // to slow down the simulation.
+        // i.e. setInterval({}, 1000/changeSpeedValue)
+        clearInterval(timeInterval);
+        startTime();
+      }
+    });
+
+    /**
+     * When user clicks the fast button.
+     */
+    fasterSpeed.addEventListener('click', () => {
+      if (changeSpeedValue < 4) {
+        changeSpeedValue += 0.25;
+        changeSpeedInput.innerText = changeSpeedValue;
+
+        // We have to clear the interval and run it again so that the interval time is changed
+        // to speed up the simulation.
+        // i.e. setInterval({}, 1000/changeSpeedValue)
+        clearInterval(timeInterval);
+        startTime();
+      }
+    });
+  }
+
+  changeSimulationSpeed();
 }
