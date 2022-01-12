@@ -517,11 +517,11 @@ function startSimulation() {
   // Records people history in the beginning of simulation.
   recordPeopleHistory(0);
 
+  const peopleObjects = document.getElementsByClassName('people');
   /**
    * Adds event listener to the simulation slider to view history of simulation by moving the slider.
    */
   function viewHistory() {
-    const peopleObjects = document.getElementsByClassName('people');
     simulationTimeline.addEventListener('input', () => {
       // Styles the people with their respective position and backgroundColor.
       for (let i = 0; i < totalPopulation; i++) {
