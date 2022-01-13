@@ -107,15 +107,15 @@ function startSimulation() {
   dayCount.innerText = 'Day ' + time;
 
   /**
-   * Converts percentage to positive integer by rounding it off.
+   * Converts percentage to positive integer.
    */
   const infectedPopulationNumber = Math.round(
     (infectedPopulationPercentage * totalPopulation) / 100
   );
-  const vaccinatedPopulationNumber = Math.round(
+  const vaccinatedPopulationNumber = Math.floor(
     (vaccinatedPopulationPercentage * totalPopulation) / 100
   );
-  const socialDistancingPopulation = Math.round(
+  const socialDistancingPopulation = Math.floor(
     (socialDistancingPercentage * totalPopulation) / 100
   );
   const healthyPopulationNumber =
